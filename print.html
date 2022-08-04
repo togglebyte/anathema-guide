@@ -1,0 +1,440 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Anathema</title>
+        <meta name="robots" content="noindex" />
+        <!-- Custom HTML head -->
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="getting-started.html"><strong aria-hidden="true">2.</strong> Getting started</a></li><li class="chapter-item expanded "><a href="templates.html"><strong aria-hidden="true">3.</strong> Templates</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="templates/alignment.html"><strong aria-hidden="true">3.1.</strong> alignment</a></li><li class="chapter-item expanded "><a href="templates/border.html"><strong aria-hidden="true">3.2.</strong> border</a></li><li class="chapter-item expanded "><a href="templates/canvas.html"><strong aria-hidden="true">3.3.</strong> canvas</a></li><li class="chapter-item expanded "><a href="templates/expand.html"><strong aria-hidden="true">3.4.</strong> expand</a></li><li class="chapter-item expanded "><a href="templates/hstack.html"><strong aria-hidden="true">3.5.</strong> hstack</a></li><li class="chapter-item expanded "><a href="templates/position.html"><strong aria-hidden="true">3.6.</strong> position</a></li><li class="chapter-item expanded "><a href="templates/scrollview.html"><strong aria-hidden="true">3.7.</strong> scrollview</a></li><li class="chapter-item expanded "><a href="templates/spacer.html"><strong aria-hidden="true">3.8.</strong> spacer</a></li><li class="chapter-item expanded "><a href="templates/text.html"><strong aria-hidden="true">3.9.</strong> text</a></li><li class="chapter-item expanded "><a href="templates/vstack.html"><strong aria-hidden="true">3.10.</strong> vstack</a></li><li class="chapter-item expanded "><a href="templates/zstack.html"><strong aria-hidden="true">3.11.</strong> zstack</a></li></ol></li><li class="chapter-item expanded "><a href="runtime.html"><strong aria-hidden="true">4.</strong> Runtime</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="templates/usermodel.html"><strong aria-hidden="true">4.1.</strong> User model</a></li><li class="chapter-item expanded "><a href="templates/events.html"><strong aria-hidden="true">4.2.</strong> Events</a></li></ol></li><li class="chapter-item expanded "><a href="display.html"><strong aria-hidden="true">5.</strong> Display only</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Anathema</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="introduction"><a class="header" href="#introduction">Introduction</a></h1>
+<p>Anathema is a library for building text user interfaces.</p>
+<p>Anathema was developed with the intent to give developers a fast and easy way to
+write text user interfaces.</p>
+<h2 id="whats-point-of-this"><a class="header" href="#whats-point-of-this">What's point of this?</a></h2>
+<ul>
+<li>Templates can be shipped with the application, giving the end user the ability
+to customise the entire layout of the application.</li>
+<li>Easy to prototype with the markup language and runtime.</li>
+</ul>
+<h2 id="only-include-what-you-need"><a class="header" href="#only-include-what-you-need">Only include what you need:</a></h2>
+<ul>
+<li>Renderer only: tools for drawing in the terminal</li>
+<li>Widgets + renderer: Ready made widgets that can be created and controlled with
+Rust.</li>
+<li>Templates and runtime: Write layouts in a simple to use language</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="getting-started"><a class="header" href="#getting-started">Getting started</a></h1>
+<h2 id="requirements"><a class="header" href="#requirements">Requirements</a></h2>
+<ul>
+<li>Rust 1.62 or newer</li>
+<li>Some understanding of the Rust programming language</li>
+</ul>
+<h2 id="download-and-install"><a class="header" href="#download-and-install">Download and install</a></h2>
+<p>TODO:</p>
+<h2 id="choosing-features"><a class="header" href="#choosing-features">Choosing features</a></h2>
+<p>Only use what you need.</p>
+<p>By default everything but <code>logging</code> and <code>serde-json</code> is enabled.</p>
+<ul>
+<li>
+<p><code>default</code>: includes the entire runtime and template language</p>
+</li>
+<li>
+<p><code>widgets</code>: includes widgets and rendering</p>
+</li>
+<li>
+<p><code>templates</code>: templates, widgets and rendering (but no runtime)</p>
+</li>
+<li>
+<p><code>runtime</code>: runtime and templates</p>
+</li>
+<li>
+<p><code>serde-json</code>: this feature enables convert json to <code>Value</code> which is the inner
+data type for templates.</p>
+</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="templates"><a class="header" href="#templates">Templates</a></h1>
+<p>The template syntax is simple:</p>
+<pre><code>  Widget name                                         
+  |    Start of attributes
+  |    |    attribute name                            End of attributes
+  |    |    |          attribute value                |
+  |    |    |          |     attribute separator      |Terminate widget
+  |    |    |          |     |                        || Text (only text widget)
+  |    |    |          |     |                        || |
+widget [optional: &quot;attribute&quot;, separated: &quot;by a comma&quot;]: &quot;text&quot;
+</code></pre>
+<p>Some examples:</p>
+<p>A widget with no attributes and two children</p>
+<pre><code class="language-yaml">hstack:
+    text: &quot;hello&quot;
+    text: &quot;how are you?&quot;
+</code></pre>
+<p>A widget with attributes</p>
+<pre><code class="language-yaml">alignment [align: bottom-right, padding-left: 2, padding-right: 2]:
+</code></pre>
+<p>A text widget</p>
+<pre><code class="language-yaml">text: &quot;Here be text&quot;
+</code></pre>
+<p>A text widget with styled sections</p>
+<pre><code class="language-yaml">text: &quot;a bit of &quot;
+    span [foreground: red]: &quot;red &quot;
+    span: &quot; and &quot;
+    span [bold:true]: &quot;bold&quot;
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="alignment"><a class="header" href="#alignment">Alignment</a></h1>
+<p>The <code>alignment</code> will expand to fill all available space inside the parent (even
+if the alignment is set to top-left).</p>
+<pre><code class="language-yaml">alignment [align: top-right]:
+    border:
+        text: &quot;I am at the top right corner&quot;
+</code></pre>
+<h2 id="attributes"><a class="header" href="#attributes">Attributes</a></h2>
+<h3 id="align"><a class="header" href="#align"><code>align</code></a></h3>
+<p>Can be one of the following values:</p>
+<h4 id="top-left"><a class="header" href="#top-left"><code>top-left</code></a></h4>
+<h4 id="top"><a class="header" href="#top"><code>top</code></a></h4>
+<h4 id="top-right"><a class="header" href="#top-right"><code>top-right</code></a></h4>
+<h4 id="centre--center"><a class="header" href="#centre--center"><code>centre</code> / <code>center</code></a></h4>
+<h4 id="bottom-left"><a class="header" href="#bottom-left"><code>bottom-left</code></a></h4>
+<h4 id="bottom"><a class="header" href="#bottom"><code>bottom</code></a></h4>
+<h4 id="bottom-right"><a class="header" href="#bottom-right"><code>bottom-right</code></a></h4>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="border"><a class="header" href="#border">Border</a></h1>
+<pre><code class="language-yaml">border [border-style: thick]
+    text: &quot;That's one thick border!&quot;
+</code></pre>
+<h2 id="attributes-1"><a class="header" href="#attributes-1">Attributes</a></h2>
+<h3 id="border-style"><a class="header" href="#border-style"><code>border-style</code></a></h3>
+<p>Border style can be one of the following values:</p>
+<h4 id="thin"><a class="header" href="#thin"><code>thin</code></a></h4>
+<pre><code>┌───────────────────────────┐
+│Would you like some coffee?│
+└───────────────────────────┘
+</code></pre>
+<h4 id="thick"><a class="header" href="#thick"><code>thick</code></a></h4>
+<pre><code>╔══════════╗
+║I like tea║
+╚══════════╝
+</code></pre>
+<h4 id="a-custom-value-as-a-string-where-each-character-represents-an-edge"><a class="header" href="#a-custom-value-as-a-string-where-each-character-represents-an-edge">A custom value as a string where each character represents an edge:</a></h4>
+<pre><code>border [border-style: &quot;01234567&quot;, padding: 1]:
+    text: &quot;hi&quot;
+</code></pre>
+<p>output</p>
+<pre><code>011112
+7    3
+7 hi 3
+7    3
+655554
+</code></pre>
+<h3 id="width"><a class="header" href="#width"><code>width</code></a></h3>
+<p>If the width is less than the maximum width constraint the border
+will size it self according to the width.</p>
+<pre><code class="language-yaml">border [border-style: thin, width: 20]:
+    text: &quot;hi&quot;
+</code></pre>
+<p>output</p>
+<pre><code>┌──────────────────┐
+│hi                │
+└──────────────────┘
+</code></pre>
+<h3 id="height"><a class="header" href="#height"><code>height</code></a></h3>
+<p>Height works like width, in that it will size it self according to the height as
+long as it fits.</p>
+<h3 id="sides"><a class="header" href="#sides"><code>sides</code></a></h3>
+<p>Determines which sides of the border should be drawn.
+If the sides are joined, e.g top and left, then the top left corner will be
+drawn as well.</p>
+<pre><code class="language-yaml">border [border-style: thin, width: 10, sides: top|bottom]:
+    text: &quot;hi&quot;
+</code></pre>
+<p>output</p>
+<pre><code>──────────
+hi
+──────────
+</code></pre>
+<pre><code class="language-yaml">border [border-style: thin, width: 10, sides: top|right]:
+    text: &quot;hi&quot;
+</code></pre>
+<p>output</p>
+<pre><code>─────────┐
+hi       │
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="canvas"><a class="header" href="#canvas">canvas</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="expand"><a class="header" href="#expand">expand</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="hstack"><a class="header" href="#hstack">hstack</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="position"><a class="header" href="#position">position</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="scrollview"><a class="header" href="#scrollview">scrollview</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="spacer"><a class="header" href="#spacer">spacer</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="text"><a class="header" href="#text">text</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="vstack"><a class="header" href="#vstack">vstack</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="zstack"><a class="header" href="#zstack">zstack</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="runtime"><a class="header" href="#runtime">Runtime</a></h1>
+<p>TODO: Summary</p>
+<h2 id="example"><a class="header" href="#example">Example</a></h2>
+<pre><pre class="playground"><code class="language-rust edition2021">use anathema::runtime::{Event, Sender};
+use anathema::runtime::{Runtime, UserModel};
+use anathema::templates::DataCtx;
+use anathema::widgets::WidgetContainer;
+
+struct Model {
+    data: DataCtx,
+    tx: Sender&lt;()&gt;,
+}
+
+impl Model {
+    pub fn new(tx: Sender&lt;()&gt;) -&gt; Self {
+        Self {
+            data: DataCtx::empty(),
+            tx,
+        }
+    }
+}
+
+impl UserModel for Model {
+    type Message = ();
+
+    fn event(&amp;mut self, event: Event&lt;Self::Message&gt;, _root: &amp;mut WidgetContainer) {
+        if event.ctrl_c() {
+            self.tx.send(Event::Quit).unwrap();
+        }
+    }
+
+    fn data(&amp;mut self) -&gt; &amp;mut DataCtx {
+        &amp;mut self.data
+    }
+}
+
+fn main() {
+    let basic_runtime = Runtime::new();
+    let user_model = Model::new(basic_runtime.tx());
+    basic_runtime.start(user_model, Some(&quot;template.tiny&quot;)).unwrap();
+}
+</code></pre></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="user-model"><a class="header" href="#user-model">User model</a></h1>
+<p>Implementing the trait <code>UserModel</code> [TODO]</p>
+<h3 id="message"><a class="header" href="#message"><code>Message</code></a></h3>
+<p>The <code>type</code> that can be sent to the user model via the event system.</p>
+<pre><pre class="playground"><code class="language-rust edition2021"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>impl UserModel for Model {
+    type Message = String;
+    ...
+}
+
+let runtime_tx = runtime.tx();
+
+runtime_tx.send(
+<span class="boring">}
+</span></code></pre></pre>
+<h3 id="eventmut-self-eventselfmessage-mut-widgetcontainer"><a class="header" href="#eventmut-self-eventselfmessage-mut-widgetcontainer"><code>event(&amp;mut self, Event&lt;Self::Message&gt;, &amp;mut WidgetContainer)</code></a></h3>
+<p>Called by the runtime for every event, such as key press, mouse (if mouse is
+enabled) and user generated events (data send to the runtime via the <code>Sender</code>).</p>
+<h3 id="data"><a class="header" href="#data"><code>data</code></a></h3>
+<p>The <code>data</code> function is called by the runtime once every frame.</p>
+<pre><pre class="playground"><code class="language-rust edition2021"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>use anathema::runtime::{Event, Sender};
+use anathema::runtime::UserModel;
+use anathema::templates::DataCtx;
+use anathema::widgets::WidgetContainer;
+
+struct Model {
+    data: DataCtx,
+    tx: Sender&lt;()&gt;,
+}
+
+impl UserModel for Model {
+    type Message = ();
+
+    fn event(&amp;mut self, event: Event&lt;Self::Message&gt;, root: &amp;mut WidgetContainer) {
+        if event.ctrl_c() {
+            self.tx.send(Event::Quit).unwrap();
+        }
+    }
+
+    fn data(&amp;mut self) -&gt; &amp;mut DataCtx {
+        &amp;mut self.data
+    }
+}
+<span class="boring">}
+</span></code></pre></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="events"><a class="header" href="#events">Events</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="widgets-only"><a class="header" href="#widgets-only">Widgets only</a></h1>
+<ul>
+<li>Draw without including the runtime</li>
+<li>Widgets are created manually</li>
+<li><code>WidgetContainer</code>
+<ul>
+<li><code>into_container</code></li>
+<li><code>NodeId</code></li>
+</ul>
+</li>
+</ul>
+<h2 id="example-1"><a class="header" href="#example-1">Example</a></h2>
+<pre><pre class="playground"><code class="language-rust edition2021"><span class="boring">#![allow(unused)]
+</span>
+<span class="boring">fn main() {
+</span><span class="boring">}
+</span></code></pre></pre>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+            </nav>
+
+        </div>
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        <script type="text/javascript">
+        window.addEventListener('load', function() {
+            window.setTimeout(window.print, 100);
+        });
+        </script>
+    </body>
+</html>
