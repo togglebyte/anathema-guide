@@ -84,3 +84,7 @@ output
 ─────────┐
 hi       │
 ```
+
+{{#include padding.md}}
+
+{{#include min-height-width.md}}

@@ -22,3 +22,5 @@ Can be one of the following values:
 #### `bottom-left`
 #### `bottom`
 #### `bottom-right`
+
+{{#include padding.md}}

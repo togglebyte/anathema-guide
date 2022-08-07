@@ -13,29 +13,30 @@ The template syntax is simple:
 widget [optional: "attribute", separated: "by a comma"]: "text"
 ```
 
-Some examples:
+## Some examples:
 
-A widget with no attributes and two children
+A widget with no attributes and two children, showing the data context variable
+`{{ name }}` inside a text widget:
 
 ```yaml
 hstack:
-    text: "hello"
+    text: "hello {{ name }}"
     text: "how are you?"
 ```
 
-A widget with attributes
+A widget with attributes:
 
 ```yaml
 alignment [align: bottom-right, padding-left: 2, padding-right: 2]:
 ```
 
-A text widget
+A text widget:
 
 ```yaml
 text: "Here be text"
 ```
 
-A text widget with styled sections
+A text widget with styled sections:
 ```yaml
 text: "a bit of "
     span [foreground: red]: "red "
