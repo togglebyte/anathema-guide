@@ -76,7 +76,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="getting-started.html"><strong aria-hidden="true">2.</strong> Getting started</a></li><li class="chapter-item expanded "><a href="templates.html"><strong aria-hidden="true">3.</strong> Templates</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="templates/alignment.html"><strong aria-hidden="true">3.1.</strong> alignment</a></li><li class="chapter-item expanded "><a href="templates/border.html"><strong aria-hidden="true">3.2.</strong> border</a></li><li class="chapter-item expanded "><a href="templates/canvas.html"><strong aria-hidden="true">3.3.</strong> canvas</a></li><li class="chapter-item expanded "><a href="templates/expand.html"><strong aria-hidden="true">3.4.</strong> expand</a></li><li class="chapter-item expanded "><a href="templates/hstack.html"><strong aria-hidden="true">3.5.</strong> hstack</a></li><li class="chapter-item expanded "><a href="templates/position.html"><strong aria-hidden="true">3.6.</strong> position</a></li><li class="chapter-item expanded "><a href="templates/scrollview.html"><strong aria-hidden="true">3.7.</strong> scrollview</a></li><li class="chapter-item expanded "><a href="templates/spacer.html"><strong aria-hidden="true">3.8.</strong> spacer</a></li><li class="chapter-item expanded "><a href="templates/text.html"><strong aria-hidden="true">3.9.</strong> text</a></li><li class="chapter-item expanded "><a href="templates/vstack.html"><strong aria-hidden="true">3.10.</strong> vstack</a></li><li class="chapter-item expanded "><a href="templates/zstack.html"><strong aria-hidden="true">3.11.</strong> zstack</a></li></ol></li><li class="chapter-item expanded "><a href="runtime.html"><strong aria-hidden="true">4.</strong> Runtime</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="templates/usermodel.html"><strong aria-hidden="true">4.1.</strong> User model</a></li><li class="chapter-item expanded "><a href="templates/events.html"><strong aria-hidden="true">4.2.</strong> Events</a></li></ol></li><li class="chapter-item expanded "><a href="display.html"><strong aria-hidden="true">5.</strong> Display only</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="getting-started.html"><strong aria-hidden="true">2.</strong> Getting started</a></li><li class="chapter-item expanded "><a href="runtime.html"><strong aria-hidden="true">3.</strong> Runtime</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="templates/usermodel.html"><strong aria-hidden="true">3.1.</strong> User model</a></li><li class="chapter-item expanded "><a href="templates/events.html"><strong aria-hidden="true">3.2.</strong> Events</a></li><li class="chapter-item expanded "><a href="templates/data-ctx.html"><strong aria-hidden="true">3.3.</strong> Data Context</a></li></ol></li><li class="chapter-item expanded "><a href="templates.html"><strong aria-hidden="true">4.</strong> Templates</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="templates/widgets.html"><strong aria-hidden="true">4.1.</strong> Widgets</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="templates/alignment.html"><strong aria-hidden="true">4.1.1.</strong> alignment</a></li><li class="chapter-item expanded "><a href="templates/border.html"><strong aria-hidden="true">4.1.2.</strong> border</a></li><li class="chapter-item expanded "><a href="templates/canvas.html"><strong aria-hidden="true">4.1.3.</strong> canvas</a></li><li class="chapter-item expanded "><a href="templates/expand.html"><strong aria-hidden="true">4.1.4.</strong> expand</a></li><li class="chapter-item expanded "><a href="templates/hstack.html"><strong aria-hidden="true">4.1.5.</strong> hstack</a></li><li class="chapter-item expanded "><a href="templates/position.html"><strong aria-hidden="true">4.1.6.</strong> position</a></li><li class="chapter-item expanded "><a href="templates/scrollview.html"><strong aria-hidden="true">4.1.7.</strong> scrollview</a></li><li class="chapter-item expanded "><a href="templates/spacer.html"><strong aria-hidden="true">4.1.8.</strong> spacer</a></li><li class="chapter-item expanded "><a href="templates/text.html"><strong aria-hidden="true">4.1.9.</strong> text</a></li><li class="chapter-item expanded "><a href="templates/vstack.html"><strong aria-hidden="true">4.1.10.</strong> vstack</a></li><li class="chapter-item expanded "><a href="templates/zstack.html"><strong aria-hidden="true">4.1.11.</strong> zstack</a></li></ol></li><li class="chapter-item expanded "><a href="templates/attributes.html"><strong aria-hidden="true">4.2.</strong> Attributes</a></li><li class="chapter-item expanded "><a href="templates/creating-custom-widget.html"><strong aria-hidden="true">4.3.</strong> Creating a custom widget</a></li></ol></li><li class="chapter-item expanded "><a href="widgets.html"><strong aria-hidden="true">5.</strong> Widgets</a></li><li class="chapter-item expanded "><a href="widgets-only.html"><strong aria-hidden="true">6.</strong> Widgets only</a></li><li class="chapter-item expanded "><a href="display-only.html"><strong aria-hidden="true">7.</strong> Display only</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -137,9 +137,10 @@
                     <main>
                         <h1 id="introduction"><a class="header" href="#introduction">Introduction</a></h1>
 <p>Anathema is a library for building text user interfaces.</p>
-<p>Anathema was developed with the intent to give developers a fast and easy way to
-write text user interfaces.</p>
-<h2 id="whats-point-of-this"><a class="header" href="#whats-point-of-this">What's point of this?</a></h2>
+<p>It was developed with the intent to give developers a fast and easy way to
+write text user interfaces and ship the template(s) along with the application
+giving the end user the means to modify the layout.</p>
+<h2 id="why"><a class="header" href="#why">Why</a></h2>
 <ul>
 <li>Templates can be shipped with the application, giving the end user the ability
 to customise the entire layout of the application.</li>
@@ -152,35 +153,258 @@ to customise the entire layout of the application.</li>
 Rust.</li>
 <li>Templates and runtime: Write layouts in a simple to use language</li>
 </ul>
+<h2 id="alternatives"><a class="header" href="#alternatives">Alternatives</a></h2>
+<ul>
+<li><a href="https://crates.io/crates/dioxus-tui">dioxus-tui</a></li>
+<li><a href="https://crates.io/crates/tuirealm">tuirealm</a></li>
+<li><a href="https://crates.io/crates/tui">tui-rs</a></li>
+<li><a href="https://crates.io/crates/cursive">cursive</a></li>
+</ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="getting-started"><a class="header" href="#getting-started">Getting started</a></h1>
 <h2 id="requirements"><a class="header" href="#requirements">Requirements</a></h2>
 <ul>
-<li>Rust 1.62 or newer</li>
-<li>Some understanding of the Rust programming language</li>
+<li>Rust 1.62 or newer.</li>
+<li>Some understanding of the Rust programming language.</li>
 </ul>
-<h2 id="download-and-install"><a class="header" href="#download-and-install">Download and install</a></h2>
-<p>TODO:</p>
-<h2 id="choosing-features"><a class="header" href="#choosing-features">Choosing features</a></h2>
-<p>Only use what you need.</p>
+<h2 id="install"><a class="header" href="#install">Install</a></h2>
+<p>Add <code>anathema</code> to your Cargo.toml file.</p>
+<pre><code class="language-toml">...
+[dependencies]
+anathema = &quot;&lt;insert latest version here&gt;&quot;
+</code></pre>
+<h3 id="note"><a class="header" href="#note">Note</a></h3>
+<ul>
+<li>If all that is required is a way to place characters in the terminal, with
+no need for layouts or widgets then see <a href="./display-only.html">display only</a>.</li>
+<li>If the template system and runtime is not needed but the widgets are, then see
+<a href="./widgets-only.html">widgets only</a>.</li>
+</ul>
+<h2 id="a-basic-example"><a class="header" href="#a-basic-example">A basic example</a></h2>
+<p>Render a border around the edges, placing the text in the middle of the
+terminal.</p>
+<pre><pre class="playground"><code class="language-rust edition2021">use anathema::runtime::{Event, Runtime};
+use anathema::templates::DataCtx;
+
+fn main() {
+    let runtime = Runtime::&lt;()&gt;::new();
+    let template = r#&quot;
+    border:
+        alignment [align: centre]: // &quot;center&quot; is also fine
+            text: &quot;In the middle of the terminal&quot;
+    &quot;#;
+
+    runtime.start(template, DataCtx::empty(), |ev, _root, _ctx, tx| {
+        if ev.ctrl_c() {
+            let _ = tx.send(Event::Quit);
+        }
+    }).unwrap();
+}
+</code></pre></pre>
+<h2 id="features"><a class="header" href="#features">Features</a></h2>
+<p>Only use what you need:</p>
 <p>By default everything but <code>logging</code> and <code>serde-json</code> is enabled.</p>
 <ul>
-<li>
-<p><code>default</code>: includes the entire runtime and template language</p>
-</li>
-<li>
-<p><code>widgets</code>: includes widgets and rendering</p>
-</li>
-<li>
-<p><code>templates</code>: templates, widgets and rendering (but no runtime)</p>
-</li>
-<li>
-<p><code>runtime</code>: runtime and templates</p>
-</li>
-<li>
-<p><code>serde-json</code>: this feature enables convert json to <code>Value</code> which is the inner
-data type for templates.</p>
-</li>
+<li><code>default</code>: includes the entire runtime and template language.</li>
+<li><code>widgets</code>: includes widgets and rendering.</li>
+<li><code>templates</code>: templates, widgets and rendering (but no runtime).</li>
+<li><code>runtime</code>: runtime and templates.</li>
 </ul>
+<h3 id="extras"><a class="header" href="#extras">Extras</a></h3>
+<ul>
+<li><code>serde-json</code>: this feature enables convert json to <code>Value</code> which is the inner
+data type for templates.</li>
+<li><code>metrics</code>: this feature will populate the <code>DataCtx</code> with metrics such as
+layout time, update time etc.</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="runtime"><a class="header" href="#runtime">Runtime</a></h1>
+<h2 id="configuring-the-runtime"><a class="header" href="#configuring-the-runtime">Configuring the runtime</a></h2>
+<h3 id="changing-settings-for-the-terminal"><a class="header" href="#changing-settings-for-the-terminal">Changing settings for the terminal:</a></h3>
+<p>Example enabling mouse support:</p>
+<pre><pre class="playground"><code class="language-rust edition2021"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let term_settings = &amp;mut runtime.output_cfg;
+term_settings.enable_mouse = true;
+<span class="boring">}
+</span></code></pre></pre>
+<p>The following settings are available:</p>
+<ul>
+<li><code>enable_mouse</code>. Default: <code>false</code>. Enable mouse support in the terminal (if
+it's supported).</li>
+<li><code>alt_screen</code>. Default: <code>true</code>. Creates an alternate screen for rendering.
+Restores the previous content of the terminal to the state it was in before
+the application started.</li>
+<li><code>raw_mode</code>. Default: <code>true</code>. If this is disabled then characters are echoed
+onto the screen and the newline characters will scroll the entire screen.</li>
+</ul>
+<h3 id="adding-a-custom-widget"><a class="header" href="#adding-a-custom-widget">Adding a custom widget</a></h3>
+<pre><pre class="playground"><code class="language-rust edition2021"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let lookup = &amp;mut runtime.lookup;
+lookup.register(&quot;mywidget&quot;, my_widget_builder_fn);
+<span class="boring">}
+</span></code></pre></pre>
+<p>For more information on creating a custom widget, see <a href="./templates/creating-custom-widget.html">creating a custom widget</a></p>
+<h3 id="changing-the-frame-time"><a class="header" href="#changing-the-frame-time">Changing the frame time</a></h3>
+<p>This is the time between render / layout / update calls.
+This will impact the appearance of animations.</p>
+<pre><pre class="playground"><code class="language-rust edition2021"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>use std::time::Duration;
+
+runtime.frame_time = Duration::from_ms(40); // default is 20ms
+<span class="boring">}
+</span></code></pre></pre>
+<h3 id="starting-the-runtime"><a class="header" href="#starting-the-runtime">Starting the runtime</a></h3>
+<p>To start the runtime provide a template, a data context and finally a closure:</p>
+<pre><pre class="playground"><code class="language-rust edition2021"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let runtime = Runtime::&lt;()&gt;::new();
+let template = std::fs::read_to_string(&quot;template.tiny&quot;)?;
+runtime.start(template, DataCtx::empty(), |event, root_widget, data_ctx, sender| {
+});
+<span class="boring">}
+</span></code></pre></pre>
+<p>The closure is called every time there is an <a href="./templates/events.html">event</a> available.
+<code>Event&lt;T&gt;</code> can be anything from a key press to a user defined type sent via the
+<code>sender</code>.</p>
+<p>The <code>root_widget</code> is the root of the widget tree.
+For information on how to manipulate the widget tree see
+<a href="./widgets.html">widgets</a>, and the <code>data_ctx</code> contains all the template variables
+that can be used inside the template.</p>
+<h3 id="ending-the-runtime"><a class="header" href="#ending-the-runtime">Ending the runtime</a></h3>
+<p>To stop the runtime send an <code>Event::Quit</code> via the <code>Sender&lt;T&gt;</code>:</p>
+<pre><pre class="playground"><code class="language-rust edition2021"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>runtime.start(template, DataCtx::empty(), |event, root_widget, data_ctx, sender| {
+    if event.ctrl_c() {
+        let _ = sender.send(Event::Quit);
+    }
+});
+<span class="boring">}
+</span></code></pre></pre>
+<h3 id="passing-information-to-the-runtime"><a class="header" href="#passing-information-to-the-runtime">Passing information to the runtime</a></h3>
+<pre><pre class="playground"><code class="language-rust edition2021"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let runtime: Runtime::&lt;String&gt; = Runtime::new();
+let sender = runtime.sender();
+
+// Send a `String` to the runtime:
+sender.send(&quot;Hello there&quot;.to_string());
+<span class="boring">}
+</span></code></pre></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="user-model"><a class="header" href="#user-model">User model</a></h1>
+<p>Implementing the trait <code>UserModel</code> [TODO]</p>
+<h3 id="message"><a class="header" href="#message"><code>Message</code></a></h3>
+<p>The <code>type</code> that can be sent to the user model via the event system.</p>
+<pre><pre class="playground"><code class="language-rust edition2021"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>impl UserModel for Model {
+    type Message = String;
+    ...
+}
+
+let runtime_tx = runtime.tx();
+
+runtime_tx.send(
+<span class="boring">}
+</span></code></pre></pre>
+<h3 id="eventmut-self-eventselfmessage-mut-widgetcontainer"><a class="header" href="#eventmut-self-eventselfmessage-mut-widgetcontainer"><code>event(&amp;mut self, Event&lt;Self::Message&gt;, &amp;mut WidgetContainer)</code></a></h3>
+<p>Called by the runtime for every event, such as key press, mouse (if mouse is
+enabled) and user generated events (data send to the runtime via the <code>Sender</code>).</p>
+<h3 id="data"><a class="header" href="#data"><code>data</code></a></h3>
+<p>The <code>data</code> function is called by the runtime once every frame.</p>
+<pre><pre class="playground"><code class="language-rust edition2021"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>use anathema::runtime::{Event, Sender};
+use anathema::runtime::UserModel;
+use anathema::templates::DataCtx;
+use anathema::widgets::WidgetContainer;
+
+struct Model {
+    data: DataCtx,
+    tx: Sender&lt;()&gt;,
+}
+
+impl UserModel for Model {
+    type Message = ();
+
+    fn event(&amp;mut self, event: Event&lt;Self::Message&gt;, root: &amp;mut WidgetContainer) {
+        if event.ctrl_c() {
+            self.tx.send(Event::Quit).unwrap();
+        }
+    }
+
+    fn data(&amp;mut self) -&gt; &amp;mut DataCtx {
+        &amp;mut self.data
+    }
+}
+<span class="boring">}
+</span></code></pre></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="events"><a class="header" href="#events">Events</a></h1>
+<p>TODO: incomplete docs</p>
+<p>Events are sent to the user model.</p>
+<p>If the default user model is used the closure provided to the runtime is called,
+otherwise the <code>event</code> method on the custom user model is called.</p>
+<p>An event can be one of the following:</p>
+<ul>
+<li>A key press </li>
+<li>Mouse was moved, button pressed etc.</li>
+<li>User defined data sent to the runtime</li>
+<li>Resize event as a result of the window being resized</li>
+<li>The widgets tree is replaced</li>
+<li>Quit, as in stop the runtime</li>
+</ul>
+<h2 id="utility-functions-for-working-with-events"><a class="header" href="#utility-functions-for-working-with-events">Utility functions for working with events</a></h2>
+<p>Ctrl+c was pressed:</p>
+<pre><pre class="playground"><code class="language-rust edition2021"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>if event.ctrl_c() {
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p>Get the <a href="https://docs.rs/anathema/latest/anathema/runtime/enum.KeyCode.html">key code</a> and any additional
+<a href="https://docs.rs/anathema/latest/anathema/runtime/struct.KeyModifiers.html">modifiers</a>:</p>
+<pre><pre class="playground"><code class="language-rust edition2021"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>if let Some(keycode) = event.get_keycode() {
+    match keycode {
+        KeyCode::Char('x') =&gt; {},
+        KeyCode::Escape =&gt; {},
+        _ =&gt; {}
+    }
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p>Mouse up / down</p>
+<p>Get the <a href="https://docs.rs/anathema/latest/anathema/display/struct.ScreenPos.html">screen pos</a>,
+<a href="https://docs.rs/anathema/latest/anathema/display/events/enum.MouseButton.html">mouse button</a>
+and any additional <a href="https://docs.rs/anathema/latest/anathema/runtime/struct.KeyModifiers.html">modifiers</a>.</p>
+<pre><pre class="playground"><code class="language-rust edition2021"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>if let Some((screen_pos, btn, modifiers)) = event.mouse_down() {
+}
+
+if let Some((screen_pos, btn, modifiers)) = event.mouse_up() {
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p>Mouse move. Note that if a button is pressed this event will not return
+anything, instead the <code>mouse_drag</code> should be used</p>
+<pre><pre class="playground"><code class="language-rust edition2021"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>if let Some((screen_pos, modifiers)) = event.mouse_move() {
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p>Mouse dragged.</p>
+<pre><pre class="playground"><code class="language-rust edition2021"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>if let Some((screen_pos, button, modifiers)) = event.mouse_drag() {
+}
+<span class="boring">}
+</span></code></pre></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="data-context"><a class="header" href="#data-context">Data Context</a></h1>
+<p>TODO: incomplete</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="templates"><a class="header" href="#templates">Templates</a></h1>
 <p>The template syntax is simple:</p>
 <pre><code>  Widget name                                         
@@ -192,24 +416,26 @@ data type for templates.</p>
   |    |    |          |     |                        || |
 widget [optional: &quot;attribute&quot;, separated: &quot;by a comma&quot;]: &quot;text&quot;
 </code></pre>
-<p>Some examples:</p>
-<p>A widget with no attributes and two children</p>
+<h2 id="some-examples"><a class="header" href="#some-examples">Some examples:</a></h2>
+<p>A widget with no attributes and two children, showing the data context variable
+<code>{{ name }}</code> inside a text widget:</p>
 <pre><code class="language-yaml">hstack:
-    text: &quot;hello&quot;
+    text: &quot;hello {{ name }}&quot;
     text: &quot;how are you?&quot;
 </code></pre>
-<p>A widget with attributes</p>
+<p>A widget with attributes:</p>
 <pre><code class="language-yaml">alignment [align: bottom-right, padding-left: 2, padding-right: 2]:
 </code></pre>
-<p>A text widget</p>
+<p>A text widget:</p>
 <pre><code class="language-yaml">text: &quot;Here be text&quot;
 </code></pre>
-<p>A text widget with styled sections</p>
+<p>A text widget with styled sections:</p>
 <pre><code class="language-yaml">text: &quot;a bit of &quot;
     span [foreground: red]: &quot;red &quot;
     span: &quot; and &quot;
     span [bold:true]: &quot;bold&quot;
 </code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="widgets"><a class="header" href="#widgets">Widgets</a></h1>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="alignment"><a class="header" href="#alignment">Alignment</a></h1>
 <p>The <code>alignment</code> will expand to fill all available space inside the parent (even
 if the alignment is set to top-left).</p>
@@ -227,6 +453,31 @@ if the alignment is set to top-left).</p>
 <h4 id="bottom-left"><a class="header" href="#bottom-left"><code>bottom-left</code></a></h4>
 <h4 id="bottom"><a class="header" href="#bottom"><code>bottom</code></a></h4>
 <h4 id="bottom-right"><a class="header" href="#bottom-right"><code>bottom-right</code></a></h4>
+<h3 id="padding"><a class="header" href="#padding">padding</a></h3>
+<pre><code>widget [padding: 2]:
+</code></pre>
+<p>Padding is a positive numerical value, which is applied to all sides unless a
+specific padding for a given side is specified.</p>
+<p>The following example would add a padding of two to all sides, except the left
+one, which would have a padding of one.</p>
+<pre><code>widget [padding: 2, padding-left: 1]:
+</code></pre>
+<h3 id="padding-left"><a class="header" href="#padding-left">padding-left</a></h3>
+<p>Set only the left padding</p>
+<pre><code>widget [padding-left: 2]:
+</code></pre>
+<h3 id="padding-right"><a class="header" href="#padding-right">padding-right</a></h3>
+<p>Set only the right padding</p>
+<pre><code>widget [padding-right: 2]:
+</code></pre>
+<h3 id="padding-top"><a class="header" href="#padding-top">padding-top</a></h3>
+<p>Set only the top padding</p>
+<pre><code>widget [padding-top: 2]:
+</code></pre>
+<h3 id="padding-bottom"><a class="header" href="#padding-bottom">padding-bottom</a></h3>
+<p>Set only the bottom padding</p>
+<pre><code>widget [padding-bottom: 2]:
+</code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="border"><a class="header" href="#border">Border</a></h1>
 <pre><code class="language-yaml">border [border-style: thick]
     text: &quot;That's one thick border!&quot;
@@ -288,6 +539,43 @@ hi
 <pre><code>─────────┐
 hi       │
 </code></pre>
+<h3 id="padding-1"><a class="header" href="#padding-1">padding</a></h3>
+<pre><code>widget [padding: 2]:
+</code></pre>
+<p>Padding is a positive numerical value, which is applied to all sides unless a
+specific padding for a given side is specified.</p>
+<p>The following example would add a padding of two to all sides, except the left
+one, which would have a padding of one.</p>
+<pre><code>widget [padding: 2, padding-left: 1]:
+</code></pre>
+<h3 id="padding-left-1"><a class="header" href="#padding-left-1">padding-left</a></h3>
+<p>Set only the left padding</p>
+<pre><code>widget [padding-left: 2]:
+</code></pre>
+<h3 id="padding-right-1"><a class="header" href="#padding-right-1">padding-right</a></h3>
+<p>Set only the right padding</p>
+<pre><code>widget [padding-right: 2]:
+</code></pre>
+<h3 id="padding-top-1"><a class="header" href="#padding-top-1">padding-top</a></h3>
+<p>Set only the top padding</p>
+<pre><code>widget [padding-top: 2]:
+</code></pre>
+<h3 id="padding-bottom-1"><a class="header" href="#padding-bottom-1">padding-bottom</a></h3>
+<p>Set only the bottom padding</p>
+<pre><code>widget [padding-bottom: 2]:
+</code></pre>
+<h3 id="min-width"><a class="header" href="#min-width">min-width</a></h3>
+<p>The widget can not be smaller than the given min width.
+If the parent constraints are smaller than the minimum width, the content will
+be truncated.</p>
+<pre><code>widget [min-width: 12]:
+</code></pre>
+<h3 id="min-height"><a class="header" href="#min-height">min-height</a></h3>
+<p>The widget can not be smaller than the given min height.
+If the parent constraints are smaller than the minimum height, the content will
+be truncated.</p>
+<pre><code>widget [min-height: 12]:
+</code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="canvas"><a class="header" href="#canvas">canvas</a></h1>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="expand"><a class="header" href="#expand">expand</a></h1>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="hstack"><a class="header" href="#hstack">hstack</a></h1>
@@ -297,114 +585,91 @@ hi       │
 <div style="break-before: page; page-break-before: always;"></div><h1 id="text"><a class="header" href="#text">text</a></h1>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="vstack"><a class="header" href="#vstack">vstack</a></h1>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="zstack"><a class="header" href="#zstack">zstack</a></h1>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="runtime"><a class="header" href="#runtime">Runtime</a></h1>
-<p>TODO: Summary</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="attributes-2"><a class="header" href="#attributes-2">Attributes</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="creating-a-custom-widget"><a class="header" href="#creating-a-custom-widget">Creating a custom widget</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="widgets-1"><a class="header" href="#widgets-1">Widgets</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="widgets-only"><a class="header" href="#widgets-only">Widgets only</a></h1>
 <h2 id="example"><a class="header" href="#example">Example</a></h2>
-<pre><pre class="playground"><code class="language-rust edition2021">use anathema::runtime::{Event, Sender};
-use anathema::runtime::{Runtime, UserModel};
-use anathema::templates::DataCtx;
-use anathema::widgets::WidgetContainer;
-
-struct Model {
-    data: DataCtx,
-    tx: Sender&lt;()&gt;,
-}
-
-impl Model {
-    pub fn new(tx: Sender&lt;()&gt;) -&gt; Self {
-        Self {
-            data: DataCtx::empty(),
-            tx,
-        }
-    }
-}
-
-impl UserModel for Model {
-    type Message = ();
-
-    fn event(&amp;mut self, event: Event&lt;Self::Message&gt;, _root: &amp;mut WidgetContainer) {
-        if event.ctrl_c() {
-            self.tx.send(Event::Quit).unwrap();
-        }
-    }
-
-    fn data(&amp;mut self) -&gt; &amp;mut DataCtx {
-        &amp;mut self.data
-    }
-}
+<p>Draw a border around some text: </p>
+<pre><pre class="playground"><code class="language-rust edition2021">use anathema::display::{size, Screen, Size};
+use anathema::widgets::{Border, Constraints, NodeId, PaintCtx, Pos, Text, Widget};
+use std::io::stdout;
 
 fn main() {
-    let basic_runtime = Runtime::new();
-    let user_model = Model::new(basic_runtime.tx());
-    basic_runtime.start(user_model, Some(&quot;template.tiny&quot;)).unwrap();
+    // Get the screen size
+    let size = Size::from(size().unwrap());
+
+    // Stdout is our render target
+    let mut stdout = stdout();
+
+    // Create a screen to do the rendering
+    let mut screen = Screen::new(&amp;mut stdout, size).unwrap();
+    screen.clear_all(&amp;mut stdout).unwrap();
+
+    // Setup widgets
+    let mut border = Border::thin(None, None).into_container(NodeId::auto());
+    let text = Text::with_text(&quot;I would like a hot cup of tea&quot;).into_container(NodeId::auto());
+
+    let screen_constraints = Constraints::new(size.width, size.height);
+
+    border.add_child(text);
+    border.layout(screen_constraints, false);
+    border.position(Pos::ZERO);
+    let paint_ctx = PaintCtx::new(&amp;mut screen, None);
+    border.paint(paint_ctx);
+
+    // ... and finally render to stdout
+    screen.render(&amp;mut stdout).unwrap();
+
+    // Wait two seconds and then restore the terminal
+    std::thread::sleep(std::time::Duration::from_secs(2));
+    screen.restore(&amp;mut stdout).unwrap();
 }
 </code></pre></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="user-model"><a class="header" href="#user-model">User model</a></h1>
-<p>Implementing the trait <code>UserModel</code> [TODO]</p>
-<h3 id="message"><a class="header" href="#message"><code>Message</code></a></h3>
-<p>The <code>type</code> that can be sent to the user model via the event system.</p>
-<pre><pre class="playground"><code class="language-rust edition2021"><span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>impl UserModel for Model {
-    type Message = String;
-    ...
-}
+<div style="break-before: page; page-break-before: always;"></div><h1 id="display-only"><a class="header" href="#display-only">Display only</a></h1>
+<ul>
+<li>Draw without including the runtime</li>
+<li>No widgets</li>
+<li>No templates</li>
+</ul>
+<h2 id="example-1"><a class="header" href="#example-1">Example</a></h2>
+<p>An example showing the use of just the <code>display</code> crate:</p>
+<pre><pre class="playground"><code class="language-rust edition2021">use anathema::display::{size, Color, Screen, ScreenPos, Style};
+use std::io::stdout;
 
-let runtime_tx = runtime.tx();
+fn main() {
+    let mut output = stdout();
+    let size = size().unwrap();
+    let mut screen = Screen::new(&amp;mut output, size).unwrap();
 
-runtime_tx.send(
-<span class="boring">}
-</span></code></pre></pre>
-<h3 id="eventmut-self-eventselfmessage-mut-widgetcontainer"><a class="header" href="#eventmut-self-eventselfmessage-mut-widgetcontainer"><code>event(&amp;mut self, Event&lt;Self::Message&gt;, &amp;mut WidgetContainer)</code></a></h3>
-<p>Called by the runtime for every event, such as key press, mouse (if mouse is
-enabled) and user generated events (data send to the runtime via the <code>Sender</code>).</p>
-<h3 id="data"><a class="header" href="#data"><code>data</code></a></h3>
-<p>The <code>data</code> function is called by the runtime once every frame.</p>
-<pre><pre class="playground"><code class="language-rust edition2021"><span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>use anathema::runtime::{Event, Sender};
-use anathema::runtime::UserModel;
-use anathema::templates::DataCtx;
-use anathema::widgets::WidgetContainer;
+    let _ = screen.enable_raw_mode();
 
-struct Model {
-    data: DataCtx,
-    tx: Sender&lt;()&gt;,
-}
+    // Enter an alternative screen, preserving the output
+    // before the program runs.
+    let _ = screen.enter_alt_screen(&amp;mut output);
 
-impl UserModel for Model {
-    type Message = ();
+    // Clear the entire screen.
+    // let _ = screen.clear_all(&amp;mut output);
 
-    fn event(&amp;mut self, event: Event&lt;Self::Message&gt;, root: &amp;mut WidgetContainer) {
-        if event.ctrl_c() {
-            self.tx.send(Event::Quit).unwrap();
+    let mut style = Style::new();
+    style.set_fg(Color::Yellow);
+    style.set_bg(Color::Red);
+
+    for x in 2..12 {
+        for y in 3..8 {
+            screen.put('x', style, ScreenPos::new(x, y));
         }
     }
 
-    fn data(&amp;mut self) -&gt; &amp;mut DataCtx {
-        &amp;mut self.data
-    }
+    let _ = screen.render(&amp;mut output);
+
+    std::thread::sleep(std::time::Duration::from_secs(1));
+
+    // Restore the terminal
+    let _ = screen.restore(&amp;mut output);
 }
-<span class="boring">}
-</span></code></pre></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="events"><a class="header" href="#events">Events</a></h1>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="widgets-only"><a class="header" href="#widgets-only">Widgets only</a></h1>
-<ul>
-<li>Draw without including the runtime</li>
-<li>Widgets are created manually</li>
-<li><code>WidgetContainer</code>
-<ul>
-<li><code>into_container</code></li>
-<li><code>NodeId</code></li>
-</ul>
-</li>
-</ul>
-<h2 id="example-1"><a class="header" href="#example-1">Example</a></h2>
-<pre><pre class="playground"><code class="language-rust edition2021"><span class="boring">#![allow(unused)]
-</span>
-<span class="boring">fn main() {
-</span><span class="boring">}
-</span></code></pre></pre>
+
+</code></pre></pre>
 
                     </main>
 
