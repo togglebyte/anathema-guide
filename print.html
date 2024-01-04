@@ -76,7 +76,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="getting-started.html"><strong aria-hidden="true">2.</strong> Getting started</a></li><li class="chapter-item expanded "><a href="runtime.html"><strong aria-hidden="true">3.</strong> Runtime</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="getting-started.html"><strong aria-hidden="true">2.</strong> Getting started</a></li><li class="chapter-item expanded "><a href="runtime.html"><strong aria-hidden="true">3.</strong> Runtime</a></li><li class="chapter-item expanded "><a href="views.html"><strong aria-hidden="true">4.</strong> Views</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="templates/state.html"><strong aria-hidden="true">4.1.</strong> State</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -213,8 +213,79 @@ to tab to the view. Read more about <code>tabindex</code> under <a href="./views
 </span><span class="boring">fn main() {
 </span>use anathema::runtime::Runtime;
 
-let runtime = Runtime::new(&amp;expressions).unwrap();
+let mut runtime = Runtime::new(&amp;expressions).unwrap();
+runtime.enable_alt_screen = false;
+runtime.fps = 12;
+runtime.enable_tabindex = false;
 runtime.run().unwrap();
+<span class="boring">}
+</span></code></pre></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="views"><a class="header" href="#views">Views</a></h1>
+<p>A view is any type that implements the <code>anathema::core::View</code> trait.</p>
+<p>This trait has no required methods that has to be implemented, however note that
+without implementing the <code>fn state(&amp;self) -&gt; &amp;dyn State</code> method, no internal
+state will be exposed to the template.</p>
+<p>See <a href="./templates/state.html">State</a> for more information about state.</p>
+<h2 id="example"><a class="header" href="#example">Example</a></h2>
+<pre><pre class="playground"><code class="language-rust edition2021"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>use anathema::core::{Event, KeyCode, Nodes, View};
+
+impl View for MyView {
+    fn on_event(&amp;mut self, event: Event, _: &amp;mut Nodes&lt;'_&gt;) {
+        match event {
+            Event::KeyPress(KeyCode::Char(c), ..) =&gt; {
+            }
+            Event::KeyPress(KeyCode::Backspace, ..) =&gt; {
+            }
+            _ =&gt; {}
+        }
+    }
+
+    fn state(&amp;self) -&gt; &amp;dyn State {
+        &amp;self.state
+    }
+
+    fn tick(&amp;mut self) {
+        *self.state.counter += 1;
+    }
+
+    fn focus(&amp;mut self) {
+        *self.state.color = Color::Reset;
+    }
+
+    fn blur(&amp;mut self) {
+        *self.state.color = Color::Magenta;
+    }
+    
+}
+<span class="boring">}
+</span></code></pre></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="state"><a class="header" href="#state">State</a></h1>
+<p>There are two types of state:</p>
+<ul>
+<li>Internal</li>
+<li>External </li>
+</ul>
+<h2 id="external-state"><a class="header" href="#external-state">External state</a></h2>
+<p>External state is state that is passed to the view from the outside.</p>
+<p>A state can either be a direct state from a parent view:</p>
+<pre><code>@chid parent_state
+</code></pre>
+<p>or a custom map declared in the template:</p>
+<pre><code>@myview {&quot;bunnies&quot;: list_of_bunnies}
+</code></pre>
+<h2 id="internal-state"><a class="header" href="#internal-state">Internal state</a></h2>
+<p>Internal state is provided by the <code>View</code>, by implementing the <code>fn state(&amp;self) -&gt; &amp;dyn State</code> method from the <code>View</code> trait.</p>
+<p>The state is owned by the view, and the view has mutable access to the state.</p>
+<h2 id="example-1"><a class="header" href="#example-1">Example</a></h2>
+<pre><pre class="playground"><code class="language-rust edition2021"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>#[derive(Debug, State)]
+struct MyState {
+    name: StateValue&lt;String&gt;,
+    guests: List&lt;String&gt;,
+}
 <span class="boring">}
 </span></code></pre></pre>
 
