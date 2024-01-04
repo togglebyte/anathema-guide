@@ -1,63 +1,53 @@
 # Getting started
 
-## Requirements
-* Rust 1.62 or newer.
-* Some understanding of the Rust programming language.
-
 ## Install
 Add `anathema` to your Cargo.toml file.
 
 ```toml
 ...
 [dependencies]
-anathema = "<insert latest version here>"
+anathema = { git = "https://github.com/togglebyte/anathema" }
 ```
 
 ### Note
 
-* If all that is required is a way to place characters in the terminal, with
-no need for layouts or widgets then see [display only](./display-only.md).
-* If the template system and runtime is not needed but the widgets are, then see
-  [widgets only](./widgets-only.md).
+This guide is written against the current version on [Github](https://github.com/togglebyte/anathema). 
+Even though efforts are made to keep this guide up to date there are
+possibilities of changes being made and published before they reach
+this guide.
+
+At the time of writing, Anathema should be considered alpha.
 
 ## A basic example
 
-Render a border around the edges, placing the text in the middle of the
+Render a border around the text, placing the text in the middle of the
 terminal.
 
+
 ```rust
-use anathema::runtime::{Event, Runtime};
-use anathema::templates::DataCtx;
+// src/main.rs
+use std::fs::read_to_string;
+
+use anathema::runtime::Runtime;
+use anathema::vm::Templates;
 
 fn main() {
-    let runtime = Runtime::<()>::new();
-    let template = r#"
-    border:
-        alignment [align: centre]: // "center" is also fine
-            text: "In the middle of the terminal"
-    "#;
+    // Step one: Load and compile templates
+    let template = read_to_string("templates/index.tiny").unwrap();
+    let mut templates = Templates::new(template, ());
+    templates.compile().unwrap();
 
-    runtime.start(template, DataCtx::empty(), |ev, _root, _ctx, tx| {
-        if ev.ctrl_c() {
-            let _ = tx.send(Event::Quit);
-        }
-    }).unwrap();
+    // Step two: Runtime
+    let runtime = Runtime::new(templates.expressions()).unwrap();
+
+    // Step three: start the runtime
+    runtime.run().unwrap();
 }
 ```
 
-## Features
-
-Only use what you need:
-
-By default everything but `logging` and `serde-json` is enabled.
-
-* `default`: includes the entire runtime and template language.
-* `widgets`: includes widgets and rendering.
-* `templates`: templates, widgets and rendering (but no runtime).
-* `runtime`: runtime and templates.
-
-### Extras
-* `serde-json`: this feature enables convert json to `Value` which is the inner
-  data type for templates.
-* `metrics`: this feature will populate the `DataCtx` with metrics such as
-  layout time, update time etc.
+```
+// templates/index.tiny
+alignment [align : "center"]
+    border [foreground: "cyan"]
+        text [foreground: #fa0] "Hello world"
+```

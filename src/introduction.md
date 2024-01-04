@@ -2,9 +2,11 @@
 
 Anathema is a library for building text user interfaces.
 
-It was developed with the intent to give developers a fast and easy way to
+This guide is for the current main branch: https://github.com/togglebyte/anathema
+
+Anathema was created with the intent to give developers a fast and easy way to
 write text user interfaces and ship the template(s) along with the application
-giving the end user the means to modify the layout.
+giving the end user the means and freedom to modify the layout.
 
 ## Why
 
@@ -12,11 +14,6 @@ giving the end user the means to modify the layout.
   to customise the entire layout of the application.
 * Easy to prototype with the markup language and runtime.
 
-## Only include what you need:
-* Renderer only: tools for drawing in the terminal
-* Widgets + renderer: Ready made widgets that can be created and controlled with
-  Rust.
-* Templates and runtime: Write layouts in a simple to use language
 
 ## Alternatives
 * [dioxus-tui](https://crates.io/crates/dioxus-tui)
