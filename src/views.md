@@ -1,8 +1,12 @@
-# Views be viewing
+# Views
 
-A view is a type that implements `anathema::core::View`.
+A view is any type that implements the `anathema::core::View` trait.
 
-This trait has no required methods that has to be implemented.
+This trait has no required methods that has to be implemented, however note that
+without implementing the `fn state(&self) -> &dyn State` method, no internal
+state will be exposed to the template.
+
+See [State](./templates/state.md) for more information about state.
 
 ## Example
 

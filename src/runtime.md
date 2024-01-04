@@ -19,6 +19,9 @@ The following settings are available:
 ```rust
 use anathema::runtime::Runtime;
 
-let runtime = Runtime::new(&expressions).unwrap();
+let mut runtime = Runtime::new(&expressions).unwrap();
+runtime.enable_alt_screen = false;
+runtime.fps = 12;
+runtime.enable_tabindex = false;
 runtime.run().unwrap();
 ```
