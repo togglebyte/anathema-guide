@@ -75,7 +75,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="getting-started.html" class="active"><strong aria-hidden="true">2.</strong> Getting started</a></li><li class="chapter-item expanded "><a href="runtime.html"><strong aria-hidden="true">3.</strong> Runtime</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="templates/usermodel.html"><strong aria-hidden="true">3.1.</strong> User model</a></li><li class="chapter-item expanded "><a href="templates/events.html"><strong aria-hidden="true">3.2.</strong> Events</a></li><li class="chapter-item expanded "><a href="templates/data-ctx.html"><strong aria-hidden="true">3.3.</strong> Data Context</a></li></ol></li><li class="chapter-item expanded "><a href="templates.html"><strong aria-hidden="true">4.</strong> Templates</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="templates/widgets.html"><strong aria-hidden="true">4.1.</strong> Widgets</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="templates/alignment.html"><strong aria-hidden="true">4.1.1.</strong> alignment</a></li><li class="chapter-item expanded "><a href="templates/border.html"><strong aria-hidden="true">4.1.2.</strong> border</a></li><li class="chapter-item expanded "><a href="templates/canvas.html"><strong aria-hidden="true">4.1.3.</strong> canvas</a></li><li class="chapter-item expanded "><a href="templates/expand.html"><strong aria-hidden="true">4.1.4.</strong> expand</a></li><li class="chapter-item expanded "><a href="templates/hstack.html"><strong aria-hidden="true">4.1.5.</strong> hstack</a></li><li class="chapter-item expanded "><a href="templates/position.html"><strong aria-hidden="true">4.1.6.</strong> position</a></li><li class="chapter-item expanded "><a href="templates/scrollview.html"><strong aria-hidden="true">4.1.7.</strong> scrollview</a></li><li class="chapter-item expanded "><a href="templates/spacer.html"><strong aria-hidden="true">4.1.8.</strong> spacer</a></li><li class="chapter-item expanded "><a href="templates/text.html"><strong aria-hidden="true">4.1.9.</strong> text</a></li><li class="chapter-item expanded "><a href="templates/vstack.html"><strong aria-hidden="true">4.1.10.</strong> vstack</a></li><li class="chapter-item expanded "><a href="templates/zstack.html"><strong aria-hidden="true">4.1.11.</strong> zstack</a></li></ol></li><li class="chapter-item expanded "><a href="templates/attributes.html"><strong aria-hidden="true">4.2.</strong> Attributes</a></li><li class="chapter-item expanded "><a href="templates/creating-custom-widget.html"><strong aria-hidden="true">4.3.</strong> Creating a custom widget</a></li></ol></li><li class="chapter-item expanded "><a href="widgets.html"><strong aria-hidden="true">5.</strong> Widgets</a></li><li class="chapter-item expanded "><a href="widgets-only.html"><strong aria-hidden="true">6.</strong> Widgets only</a></li><li class="chapter-item expanded "><a href="display-only.html"><strong aria-hidden="true">7.</strong> Display only</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="getting-started.html" class="active"><strong aria-hidden="true">2.</strong> Getting started</a></li><li class="chapter-item expanded "><a href="runtime.html"><strong aria-hidden="true">3.</strong> Runtime</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -135,61 +135,45 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="getting-started"><a class="header" href="#getting-started">Getting started</a></h1>
-<h2 id="requirements"><a class="header" href="#requirements">Requirements</a></h2>
-<ul>
-<li>Rust 1.62 or newer.</li>
-<li>Some understanding of the Rust programming language.</li>
-</ul>
 <h2 id="install"><a class="header" href="#install">Install</a></h2>
 <p>Add <code>anathema</code> to your Cargo.toml file.</p>
 <pre><code class="language-toml">...
 [dependencies]
-anathema = &quot;&lt;insert latest version here&gt;&quot;
+anathema = { git = &quot;https://github.com/togglebyte/anathema&quot; }
 </code></pre>
 <h3 id="note"><a class="header" href="#note">Note</a></h3>
-<ul>
-<li>If all that is required is a way to place characters in the terminal, with
-no need for layouts or widgets then see <a href="./display-only.html">display only</a>.</li>
-<li>If the template system and runtime is not needed but the widgets are, then see
-<a href="./widgets-only.html">widgets only</a>.</li>
-</ul>
+<p>This guide is written against the current version on <a href="https://github.com/togglebyte/anathema">Github</a>. 
+Even though efforts are made to keep this guide up to date there are
+possibilities of changes being made and published before they reach
+this guide.</p>
+<p>At the time of writing, Anathema should be considered alpha.</p>
 <h2 id="a-basic-example"><a class="header" href="#a-basic-example">A basic example</a></h2>
-<p>Render a border around the edges, placing the text in the middle of the
+<p>Render a border around the text, placing the text in the middle of the
 terminal.</p>
-<pre><pre class="playground"><code class="language-rust edition2021">use anathema::runtime::{Event, Runtime};
-use anathema::templates::DataCtx;
+<pre><pre class="playground"><code class="language-rust edition2021">// src/main.rs
+use std::fs::read_to_string;
+
+use anathema::runtime::Runtime;
+use anathema::vm::Templates;
 
 fn main() {
-    let runtime = Runtime::&lt;()&gt;::new();
-    let template = r#&quot;
-    border:
-        alignment [align: centre]: // &quot;center&quot; is also fine
-            text: &quot;In the middle of the terminal&quot;
-    &quot;#;
+    // Step one: Load and compile templates
+    let template = read_to_string(&quot;templates/index.tiny&quot;).unwrap();
+    let mut templates = Templates::new(template, ());
+    templates.compile().unwrap();
 
-    runtime.start(template, DataCtx::empty(), |ev, _root, _ctx, tx| {
-        if ev.ctrl_c() {
-            let _ = tx.send(Event::Quit);
-        }
-    }).unwrap();
+    // Step two: Runtime
+    let runtime = Runtime::new(templates.expressions()).unwrap();
+
+    // Step three: start the runtime
+    runtime.run().unwrap();
 }
 </code></pre></pre>
-<h2 id="features"><a class="header" href="#features">Features</a></h2>
-<p>Only use what you need:</p>
-<p>By default everything but <code>logging</code> and <code>serde-json</code> is enabled.</p>
-<ul>
-<li><code>default</code>: includes the entire runtime and template language.</li>
-<li><code>widgets</code>: includes widgets and rendering.</li>
-<li><code>templates</code>: templates, widgets and rendering (but no runtime).</li>
-<li><code>runtime</code>: runtime and templates.</li>
-</ul>
-<h3 id="extras"><a class="header" href="#extras">Extras</a></h3>
-<ul>
-<li><code>serde-json</code>: this feature enables convert json to <code>Value</code> which is the inner
-data type for templates.</li>
-<li><code>metrics</code>: this feature will populate the <code>DataCtx</code> with metrics such as
-layout time, update time etc.</li>
-</ul>
+<pre><code>// templates/index.tiny
+alignment [align : &quot;center&quot;]
+    border [foreground: &quot;cyan&quot;]
+        text [foreground: #fa0] &quot;Hello world&quot;
+</code></pre>
 
                     </main>
 
