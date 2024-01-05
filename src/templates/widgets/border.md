@@ -1,4 +1,4 @@
-# Border
+# Border (`border`)
 
 ## Example
 

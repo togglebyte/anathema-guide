@@ -1,4 +1,4 @@
-# Text
+# Text (`text`)
 
 ## Example
 

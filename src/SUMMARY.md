@@ -12,7 +12,7 @@
     - [Widgets](./templates/widgets.md)
         - [text](./templates/widgets/text.md)
         - [border](./templates/widgets/border.md)
-    %%     - [alignment](./templates/alignment.md)
+        - [alignment](./templates/widgets/alignment.md)
     %%     - [border](./templates/border.md)
     %%     - [canvas](./templates/canvas.md)
     %%     - [expand](./templates/expand.md)

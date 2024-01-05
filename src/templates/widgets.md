@@ -34,3 +34,4 @@ The following is a list of available widgets and their template names:
 
 - [Text](./widgets/text.md) (template name: `text`)
 - [Border](./widgets/border.md) (template name: `border`)
+- [Alignment](./widgets/alignment.md) (template name: `alignment`)
