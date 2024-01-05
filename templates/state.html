@@ -195,7 +195,14 @@ struct Outer {
 
 #[derive(State)]
 struct Inner {
-    value: StateValue&lt;i32&gt;
+    counter: StateValue&lt;i32&gt;
+}
+
+impl View for Index {
+    fn tick(&amp;mut self) {
+        *self.state.nested_state.counter += 1;
+    }
+
 }
 <span class="boring">}
 </span></code></pre></pre>
