@@ -8,18 +8,6 @@ text [foreground: "red"] "I'm a little sausage"
 
 ## Attributes
 
-### `foreground` 
-
-Foreground colour
-
-Valid values:
-* hex: `#ffaabb`
-* string: "green"
-
-### `background` 
-
-Background colour (see `foreground` for valid values)
-
 ### `wrap`
 
 Default is to wrap on word boundaries such as space and hyphen, and this method
@@ -100,4 +88,13 @@ border [width: 5 + 2]
 │hello│
 │ you │
 └─────┘
+```
+
+### Additional styles
+
+* `bold`
+* `italic`
+
+```
+text [bold: true, italic: true] "bold AND italic?!"
 ```

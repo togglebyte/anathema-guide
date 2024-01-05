@@ -11,6 +11,7 @@
 - [Templates](./templates.md)
     - [Widgets](./templates/widgets.md)
         - [text](./templates/widgets/text.md)
+        - [border](./templates/widgets/border.md)
     %%     - [alignment](./templates/alignment.md)
     %%     - [border](./templates/border.md)
     %%     - [canvas](./templates/canvas.md)
