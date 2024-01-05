@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>border - Anathema</title>
+        <title>hstack - Anathema</title>
         <!-- Custom HTML head -->
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
@@ -75,7 +75,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="../../introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="../../getting-started.html"><strong aria-hidden="true">2.</strong> Getting started</a></li><li class="chapter-item expanded "><a href="../../runtime.html"><strong aria-hidden="true">3.</strong> Runtime</a></li><li class="chapter-item expanded "><a href="../../views.html"><strong aria-hidden="true">4.</strong> Views</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../templates/state.html"><strong aria-hidden="true">4.1.</strong> State</a></li></ol></li><li class="chapter-item expanded "><a href="../../templates.html"><strong aria-hidden="true">5.</strong> Templates</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../templates/widgets.html"><strong aria-hidden="true">5.1.</strong> Widgets</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../templates/widgets/text.html"><strong aria-hidden="true">5.1.1.</strong> text</a></li><li class="chapter-item expanded "><a href="../../templates/widgets/span.html"><strong aria-hidden="true">5.1.2.</strong> span</a></li><li class="chapter-item expanded "><a href="../../templates/widgets/border.html" class="active"><strong aria-hidden="true">5.1.3.</strong> border</a></li><li class="chapter-item expanded "><a href="../../templates/widgets/alignment.html"><strong aria-hidden="true">5.1.4.</strong> alignment</a></li><li class="chapter-item expanded "><a href="../../templates/widgets/vstack.html"><strong aria-hidden="true">5.1.5.</strong> vstack</a></li><li class="chapter-item expanded "><a href="../../templates/widgets/hstack.html"><strong aria-hidden="true">5.1.6.</strong> hstack</a></li><li class="chapter-item expanded "><a href="../../templates/widgets/zstack.html"><strong aria-hidden="true">5.1.7.</strong> zstack</a></li><li class="chapter-item expanded "><a href="../../templates/widgets/expand.html"><strong aria-hidden="true">5.1.8.</strong> expand</a></li></ol></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../../introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="../../getting-started.html"><strong aria-hidden="true">2.</strong> Getting started</a></li><li class="chapter-item expanded "><a href="../../runtime.html"><strong aria-hidden="true">3.</strong> Runtime</a></li><li class="chapter-item expanded "><a href="../../views.html"><strong aria-hidden="true">4.</strong> Views</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../templates/state.html"><strong aria-hidden="true">4.1.</strong> State</a></li></ol></li><li class="chapter-item expanded "><a href="../../templates.html"><strong aria-hidden="true">5.</strong> Templates</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../templates/widgets.html"><strong aria-hidden="true">5.1.</strong> Widgets</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../templates/widgets/text.html"><strong aria-hidden="true">5.1.1.</strong> text</a></li><li class="chapter-item expanded "><a href="../../templates/widgets/span.html"><strong aria-hidden="true">5.1.2.</strong> span</a></li><li class="chapter-item expanded "><a href="../../templates/widgets/border.html"><strong aria-hidden="true">5.1.3.</strong> border</a></li><li class="chapter-item expanded "><a href="../../templates/widgets/alignment.html"><strong aria-hidden="true">5.1.4.</strong> alignment</a></li><li class="chapter-item expanded "><a href="../../templates/widgets/vstack.html"><strong aria-hidden="true">5.1.5.</strong> vstack</a></li><li class="chapter-item expanded "><a href="../../templates/widgets/hstack.html" class="active"><strong aria-hidden="true">5.1.6.</strong> hstack</a></li><li class="chapter-item expanded "><a href="../../templates/widgets/zstack.html"><strong aria-hidden="true">5.1.7.</strong> zstack</a></li><li class="chapter-item expanded "><a href="../../templates/widgets/expand.html"><strong aria-hidden="true">5.1.8.</strong> expand</a></li></ol></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -134,93 +134,33 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="border-border"><a class="header" href="#border-border">Border (<code>border</code>)</a></h1>
+                        <h1 id="hstack-hstack"><a class="header" href="#hstack-hstack">HStack (<code>hstack</code>)</a></h1>
+<p>Horizontally stack widgets</p>
 <h2 id="example"><a class="header" href="#example">Example</a></h2>
-<pre><code>border
-    text &quot;What a border!&quot;
+<pre><code>hstack
+    text &quot;one&quot;
+    text &quot;two&quot;
 </code></pre>
-<pre><code>┌──────────────┐
-│What a border!│
-└──────────────┘
+<pre><code>onetwo
 </code></pre>
 <h2 id="attributes"><a class="header" href="#attributes">Attributes</a></h2>
 <h3 id="width"><a class="header" href="#width"><code>width</code></a></h3>
-<p>The fixed width of the border</p>
+<p>Fixed width</p>
 <h3 id="height"><a class="header" href="#height"><code>height</code></a></h3>
-<p>The fixed height of the border</p>
+<p>Fixed height</p>
 <h3 id="min-width"><a class="header" href="#min-width"><code>min-width</code></a></h3>
-<p>The minimum width of the border</p>
+<p>Minimum width</p>
 <h3 id="min-height"><a class="header" href="#min-height"><code>min-height</code></a></h3>
-<p>The minimum height of the border</p>
-<h3 id="sides"><a class="header" href="#sides"><code>sides</code></a></h3>
-<p>Valid values:</p>
-<ul>
-<li><code>&quot;top&quot;</code></li>
-<li><code>&quot;right&quot;</code></li>
-<li><code>&quot;bottom&quot;</code></li>
-<li><code>&quot;left&quot;</code></li>
-</ul>
-<p>Sides specifies which sides of the border should be drawn.</p>
-<p>This can be written as an individual side:</p>
-<pre><code>border [sides: &quot;left&quot;]
-    text &quot;What a border!&quot;
-</code></pre>
-<pre><code>│What a border!
-</code></pre>
-<p>or</p>
-<pre><code>border [sides: &quot;left&quot;]
-    text &quot;What a border!&quot;
-</code></pre>
-<pre><code>──────────────
-What a border!
-</code></pre>
-<p>It can also be written as a list:</p>
-<pre><code>border [sides: [&quot;left&quot;, &quot;top&quot;]]
-    text &quot;What a border!&quot;
-</code></pre>
-<pre><code>┌──────────────
-│What a border!
-</code></pre>
-<h3 id="border-style"><a class="header" href="#border-style"><code>border-style</code></a></h3>
-<p>The default border style is <code>&quot;thin&quot;</code>.</p>
-<p>For a thicker border style the value <code>&quot;tick&quot;</code> can be used:</p>
-<pre><code>border [border-style: &quot;thick&quot;]
-    text  &quot;What a border!&quot;
-</code></pre>
-<pre><code>╔══════════════╗
-║What a border!║
-╚══════════════╝
-</code></pre>
-<p>It's also possible to customise the border style by providing an eight character
-string as input, where each character represents a portion of the corner in the 
-following order:</p>
-<ol>
-<li>top left</li>
-<li>top</li>
-<li>top right</li>
-<li>right</li>
-<li>bottom right</li>
-<li>bottom</li>
-<li>bottom left</li>
-<li>left</li>
-</ol>
-<p>See the following example:</p>
-<pre><code>border [border-style: &quot;12345678&quot;]
-    text  &quot;What a border!&quot;
-</code></pre>
-<pre><code>1222222222222223
-8What a border!4
-7666666666666665
-</code></pre>
+<p>Minimum height</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../../templates/widgets/span.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../../templates/widgets/vstack.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
-                            <a rel="next" href="../../templates/widgets/alignment.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="../../templates/widgets/zstack.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         <div style="clear: both"></div>
@@ -229,10 +169,10 @@ following order:</p>
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../../templates/widgets/span.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../../templates/widgets/vstack.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
-                    <a rel="next" href="../../templates/widgets/alignment.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next" href="../../templates/widgets/zstack.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>

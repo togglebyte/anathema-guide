@@ -76,7 +76,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="getting-started.html"><strong aria-hidden="true">2.</strong> Getting started</a></li><li class="chapter-item expanded "><a href="runtime.html"><strong aria-hidden="true">3.</strong> Runtime</a></li><li class="chapter-item expanded "><a href="views.html"><strong aria-hidden="true">4.</strong> Views</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="templates/state.html"><strong aria-hidden="true">4.1.</strong> State</a></li></ol></li><li class="chapter-item expanded "><a href="templates.html"><strong aria-hidden="true">5.</strong> Templates</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="templates/widgets.html"><strong aria-hidden="true">5.1.</strong> Widgets</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="templates/widgets/text.html"><strong aria-hidden="true">5.1.1.</strong> text</a></li><li class="chapter-item expanded "><a href="templates/widgets/border.html"><strong aria-hidden="true">5.1.2.</strong> border</a></li><li class="chapter-item expanded "><a href="templates/widgets/alignment.html"><strong aria-hidden="true">5.1.3.</strong> alignment</a></li></ol></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="getting-started.html"><strong aria-hidden="true">2.</strong> Getting started</a></li><li class="chapter-item expanded "><a href="runtime.html"><strong aria-hidden="true">3.</strong> Runtime</a></li><li class="chapter-item expanded "><a href="views.html"><strong aria-hidden="true">4.</strong> Views</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="templates/state.html"><strong aria-hidden="true">4.1.</strong> State</a></li></ol></li><li class="chapter-item expanded "><a href="templates.html"><strong aria-hidden="true">5.</strong> Templates</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="templates/widgets.html"><strong aria-hidden="true">5.1.</strong> Widgets</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="templates/widgets/text.html"><strong aria-hidden="true">5.1.1.</strong> text</a></li><li class="chapter-item expanded "><a href="templates/widgets/span.html"><strong aria-hidden="true">5.1.2.</strong> span</a></li><li class="chapter-item expanded "><a href="templates/widgets/border.html"><strong aria-hidden="true">5.1.3.</strong> border</a></li><li class="chapter-item expanded "><a href="templates/widgets/alignment.html"><strong aria-hidden="true">5.1.4.</strong> alignment</a></li><li class="chapter-item expanded "><a href="templates/widgets/vstack.html"><strong aria-hidden="true">5.1.5.</strong> vstack</a></li><li class="chapter-item expanded "><a href="templates/widgets/hstack.html"><strong aria-hidden="true">5.1.6.</strong> hstack</a></li><li class="chapter-item expanded "><a href="templates/widgets/zstack.html"><strong aria-hidden="true">5.1.7.</strong> zstack</a></li><li class="chapter-item expanded "><a href="templates/widgets/expand.html"><strong aria-hidden="true">5.1.8.</strong> expand</a></li></ol></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -499,7 +499,7 @@ else
 <div style="break-before: page; page-break-before: always;"></div><h1 id="widgets"><a class="header" href="#widgets">Widgets</a></h1>
 <p>Even though it's possible to create your own widgets Anathema aims to provide
 the necessary building blocks to represent almost any layout.</p>
-<p>Widgets that draw them selves (e.g <code>text</code> and <code>border</code>) support these default
+<p>Widgets that draw them selves (e.g <code>text</code>, <code>span</code> and <code>border</code>) support these default
 attributes:</p>
 <h3 id="foreground"><a class="header" href="#foreground"><code>foreground</code></a></h3>
 <p>Foreground colour</p>
@@ -520,10 +520,17 @@ attributes:</p>
 <p>The following is a list of available widgets and their template names:</p>
 <ul>
 <li><a href="templates/./widgets/text.html">Text</a> (template name: <code>text</code>)</li>
+<li><a href="templates/./widgets/span.html">Span</a> (template name: <code>span</code>)</li>
 <li><a href="templates/./widgets/border.html">Border</a> (template name: <code>border</code>)</li>
 <li><a href="templates/./widgets/alignment.html">Alignment</a> (template name: <code>alignment</code>)</li>
+<li><a href="templates/./widgets/vstack.html">VStack</a> (template name: <code>vstack</code>)</li>
+<li><a href="templates/./widgets/hstack.html">HStack</a> (template name: <code>hstack</code>)</li>
+<li><a href="templates/./widgets/zstack.html">ZStack</a> (template name: <code>zstack</code>)</li>
+<li><a href="templates/./widgets/expand.html">Expand</a> (template name: <code>expand</code>)</li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="text-text"><a class="header" href="#text-text">Text (<code>text</code>)</a></h1>
+<p>Print text.</p>
+<p>To add styles to text in the middle of a string use a <code>span</code> widget.</p>
 <h2 id="example-2"><a class="header" href="#example-2">Example</a></h2>
 <pre><code>text [foreground: &quot;red&quot;] &quot;I'm a little sausage&quot;
 </code></pre>
@@ -595,6 +602,17 @@ of the alignment widget in combination with the text align attribute.</p>
 </ul>
 <pre><code>text [bold: true, italic: true] &quot;bold AND italic?!&quot;
 </code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="span-span"><a class="header" href="#span-span">Span (<code>span</code>)</a></h1>
+<p>The <code>span</code> widget is used to style text on the same line.
+Span can not be used on its own, it has to belong to a <code>text</code> widget.</p>
+<pre><code>text &quot;start&quot;
+    span &quot;-middle-&quot;
+    span &quot;end&quot;
+</code></pre>
+<pre><code>start-middle-end
+</code></pre>
+<p>The <code>span</code> widget can be styled using the standard attributes, such as <code>bold</code>,
+<code>foreground</code> etc.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="border-border"><a class="header" href="#border-border">Border (<code>border</code>)</a></h1>
 <h2 id="example-3"><a class="header" href="#example-3">Example</a></h2>
 <pre><code>border
@@ -701,6 +719,121 @@ than <code>&quot;top-left&quot;</code>.</p>
 <li><code>&quot;left&quot;</code></li>
 <li><code>&quot;centre&quot;</code> or <code>&quot;center&quot;</code></li>
 </ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="vstack-vstack"><a class="header" href="#vstack-vstack">VStack (<code>vstack</code>)</a></h1>
+<p>Vertically stack widgets</p>
+<h2 id="example-5"><a class="header" href="#example-5">Example</a></h2>
+<pre><code>vstack
+    text &quot;one&quot;
+    text &quot;two&quot;
+</code></pre>
+<pre><code>one
+two
+</code></pre>
+<h2 id="attributes-4"><a class="header" href="#attributes-4">Attributes</a></h2>
+<h3 id="width-1"><a class="header" href="#width-1"><code>width</code></a></h3>
+<p>Fixed width</p>
+<h3 id="height-1"><a class="header" href="#height-1"><code>height</code></a></h3>
+<p>Fixed height</p>
+<h3 id="min-width-1"><a class="header" href="#min-width-1"><code>min-width</code></a></h3>
+<p>Minimum width</p>
+<h3 id="min-height-1"><a class="header" href="#min-height-1"><code>min-height</code></a></h3>
+<p>Minimum height</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="hstack-hstack"><a class="header" href="#hstack-hstack">HStack (<code>hstack</code>)</a></h1>
+<p>Horizontally stack widgets</p>
+<h2 id="example-6"><a class="header" href="#example-6">Example</a></h2>
+<pre><code>hstack
+    text &quot;one&quot;
+    text &quot;two&quot;
+</code></pre>
+<pre><code>onetwo
+</code></pre>
+<h2 id="attributes-5"><a class="header" href="#attributes-5">Attributes</a></h2>
+<h3 id="width-2"><a class="header" href="#width-2"><code>width</code></a></h3>
+<p>Fixed width</p>
+<h3 id="height-2"><a class="header" href="#height-2"><code>height</code></a></h3>
+<p>Fixed height</p>
+<h3 id="min-width-2"><a class="header" href="#min-width-2"><code>min-width</code></a></h3>
+<p>Minimum width</p>
+<h3 id="min-height-2"><a class="header" href="#min-height-2"><code>min-height</code></a></h3>
+<p>Minimum height</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="zstack-zstack"><a class="header" href="#zstack-zstack">ZStack (<code>zstack</code>)</a></h1>
+<p>Stack widgets on top of each other</p>
+<h2 id="example-7"><a class="header" href="#example-7">Example</a></h2>
+<pre><code>zstack
+    text &quot;333&quot;
+    text &quot;22&quot;
+    text &quot;1
+</code></pre>
+<pre><code>123
+</code></pre>
+<h2 id="attributes-6"><a class="header" href="#attributes-6">Attributes</a></h2>
+<h3 id="width-3"><a class="header" href="#width-3"><code>width</code></a></h3>
+<p>Fixed width</p>
+<h3 id="height-3"><a class="header" href="#height-3"><code>height</code></a></h3>
+<p>Fixed height</p>
+<h3 id="min-width-3"><a class="header" href="#min-width-3"><code>min-width</code></a></h3>
+<p>Minimum width</p>
+<h3 id="min-height-3"><a class="header" href="#min-height-3"><code>min-height</code></a></h3>
+<p>Minimum height</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="expand-expand"><a class="header" href="#expand-expand">Expand (<code>expand</code>)</a></h1>
+<p>Expand the widget to fill the remaining space.</p>
+<p>The layout process works as follows:
+First all widgets that are not <code>expand</code> or <code>spacer</code> will be laid out.
+The remaining space will be distributed between <code>expand</code> then <code>spacer</code>.</p>
+<p>The size is distributed evenly between all <code>expand</code>s.</p>
+<p>To alter the distribution factor set the <code>factor</code> attribute.</p>
+<h2 id="example-8"><a class="header" href="#example-8">Example</a></h2>
+<pre><code>border [width: 10, height: 11]
+    vstack
+        expand
+            border
+                expand
+                    text &quot;top&quot;
+        expand
+            border
+                expand
+                    text &quot;bottom&quot;
+        text &quot;footer&quot;
+</code></pre>
+<pre><code>┌────────┐
+│┌──────┐│
+││top   ││
+││      ││
+│└──────┘│
+│┌──────┐│
+││bottom││
+││      ││
+│└──────┘│
+│footer  │
+└────────┘
+</code></pre>
+<h2 id="attributes-7"><a class="header" href="#attributes-7">Attributes</a></h2>
+<h3 id="factor"><a class="header" href="#factor"><code>factor</code></a></h3>
+<p>The factor decides the amount of space to distribute between the <code>expand</code>s.</p>
+<p>Given a height of 33 and two <code>expand</code> widgets, the height would be divided by
+two.</p>
+<p>If one of the <code>expand</code> widgets had a <code>factor</code> of two, then it would receive 22
+of the total 33 height, and the remaining widget would receive 11.</p>
+<h3 id="axis"><a class="header" href="#axis"><code>axis</code></a></h3>
+<p>Expand along an axis.</p>
+<p>Valid values:</p>
+<ul>
+<li><code>&quot;horz&quot;</code> | <code>&quot;horizontal&quot;</code></li>
+<li><code>&quot;vert&quot;</code> | <code>&quot;vertical&quot;</code></li>
+</ul>
+<h3 id="fill"><a class="header" href="#fill"><code>fill</code></a></h3>
+<p>Fill the unpainted space with a string.</p>
+<p>Example:</p>
+<pre><code>border [width: 10, height: 5]
+    expand [fill: &quot;+-&quot;]
+        text &quot;Hello&quot;
+</code></pre>
+<pre><code>┌────────┐
+│Hello-+-│
+│+-+-+-+-│
+│+-+-+-+-│
+└────────┘
+</code></pre>
 
                     </main>
 
