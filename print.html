@@ -76,7 +76,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="getting-started.html"><strong aria-hidden="true">2.</strong> Getting started</a></li><li class="chapter-item expanded "><a href="runtime.html"><strong aria-hidden="true">3.</strong> Runtime</a></li><li class="chapter-item expanded "><a href="views.html"><strong aria-hidden="true">4.</strong> Views</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="templates/state.html"><strong aria-hidden="true">4.1.</strong> State</a></li></ol></li><li class="chapter-item expanded "><a href="templates.html"><strong aria-hidden="true">5.</strong> Templates</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="templates/widgets.html"><strong aria-hidden="true">5.1.</strong> Widgets</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="templates/widgets/text.html"><strong aria-hidden="true">5.1.1.</strong> text</a></li><li class="chapter-item expanded "><a href="templates/widgets/border.html"><strong aria-hidden="true">5.1.2.</strong> border</a></li></ol></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="getting-started.html"><strong aria-hidden="true">2.</strong> Getting started</a></li><li class="chapter-item expanded "><a href="runtime.html"><strong aria-hidden="true">3.</strong> Runtime</a></li><li class="chapter-item expanded "><a href="views.html"><strong aria-hidden="true">4.</strong> Views</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="templates/state.html"><strong aria-hidden="true">4.1.</strong> State</a></li></ol></li><li class="chapter-item expanded "><a href="templates.html"><strong aria-hidden="true">5.</strong> Templates</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="templates/widgets.html"><strong aria-hidden="true">5.1.</strong> Widgets</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="templates/widgets/text.html"><strong aria-hidden="true">5.1.1.</strong> text</a></li><li class="chapter-item expanded "><a href="templates/widgets/border.html"><strong aria-hidden="true">5.1.2.</strong> border</a></li><li class="chapter-item expanded "><a href="templates/widgets/alignment.html"><strong aria-hidden="true">5.1.3.</strong> alignment</a></li></ol></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -521,8 +521,9 @@ attributes:</p>
 <ul>
 <li><a href="templates/./widgets/text.html">Text</a> (template name: <code>text</code>)</li>
 <li><a href="templates/./widgets/border.html">Border</a> (template name: <code>border</code>)</li>
+<li><a href="templates/./widgets/alignment.html">Alignment</a> (template name: <code>alignment</code>)</li>
 </ul>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="text"><a class="header" href="#text">Text</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="text-text"><a class="header" href="#text-text">Text (<code>text</code>)</a></h1>
 <h2 id="example-2"><a class="header" href="#example-2">Example</a></h2>
 <pre><code>text [foreground: &quot;red&quot;] &quot;I'm a little sausage&quot;
 </code></pre>
@@ -594,7 +595,7 @@ of the alignment widget in combination with the text align attribute.</p>
 </ul>
 <pre><code>text [bold: true, italic: true] &quot;bold AND italic?!&quot;
 </code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="border"><a class="header" href="#border">Border</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="border-border"><a class="header" href="#border-border">Border (<code>border</code>)</a></h1>
 <h2 id="example-3"><a class="header" href="#example-3">Example</a></h2>
 <pre><code>border
     text &quot;What a border!&quot;
@@ -672,6 +673,34 @@ following order:</p>
 8What a border!4
 7666666666666665
 </code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="alignment-alignment"><a class="header" href="#alignment-alignment">Alignment (<code>alignment</code>)</a></h1>
+<p>Alignment will inflate the wrapping widget if any <code>align</code> value is given other
+than <code>&quot;top-left&quot;</code>.</p>
+<h2 id="example-4"><a class="header" href="#example-4">Example</a></h2>
+<pre><code>border [width: 16, height: 5]
+    alignment [align: &quot;centre&quot;]
+        text &quot;centre&quot;
+</code></pre>
+<pre><code>┌──────────────┐
+│              │
+│    centre    │
+│              │
+└──────────────┘
+</code></pre>
+<h2 id="attributes-3"><a class="header" href="#attributes-3">Attributes</a></h2>
+<h3 id="align"><a class="header" href="#align"><code>align</code></a></h3>
+<p>Valid values:</p>
+<ul>
+<li><code>&quot;top-left&quot;</code></li>
+<li><code>&quot;top&quot;</code></li>
+<li><code>&quot;top-right&quot;</code></li>
+<li><code>&quot;right&quot;</code></li>
+<li><code>&quot;bottom-right&quot;</code></li>
+<li><code>&quot;bottom&quot;</code></li>
+<li><code>&quot;bottom-left&quot;</code></li>
+<li><code>&quot;left&quot;</code></li>
+<li><code>&quot;centre&quot;</code> or <code>&quot;center&quot;</code></li>
+</ul>
 
                     </main>
 
