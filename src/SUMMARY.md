@@ -8,7 +8,7 @@
     %% - [Data Context](./templates/data-ctx.md)
 - [Views](./views.md)
     - [State](./templates/state.md)
-%% - [Templates](./templates.md)
+- [Templates](./templates.md)
     %% - [Widgets](./templates/widgets.md)
     %%     - [alignment](./templates/alignment.md)
     %%     - [border](./templates/border.md)
