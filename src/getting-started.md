@@ -23,7 +23,6 @@ At the time of writing, Anathema should be considered alpha.
 Render a border around the text, placing the text in the middle of the
 terminal.
 
-
 ```rust
 // src/main.rs
 use std::fs::read_to_string;
@@ -33,12 +32,12 @@ use anathema::vm::Templates;
 
 fn main() {
     // Step one: Load and compile templates
-    let template = read_to_string("templates/index.tiny").unwrap();
+    let template = read_to_string("templates/index.aml").unwrap();
     let mut templates = Templates::new(template, ());
-    templates.compile().unwrap();
+    let templates = templates.compile().unwrap();
 
     // Step two: Runtime
-    let runtime = Runtime::new(templates.expressions()).unwrap();
+    let runtime = Runtime::new(&templates).unwrap();
 
     // Step three: start the runtime
     runtime.run().unwrap();
@@ -46,7 +45,7 @@ fn main() {
 ```
 
 ```
-// templates/index.tiny
+// templates/index.aml
 alignment [align : "center"]
     border [foreground: "cyan"]
         text [foreground: #fa0] "Hello world"
