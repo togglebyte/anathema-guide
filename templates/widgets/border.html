@@ -3,33 +3,33 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>State - Anathema</title>
+        <title>border - Anathema</title>
         <!-- Custom HTML head -->
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff" />
 
-        <link rel="icon" href="../favicon.svg">
-        <link rel="shortcut icon" href="../favicon.png">
-        <link rel="stylesheet" href="../css/variables.css">
-        <link rel="stylesheet" href="../css/general.css">
-        <link rel="stylesheet" href="../css/chrome.css">
-        <link rel="stylesheet" href="../css/print.css" media="print">
+        <link rel="icon" href="../../favicon.svg">
+        <link rel="shortcut icon" href="../../favicon.png">
+        <link rel="stylesheet" href="../../css/variables.css">
+        <link rel="stylesheet" href="../../css/general.css">
+        <link rel="stylesheet" href="../../css/chrome.css">
+        <link rel="stylesheet" href="../../css/print.css" media="print">
         <!-- Fonts -->
-        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
-        <link rel="stylesheet" href="../fonts/fonts.css">
+        <link rel="stylesheet" href="../../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../../fonts/fonts.css">
         <!-- Highlight.js Stylesheets -->
-        <link rel="stylesheet" href="../highlight.css">
-        <link rel="stylesheet" href="../tomorrow-night.css">
-        <link rel="stylesheet" href="../ayu-highlight.css">
+        <link rel="stylesheet" href="../../highlight.css">
+        <link rel="stylesheet" href="../../tomorrow-night.css">
+        <link rel="stylesheet" href="../../ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
     </head>
     <body>
         <!-- Provide site root to javascript -->
         <script type="text/javascript">
-            var path_to_root = "../";
+            var path_to_root = "../../";
             var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
         </script>
 
@@ -75,7 +75,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="../introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="../getting-started.html"><strong aria-hidden="true">2.</strong> Getting started</a></li><li class="chapter-item expanded "><a href="../runtime.html"><strong aria-hidden="true">3.</strong> Runtime</a></li><li class="chapter-item expanded "><a href="../views.html"><strong aria-hidden="true">4.</strong> Views</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../templates/state.html" class="active"><strong aria-hidden="true">4.1.</strong> State</a></li></ol></li><li class="chapter-item expanded "><a href="../templates.html"><strong aria-hidden="true">5.</strong> Templates</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../templates/widgets.html"><strong aria-hidden="true">5.1.</strong> Widgets</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../templates/widgets/text.html"><strong aria-hidden="true">5.1.1.</strong> text</a></li><li class="chapter-item expanded "><a href="../templates/widgets/border.html"><strong aria-hidden="true">5.1.2.</strong> border</a></li></ol></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../../introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="../../getting-started.html"><strong aria-hidden="true">2.</strong> Getting started</a></li><li class="chapter-item expanded "><a href="../../runtime.html"><strong aria-hidden="true">3.</strong> Runtime</a></li><li class="chapter-item expanded "><a href="../../views.html"><strong aria-hidden="true">4.</strong> Views</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../templates/state.html"><strong aria-hidden="true">4.1.</strong> State</a></li></ol></li><li class="chapter-item expanded "><a href="../../templates.html"><strong aria-hidden="true">5.</strong> Templates</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../templates/widgets.html"><strong aria-hidden="true">5.1.</strong> Widgets</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../templates/widgets/text.html"><strong aria-hidden="true">5.1.1.</strong> text</a></li><li class="chapter-item expanded "><a href="../../templates/widgets/border.html" class="active"><strong aria-hidden="true">5.1.2.</strong> border</a></li></ol></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -107,7 +107,7 @@
                     <h1 class="menu-title">Anathema</h1>
 
                     <div class="right-buttons">
-                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                        <a href="../../print.html" title="Print this book" aria-label="Print this book">
                             <i id="print-button" class="fa fa-print"></i>
                         </a>
                     </div>
@@ -134,88 +134,91 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="state"><a class="header" href="#state">State</a></h1>
+                        <h1 id="border"><a class="header" href="#border">Border</a></h1>
 <h2 id="example"><a class="header" href="#example">Example</a></h2>
-<p>Example of internal state</p>
-<pre><pre class="playground"><code class="language-rust edition2021"><span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>#[derive(State)]
-struct MyState {
-    name: StateValue&lt;String&gt;,
-    guests: List&lt;String&gt;,
-}
-
-struct MyView(MyState);
-
-impl View for MyView {
-    fn state(&amp;self) -&gt; &amp;dyn State {
-        &amp;self.0
-    }
-}
-
-<span class="boring">}
-</span></code></pre></pre>
-<p>There are two types of state:</p>
-<ul>
-<li>Internal</li>
-<li>External </li>
-</ul>
-<h2 id="external-state"><a class="header" href="#external-state">External state</a></h2>
-<p>External state is state that is passed to the view from the outside.</p>
-<p>A state can either be a direct state from a parent view:</p>
-<pre><code>// Anathema template
-@chid parent_state
+<pre><code>border
+    text &quot;What a border!&quot;
 </code></pre>
-<p>or a custom map declared in the template:</p>
-<pre><code>// Anathema template
-@myview {&quot;bunnies&quot;: list_of_bunnies}
+<pre><code>┌──────────────┐
+│What a border!│
+└──────────────┘
 </code></pre>
-<h2 id="internal-state"><a class="header" href="#internal-state">Internal state</a></h2>
-<p>Internal state is provided by the <code>View</code>, by implementing the <code>fn state(&amp;self) -&gt; &amp;dyn State</code> method from the <code>View</code> trait.</p>
-<p>The state is owned by the view, and the view has mutable access to the state.</p>
-<p>A state can contain:</p>
+<h2 id="attributes"><a class="header" href="#attributes">Attributes</a></h2>
+<h3 id="width"><a class="header" href="#width"><code>width</code></a></h3>
+<p>The fixed width of the border</p>
+<h3 id="height"><a class="header" href="#height"><code>height</code></a></h3>
+<p>The fixed height of the border</p>
+<h3 id="min-width"><a class="header" href="#min-width"><code>min-width</code></a></h3>
+<p>The minimum width of the border</p>
+<h3 id="min-height"><a class="header" href="#min-height"><code>min-height</code></a></h3>
+<p>The minimum height of the border</p>
+<h3 id="sides"><a class="header" href="#sides"><code>sides</code></a></h3>
+<p>Valid values:</p>
 <ul>
-<li>Primitives, wrapped in <code>StateValue&lt;T&gt;</code></li>
-<li>Collections in the form of <code>List&lt;T&gt;</code> (It's redundant to wrap <code>T</code> in a <code>StateValue&lt;T&gt;</code> as this is done by the <code>List&lt;T&gt;</code> itself)</li>
-<li>Maps in the form of <code>Map&lt;T&gt;</code> (the keys are <code>String</code>s)</li>
-<li>Any other type that implements <code>State</code></li>
+<li><code>&quot;top&quot;</code></li>
+<li><code>&quot;right&quot;</code></li>
+<li><code>&quot;bottom&quot;</code></li>
+<li><code>&quot;left&quot;</code></li>
 </ul>
-<p>A state has to be a struct with named fields.</p>
-<h3 id="example-of-a-nested-internal-state"><a class="header" href="#example-of-a-nested-internal-state">Example of a nested internal state</a></h3>
-<pre><pre class="playground"><code class="language-rust edition2021"><span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>#[derive(State)]
-struct Outer {
-    name: StateValue&lt;String&gt;,
-    collection: List&lt;String&gt;,
-    dict: Map&lt;usize&gt;,
-    nested_state: Inner
-    many_inners: List&lt;Inner&gt;
-}
-
-#[derive(State)]
-struct Inner {
-    counter: StateValue&lt;i32&gt;
-}
-
-impl View for Index {
-    fn tick(&amp;mut self) {
-        *self.state.nested_state.counter += 1;
-    }
-
-}
-<span class="boring">}
-</span></code></pre></pre>
+<p>Sides specifies which sides of the border should be drawn.</p>
+<p>This can be written as an individual side:</p>
+<pre><code>border [sides: &quot;left&quot;]
+    text &quot;What a border!&quot;
+</code></pre>
+<pre><code>│What a border!
+</code></pre>
+<p>or</p>
+<pre><code>border [sides: &quot;left&quot;]
+    text &quot;What a border!&quot;
+</code></pre>
+<pre><code>──────────────
+What a border!
+</code></pre>
+<p>It can also be written as a list:</p>
+<pre><code>border [sides: [&quot;left&quot;, &quot;top&quot;]]
+    text &quot;What a border!&quot;
+</code></pre>
+<pre><code>┌──────────────
+│What a border!
+</code></pre>
+<h3 id="border-style"><a class="header" href="#border-style"><code>border-style</code></a></h3>
+<p>The default border style is <code>&quot;thin&quot;</code>.</p>
+<p>For a thicker border style the value <code>&quot;tick&quot;</code> can be used:</p>
+<pre><code>border [border-style: &quot;thick&quot;]
+    text  &quot;What a border!&quot;
+</code></pre>
+<pre><code>╔══════════════╗
+║What a border!║
+╚══════════════╝
+</code></pre>
+<p>It's also possible to customise the border style by providing an eight character
+string as input, where each character represents a portion of the corner in the 
+following order:</p>
+<ol>
+<li>top left</li>
+<li>top</li>
+<li>top right</li>
+<li>right</li>
+<li>bottom right</li>
+<li>bottom</li>
+<li>bottom left</li>
+<li>left</li>
+</ol>
+<p>See the following example:</p>
+<pre><code>border [border-style: &quot;12345678&quot;]
+    text  &quot;What a border!&quot;
+</code></pre>
+<pre><code>1222222222222223
+8What a border!4
+7666666666666665
+</code></pre>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../views.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../../templates/widgets/text.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
-                            </a>
-                            <a rel="next" href="../templates.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                                <i class="fa fa-angle-right"></i>
                             </a>
                         <div style="clear: both"></div>
                     </nav>
@@ -223,11 +226,8 @@ impl View for Index {
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../views.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../../templates/widgets/text.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
-                    </a>
-                    <a rel="next" href="../templates.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                        <i class="fa fa-angle-right"></i>
                     </a>
             </nav>
 
@@ -236,12 +236,12 @@ impl View for Index {
         <script type="text/javascript">
             window.playground_copyable = true;
         </script>
-        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
-        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
-        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../searcher.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../book.js" type="text/javascript" charset="utf-8"></script>
 
         <!-- Custom JS scripts -->
     </body>

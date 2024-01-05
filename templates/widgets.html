@@ -75,7 +75,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="../introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="../getting-started.html"><strong aria-hidden="true">2.</strong> Getting started</a></li><li class="chapter-item expanded "><a href="../runtime.html"><strong aria-hidden="true">3.</strong> Runtime</a></li><li class="chapter-item expanded "><a href="../views.html"><strong aria-hidden="true">4.</strong> Views</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../templates/state.html"><strong aria-hidden="true">4.1.</strong> State</a></li></ol></li><li class="chapter-item expanded "><a href="../templates.html"><strong aria-hidden="true">5.</strong> Templates</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../templates/widgets.html" class="active"><strong aria-hidden="true">5.1.</strong> Widgets</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../templates/widgets/text.html"><strong aria-hidden="true">5.1.1.</strong> text</a></li></ol></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="../getting-started.html"><strong aria-hidden="true">2.</strong> Getting started</a></li><li class="chapter-item expanded "><a href="../runtime.html"><strong aria-hidden="true">3.</strong> Runtime</a></li><li class="chapter-item expanded "><a href="../views.html"><strong aria-hidden="true">4.</strong> Views</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../templates/state.html"><strong aria-hidden="true">4.1.</strong> State</a></li></ol></li><li class="chapter-item expanded "><a href="../templates.html"><strong aria-hidden="true">5.</strong> Templates</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../templates/widgets.html" class="active"><strong aria-hidden="true">5.1.</strong> Widgets</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../templates/widgets/text.html"><strong aria-hidden="true">5.1.1.</strong> text</a></li><li class="chapter-item expanded "><a href="../templates/widgets/border.html"><strong aria-hidden="true">5.1.2.</strong> border</a></li></ol></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -137,9 +137,28 @@
                         <h1 id="widgets"><a class="header" href="#widgets">Widgets</a></h1>
 <p>Even though it's possible to create your own widgets Anathema aims to provide
 the necessary building blocks to represent almost any layout.</p>
+<p>Widgets that draw them selves (e.g <code>text</code> and <code>border</code>) support these default
+attributes:</p>
+<h3 id="foreground"><a class="header" href="#foreground"><code>foreground</code></a></h3>
+<p>Foreground colour</p>
+<p>Valid values:</p>
+<ul>
+<li>hex: <code>#ffaabb</code></li>
+<li>string: &quot;green&quot;</li>
+</ul>
+<h3 id="background"><a class="header" href="#background"><code>background</code></a></h3>
+<p>Background colour (see <code>foreground</code> for valid values)</p>
+<h3 id="bold"><a class="header" href="#bold"><code>bold</code></a></h3>
+<p>Valid values:
+<code>true</code> or <code>false</code></p>
+<h3 id="italic"><a class="header" href="#italic"><code>italic</code></a></h3>
+<p>Valid values:
+<code>true</code> or <code>false</code></p>
+<h2 id="default-widgets"><a class="header" href="#default-widgets">Default widgets</a></h2>
 <p>The following is a list of available widgets and their template names:</p>
 <ul>
 <li><a href="./widgets/text.html">Text</a> (template name: <code>text</code>)</li>
+<li><a href="./widgets/border.html">Border</a> (template name: <code>border</code>)</li>
 </ul>
 
                     </main>

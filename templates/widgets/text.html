@@ -75,7 +75,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="../../introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="../../getting-started.html"><strong aria-hidden="true">2.</strong> Getting started</a></li><li class="chapter-item expanded "><a href="../../runtime.html"><strong aria-hidden="true">3.</strong> Runtime</a></li><li class="chapter-item expanded "><a href="../../views.html"><strong aria-hidden="true">4.</strong> Views</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../templates/state.html"><strong aria-hidden="true">4.1.</strong> State</a></li></ol></li><li class="chapter-item expanded "><a href="../../templates.html"><strong aria-hidden="true">5.</strong> Templates</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../templates/widgets.html"><strong aria-hidden="true">5.1.</strong> Widgets</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../templates/widgets/text.html" class="active"><strong aria-hidden="true">5.1.1.</strong> text</a></li></ol></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../../introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="../../getting-started.html"><strong aria-hidden="true">2.</strong> Getting started</a></li><li class="chapter-item expanded "><a href="../../runtime.html"><strong aria-hidden="true">3.</strong> Runtime</a></li><li class="chapter-item expanded "><a href="../../views.html"><strong aria-hidden="true">4.</strong> Views</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../templates/state.html"><strong aria-hidden="true">4.1.</strong> State</a></li></ol></li><li class="chapter-item expanded "><a href="../../templates.html"><strong aria-hidden="true">5.</strong> Templates</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../templates/widgets.html"><strong aria-hidden="true">5.1.</strong> Widgets</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../templates/widgets/text.html" class="active"><strong aria-hidden="true">5.1.1.</strong> text</a></li><li class="chapter-item expanded "><a href="../../templates/widgets/border.html"><strong aria-hidden="true">5.1.2.</strong> border</a></li></ol></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -139,15 +139,6 @@
 <pre><code>text [foreground: &quot;red&quot;] &quot;I'm a little sausage&quot;
 </code></pre>
 <h2 id="attributes"><a class="header" href="#attributes">Attributes</a></h2>
-<h3 id="foreground"><a class="header" href="#foreground"><code>foreground</code></a></h3>
-<p>Foreground colour</p>
-<p>Valid values:</p>
-<ul>
-<li>hex: <code>#ffaabb</code></li>
-<li>string: &quot;green&quot;</li>
-</ul>
-<h3 id="background"><a class="header" href="#background"><code>background</code></a></h3>
-<p>Background colour (see <code>foreground</code> for valid values)</p>
 <h3 id="wrap"><a class="header" href="#wrap"><code>wrap</code></a></h3>
 <p>Default is to wrap on word boundaries such as space and hyphen, and this method
 of wrapping will be used if no <code>wrap</code> attribute is given.</p>
@@ -208,6 +199,13 @@ of the alignment widget in combination with the text align attribute.</p>
 │ you │
 └─────┘
 </code></pre>
+<h3 id="additional-styles"><a class="header" href="#additional-styles">Additional styles</a></h3>
+<ul>
+<li><code>bold</code></li>
+<li><code>italic</code></li>
+</ul>
+<pre><code>text [bold: true, italic: true] &quot;bold AND italic?!&quot;
+</code></pre>
 
                     </main>
 
@@ -215,6 +213,9 @@ of the alignment widget in combination with the text align attribute.</p>
                         <!-- Mobile navigation buttons -->
                             <a rel="prev" href="../../templates/widgets.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
+                            </a>
+                            <a rel="next" href="../../templates/widgets/border.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
                             </a>
                         <div style="clear: both"></div>
                     </nav>
@@ -224,6 +225,9 @@ of the alignment widget in combination with the text align attribute.</p>
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
                     <a rel="prev" href="../../templates/widgets.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
+                    </a>
+                    <a rel="next" href="../../templates/widgets/border.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
                     </a>
             </nav>
 

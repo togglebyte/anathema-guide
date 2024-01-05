@@ -76,7 +76,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="getting-started.html"><strong aria-hidden="true">2.</strong> Getting started</a></li><li class="chapter-item expanded "><a href="runtime.html"><strong aria-hidden="true">3.</strong> Runtime</a></li><li class="chapter-item expanded "><a href="views.html"><strong aria-hidden="true">4.</strong> Views</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="templates/state.html"><strong aria-hidden="true">4.1.</strong> State</a></li></ol></li><li class="chapter-item expanded "><a href="templates.html"><strong aria-hidden="true">5.</strong> Templates</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="templates/widgets.html"><strong aria-hidden="true">5.1.</strong> Widgets</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="templates/widgets/text.html"><strong aria-hidden="true">5.1.1.</strong> text</a></li></ol></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="getting-started.html"><strong aria-hidden="true">2.</strong> Getting started</a></li><li class="chapter-item expanded "><a href="runtime.html"><strong aria-hidden="true">3.</strong> Runtime</a></li><li class="chapter-item expanded "><a href="views.html"><strong aria-hidden="true">4.</strong> Views</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="templates/state.html"><strong aria-hidden="true">4.1.</strong> State</a></li></ol></li><li class="chapter-item expanded "><a href="templates.html"><strong aria-hidden="true">5.</strong> Templates</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="templates/widgets.html"><strong aria-hidden="true">5.1.</strong> Widgets</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="templates/widgets/text.html"><strong aria-hidden="true">5.1.1.</strong> text</a></li><li class="chapter-item expanded "><a href="templates/widgets/border.html"><strong aria-hidden="true">5.1.2.</strong> border</a></li></ol></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -499,15 +499,8 @@ else
 <div style="break-before: page; page-break-before: always;"></div><h1 id="widgets"><a class="header" href="#widgets">Widgets</a></h1>
 <p>Even though it's possible to create your own widgets Anathema aims to provide
 the necessary building blocks to represent almost any layout.</p>
-<p>The following is a list of available widgets and their template names:</p>
-<ul>
-<li><a href="templates/./widgets/text.html">Text</a> (template name: <code>text</code>)</li>
-</ul>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="text"><a class="header" href="#text">Text</a></h1>
-<h2 id="example-2"><a class="header" href="#example-2">Example</a></h2>
-<pre><code>text [foreground: &quot;red&quot;] &quot;I'm a little sausage&quot;
-</code></pre>
-<h2 id="attributes-1"><a class="header" href="#attributes-1">Attributes</a></h2>
+<p>Widgets that draw them selves (e.g <code>text</code> and <code>border</code>) support these default
+attributes:</p>
 <h3 id="foreground"><a class="header" href="#foreground"><code>foreground</code></a></h3>
 <p>Foreground colour</p>
 <p>Valid values:</p>
@@ -517,6 +510,23 @@ the necessary building blocks to represent almost any layout.</p>
 </ul>
 <h3 id="background"><a class="header" href="#background"><code>background</code></a></h3>
 <p>Background colour (see <code>foreground</code> for valid values)</p>
+<h3 id="bold"><a class="header" href="#bold"><code>bold</code></a></h3>
+<p>Valid values:
+<code>true</code> or <code>false</code></p>
+<h3 id="italic"><a class="header" href="#italic"><code>italic</code></a></h3>
+<p>Valid values:
+<code>true</code> or <code>false</code></p>
+<h2 id="default-widgets"><a class="header" href="#default-widgets">Default widgets</a></h2>
+<p>The following is a list of available widgets and their template names:</p>
+<ul>
+<li><a href="templates/./widgets/text.html">Text</a> (template name: <code>text</code>)</li>
+<li><a href="templates/./widgets/border.html">Border</a> (template name: <code>border</code>)</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="text"><a class="header" href="#text">Text</a></h1>
+<h2 id="example-2"><a class="header" href="#example-2">Example</a></h2>
+<pre><code>text [foreground: &quot;red&quot;] &quot;I'm a little sausage&quot;
+</code></pre>
+<h2 id="attributes-1"><a class="header" href="#attributes-1">Attributes</a></h2>
 <h3 id="wrap"><a class="header" href="#wrap"><code>wrap</code></a></h3>
 <p>Default is to wrap on word boundaries such as space and hyphen, and this method
 of wrapping will be used if no <code>wrap</code> attribute is given.</p>
@@ -576,6 +586,91 @@ of the alignment widget in combination with the text align attribute.</p>
 │hello│
 │ you │
 └─────┘
+</code></pre>
+<h3 id="additional-styles"><a class="header" href="#additional-styles">Additional styles</a></h3>
+<ul>
+<li><code>bold</code></li>
+<li><code>italic</code></li>
+</ul>
+<pre><code>text [bold: true, italic: true] &quot;bold AND italic?!&quot;
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="border"><a class="header" href="#border">Border</a></h1>
+<h2 id="example-3"><a class="header" href="#example-3">Example</a></h2>
+<pre><code>border
+    text &quot;What a border!&quot;
+</code></pre>
+<pre><code>┌──────────────┐
+│What a border!│
+└──────────────┘
+</code></pre>
+<h2 id="attributes-2"><a class="header" href="#attributes-2">Attributes</a></h2>
+<h3 id="width"><a class="header" href="#width"><code>width</code></a></h3>
+<p>The fixed width of the border</p>
+<h3 id="height"><a class="header" href="#height"><code>height</code></a></h3>
+<p>The fixed height of the border</p>
+<h3 id="min-width"><a class="header" href="#min-width"><code>min-width</code></a></h3>
+<p>The minimum width of the border</p>
+<h3 id="min-height"><a class="header" href="#min-height"><code>min-height</code></a></h3>
+<p>The minimum height of the border</p>
+<h3 id="sides"><a class="header" href="#sides"><code>sides</code></a></h3>
+<p>Valid values:</p>
+<ul>
+<li><code>&quot;top&quot;</code></li>
+<li><code>&quot;right&quot;</code></li>
+<li><code>&quot;bottom&quot;</code></li>
+<li><code>&quot;left&quot;</code></li>
+</ul>
+<p>Sides specifies which sides of the border should be drawn.</p>
+<p>This can be written as an individual side:</p>
+<pre><code>border [sides: &quot;left&quot;]
+    text &quot;What a border!&quot;
+</code></pre>
+<pre><code>│What a border!
+</code></pre>
+<p>or</p>
+<pre><code>border [sides: &quot;left&quot;]
+    text &quot;What a border!&quot;
+</code></pre>
+<pre><code>──────────────
+What a border!
+</code></pre>
+<p>It can also be written as a list:</p>
+<pre><code>border [sides: [&quot;left&quot;, &quot;top&quot;]]
+    text &quot;What a border!&quot;
+</code></pre>
+<pre><code>┌──────────────
+│What a border!
+</code></pre>
+<h3 id="border-style"><a class="header" href="#border-style"><code>border-style</code></a></h3>
+<p>The default border style is <code>&quot;thin&quot;</code>.</p>
+<p>For a thicker border style the value <code>&quot;tick&quot;</code> can be used:</p>
+<pre><code>border [border-style: &quot;thick&quot;]
+    text  &quot;What a border!&quot;
+</code></pre>
+<pre><code>╔══════════════╗
+║What a border!║
+╚══════════════╝
+</code></pre>
+<p>It's also possible to customise the border style by providing an eight character
+string as input, where each character represents a portion of the corner in the 
+following order:</p>
+<ol>
+<li>top left</li>
+<li>top</li>
+<li>top right</li>
+<li>right</li>
+<li>bottom right</li>
+<li>bottom</li>
+<li>bottom left</li>
+<li>left</li>
+</ol>
+<p>See the following example:</p>
+<pre><code>border [border-style: &quot;12345678&quot;]
+    text  &quot;What a border!&quot;
+</code></pre>
+<pre><code>1222222222222223
+8What a border!4
+7666666666666665
 </code></pre>
 
                     </main>
