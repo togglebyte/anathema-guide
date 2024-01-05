@@ -158,18 +158,18 @@ use anathema::vm::Templates;
 
 fn main() {
     // Step one: Load and compile templates
-    let template = read_to_string(&quot;templates/index.tiny&quot;).unwrap();
+    let template = read_to_string(&quot;templates/index.aml&quot;).unwrap();
     let mut templates = Templates::new(template, ());
-    templates.compile().unwrap();
+    let templates = templates.compile().unwrap();
 
     // Step two: Runtime
-    let runtime = Runtime::new(templates.expressions()).unwrap();
+    let runtime = Runtime::new(&amp;templates).unwrap();
 
     // Step three: start the runtime
     runtime.run().unwrap();
 }
 </code></pre></pre>
-<pre><code>// templates/index.tiny
+<pre><code>// templates/index.aml
 alignment [align : &quot;center&quot;]
     border [foreground: &quot;cyan&quot;]
         text [foreground: #fa0] &quot;Hello world&quot;

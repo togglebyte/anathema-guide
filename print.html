@@ -139,8 +139,8 @@
 <p>Anathema is a library for building text user interfaces.</p>
 <p>This guide is for the current main branch: https://github.com/togglebyte/anathema</p>
 <p>Anathema was created with the intent to give developers a fast and easy way to
-write text user interfaces and ship the template(s) along with the application
-giving the end user the means and freedom to modify the layout.</p>
+write text user interfaces (TUI) and ship the template(s) along with the application
+giving the end user the means and freedom to customise the layout.</p>
 <h2 id="why"><a class="header" href="#why">Why</a></h2>
 <ul>
 <li>Templates can be shipped with the application, giving the end user the ability
@@ -151,7 +151,7 @@ to customise the entire layout of the application.</li>
 <ul>
 <li><a href="https://crates.io/crates/dioxus-tui">dioxus-tui</a></li>
 <li><a href="https://crates.io/crates/tuirealm">tuirealm</a></li>
-<li><a href="https://crates.io/crates/tui">tui-rs</a></li>
+<li><a href="https://crates.io/crates/ratatui">ratatui</a></li>
 <li><a href="https://crates.io/crates/cursive">cursive</a></li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="getting-started"><a class="header" href="#getting-started">Getting started</a></h1>
@@ -178,53 +178,59 @@ use anathema::vm::Templates;
 
 fn main() {
     // Step one: Load and compile templates
-    let template = read_to_string(&quot;templates/index.tiny&quot;).unwrap();
+    let template = read_to_string(&quot;templates/index.aml&quot;).unwrap();
     let mut templates = Templates::new(template, ());
-    templates.compile().unwrap();
+    let templates = templates.compile().unwrap();
 
     // Step two: Runtime
-    let runtime = Runtime::new(templates.expressions()).unwrap();
+    let runtime = Runtime::new(&amp;templates).unwrap();
 
     // Step three: start the runtime
     runtime.run().unwrap();
 }
 </code></pre></pre>
-<pre><code>// templates/index.tiny
+<pre><code>// templates/index.aml
 alignment [align : &quot;center&quot;]
     border [foreground: &quot;cyan&quot;]
         text [foreground: #fa0] &quot;Hello world&quot;
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="runtime"><a class="header" href="#runtime">Runtime</a></h1>
-<h2 id="configuring-the-runtime"><a class="header" href="#configuring-the-runtime">Configuring the runtime</a></h2>
-<p>The following settings are available:</p>
-<ul>
-<li><code>enable_mouse</code>. Default: <code>false</code>. Enable mouse support in the terminal (if
-it's supported).</li>
-<li><code>enable_alt_screen</code>. Default: <code>true</code>. Creates an alternate screen for rendering.
-Restores the previous content of the terminal to the previous state when the
-runtime ends.</li>
-<li><code>enable_ctrlc</code>. Default: <code>true</code>. If this is disabled then pressing control + c
-does nothing.</li>
-<li><code>enable_tabindex</code>. Default: <code>true</code>. Give a view a <code>tabindex</code> value to be able
-to tab to the view. Read more about <code>tabindex</code> under <a href="./views.html">Views</a>.</li>
-<li><code>fps</code>. Default: <code>30</code>. The number of frames to render per second.</li>
-</ul>
 <pre><pre class="playground"><code class="language-rust edition2021"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>use anathema::runtime::Runtime;
 
-let mut runtime = Runtime::new(&amp;expressions).unwrap();
+let mut runtime = Runtime::new(&amp;templates).unwrap();
 runtime.enable_alt_screen = false;
 runtime.fps = 12;
 runtime.enable_tabindex = false;
-runtime.run().unwrap();
 <span class="boring">}
 </span></code></pre></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="views"><a class="header" href="#views">Views</a></h1>
-<p>A view is any type that implements the <code>anathema::core::View</code> trait.</p>
-<p>This trait has no required methods that has to be implemented, however note that
+<h2 id="configuring-the-runtime"><a class="header" href="#configuring-the-runtime">Configuring the runtime</a></h2>
+<p>The following settings are available:</p>
+<h3 id="enable_mouse"><a class="header" href="#enable_mouse"><code>enable_mouse</code></a></h3>
+<p>Default: <code>false</code></p>
+<p>Enable mouse support in the terminal (if it's supported).</p>
+<h3 id="enable_alt_screen"><a class="header" href="#enable_alt_screen"><code>enable_alt_screen</code></a></h3>
+<p>Default: <code>true</code></p>
+<p>Creates an alternate screen for rendering. 
+Restores the previous content of the terminal to the previous state 
+when the runtime ends.</p>
+<h3 id="enable_ctrlc"><a class="header" href="#enable_ctrlc"><code>enable_ctrlc</code></a></h3>
+<p>Default: <code>true</code> </p>
+<p>If this is disabled then pressing control + c does nothing.</p>
+<h3 id="enable_tabindex"><a class="header" href="#enable_tabindex"><code>enable_tabindex</code></a></h3>
+<p>Default: <code>true</code></p>
+<p>Give a view a <code>tabindex</code> value to be able to tab to the view. 
+Read more about <code>tabindices</code> under <a href="./views.html">Views</a>.</p>
+<h3 id="fps"><a class="header" href="#fps"><code>fps</code></a></h3>
+<p>Default: <code>30</code></p>
+<p>The number of frames to render per second.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="view"><a class="header" href="#view">View</a></h1>
+<p>A view exposes event handling and passes any internal state to the runtime.
+Any type that implements the <code>anathema::core::View</code> trait is a view.</p>
+<p>This trait has no required methods, however note that
 without implementing the <code>fn state(&amp;self) -&gt; &amp;dyn State</code> method, no internal
-state will be exposed to the template.</p>
+state will be exposed to the template even if the view has a state.</p>
 <p>See <a href="./templates/state.html">State</a> for more information about state.</p>
 <h2 id="example"><a class="header" href="#example">Example</a></h2>
 <pre><pre class="playground"><code class="language-rust edition2021"><span class="boring">#![allow(unused)]
@@ -261,7 +267,84 @@ impl View for MyView {
 }
 <span class="boring">}
 </span></code></pre></pre>
+<h2 id="root-view"><a class="header" href="#root-view">Root view</a></h2>
+<p>The runtime needs at least one view, however since the <code>View</code> trait is
+implemented for the unit type it is possible to pass <code>()</code> as an argument
+instead of your own defined view:</p>
+<pre><pre class="playground"><code class="language-rust edition2021"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let view = ();
+
+let template = read_to_string(&quot;templates/index.aml&quot;).unwrap();
+
+// Pass associate the template with the root view:
+let mut templates = Templates::new(template, view);
+
+let templates = templates.compile().unwrap();
+let runtime = Runtime::new(&amp;templates).unwrap();
+<span class="boring">}
+</span></code></pre></pre>
+<p>This is suitable if no event handling or no internal state is required.</p>
+<h2 id="one-or-many-views"><a class="header" href="#one-or-many-views">One or many views</a></h2>
+<h3 id="singular-instance-of-a-view"><a class="header" href="#singular-instance-of-a-view">Singular instance of a view</a></h3>
+<p>If the number of instances are known at compile time, for instance the view is not
+created inside a for-loop, then use <code>add_view</code> to register a view with a
+template.</p>
+<pre><pre class="playground"><code class="language-rust edition2021"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let items_view = ItemsView::new();
+
+let items_template = read_to_string(&quot;templates/index.aml&quot;).unwrap();
+templates.add_view(
+    &quot;items&quot;,        // Name of the view in the template
+    items_template,  // Template
+    items_view       // A view instance
+);
+<span class="boring">}
+</span></code></pre></pre>
+<p>This is then accessible in the template with the view syntax:</p>
+<pre><code>@items
+</code></pre>
+<h3 id="multiple--dynamic-instances-of-a-view"><a class="header" href="#multiple--dynamic-instances-of-a-view">Multiple / dynamic instances of a view</a></h3>
+<p>If a view is used inside a for-loop or is otherwise generated as requested by
+the runtime use <code>add_prototype</code>:</p>
+<pre><pre class="playground"><code class="language-rust edition2021"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let item_view = ;
+
+let item_template = read_to_string(&quot;templates/index.aml&quot;).unwrap();
+templates.add_prototype(
+    &quot;item&quot;,             // Name of the view in the template
+    item_template,      // Template
+    || ItemView::new()  // A closure creating a view instance when called
+);
+<span class="boring">}
+</span></code></pre></pre>
+<p>This makes it possible to create views on the fly:</p>
+<pre><code>for item in items
+    @item item
+</code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="state"><a class="header" href="#state">State</a></h1>
+<h2 id="example-1"><a class="header" href="#example-1">Example</a></h2>
+<p>Example of internal state</p>
+<pre><pre class="playground"><code class="language-rust edition2021"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>#[derive(State)]
+struct MyState {
+    name: StateValue&lt;String&gt;,
+    guests: List&lt;String&gt;,
+}
+
+struct MyView(MyState);
+
+impl View for MyView {
+    fn state(&amp;self) -&gt; &amp;dyn State {
+        &amp;self.0
+    }
+}
+
+<span class="boring">}
+</span></code></pre></pre>
 <p>There are two types of state:</p>
 <ul>
 <li>Internal</li>
@@ -270,21 +353,39 @@ impl View for MyView {
 <h2 id="external-state"><a class="header" href="#external-state">External state</a></h2>
 <p>External state is state that is passed to the view from the outside.</p>
 <p>A state can either be a direct state from a parent view:</p>
-<pre><code>@chid parent_state
+<pre><code>// Anathema template
+@chid parent_state
 </code></pre>
 <p>or a custom map declared in the template:</p>
-<pre><code>@myview {&quot;bunnies&quot;: list_of_bunnies}
+<pre><code>// Anathema template
+@myview {&quot;bunnies&quot;: list_of_bunnies}
 </code></pre>
 <h2 id="internal-state"><a class="header" href="#internal-state">Internal state</a></h2>
 <p>Internal state is provided by the <code>View</code>, by implementing the <code>fn state(&amp;self) -&gt; &amp;dyn State</code> method from the <code>View</code> trait.</p>
 <p>The state is owned by the view, and the view has mutable access to the state.</p>
-<h2 id="example-1"><a class="header" href="#example-1">Example</a></h2>
+<p>A state can contain:</p>
+<ul>
+<li>Primitives, wrapped in <code>StateValue&lt;T&gt;</code></li>
+<li>Collections in the form of <code>List&lt;T&gt;</code> (It's redundant to wrap <code>T</code> in a <code>StateValue&lt;T&gt;</code> as this is done by the <code>List&lt;T&gt;</code> itself)</li>
+<li>Maps in the form of <code>Map&lt;T&gt;</code> (the keys are <code>String</code>s)</li>
+<li>Any other type that implements <code>State</code></li>
+</ul>
+<p>A state has to be a struct with named fields.</p>
+<h3 id="example-of-a-nested-internal-state"><a class="header" href="#example-of-a-nested-internal-state">Example of a nested internal state</a></h3>
 <pre><pre class="playground"><code class="language-rust edition2021"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
-</span>#[derive(Debug, State)]
-struct MyState {
+</span>#[derive(State)]
+struct Outer {
     name: StateValue&lt;String&gt;,
-    guests: List&lt;String&gt;,
+    collection: List&lt;String&gt;,
+    dict: Map&lt;usize&gt;,
+    nested_state: Inner
+    many_inners: List&lt;Inner&gt;
+}
+
+#[derive(State)]
+struct Inner {
+    value: StateValue&lt;i32&gt;
 }
 <span class="boring">}
 </span></code></pre></pre>

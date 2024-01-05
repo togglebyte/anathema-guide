@@ -135,6 +135,26 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="state"><a class="header" href="#state">State</a></h1>
+<h2 id="example"><a class="header" href="#example">Example</a></h2>
+<p>Example of internal state</p>
+<pre><pre class="playground"><code class="language-rust edition2021"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>#[derive(State)]
+struct MyState {
+    name: StateValue&lt;String&gt;,
+    guests: List&lt;String&gt;,
+}
+
+struct MyView(MyState);
+
+impl View for MyView {
+    fn state(&amp;self) -&gt; &amp;dyn State {
+        &amp;self.0
+    }
+}
+
+<span class="boring">}
+</span></code></pre></pre>
 <p>There are two types of state:</p>
 <ul>
 <li>Internal</li>
@@ -143,21 +163,39 @@
 <h2 id="external-state"><a class="header" href="#external-state">External state</a></h2>
 <p>External state is state that is passed to the view from the outside.</p>
 <p>A state can either be a direct state from a parent view:</p>
-<pre><code>@chid parent_state
+<pre><code>// Anathema template
+@chid parent_state
 </code></pre>
 <p>or a custom map declared in the template:</p>
-<pre><code>@myview {&quot;bunnies&quot;: list_of_bunnies}
+<pre><code>// Anathema template
+@myview {&quot;bunnies&quot;: list_of_bunnies}
 </code></pre>
 <h2 id="internal-state"><a class="header" href="#internal-state">Internal state</a></h2>
 <p>Internal state is provided by the <code>View</code>, by implementing the <code>fn state(&amp;self) -&gt; &amp;dyn State</code> method from the <code>View</code> trait.</p>
 <p>The state is owned by the view, and the view has mutable access to the state.</p>
-<h2 id="example"><a class="header" href="#example">Example</a></h2>
+<p>A state can contain:</p>
+<ul>
+<li>Primitives, wrapped in <code>StateValue&lt;T&gt;</code></li>
+<li>Collections in the form of <code>List&lt;T&gt;</code> (It's redundant to wrap <code>T</code> in a <code>StateValue&lt;T&gt;</code> as this is done by the <code>List&lt;T&gt;</code> itself)</li>
+<li>Maps in the form of <code>Map&lt;T&gt;</code> (the keys are <code>String</code>s)</li>
+<li>Any other type that implements <code>State</code></li>
+</ul>
+<p>A state has to be a struct with named fields.</p>
+<h3 id="example-of-a-nested-internal-state"><a class="header" href="#example-of-a-nested-internal-state">Example of a nested internal state</a></h3>
 <pre><pre class="playground"><code class="language-rust edition2021"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
-</span>#[derive(Debug, State)]
-struct MyState {
+</span>#[derive(State)]
+struct Outer {
     name: StateValue&lt;String&gt;,
-    guests: List&lt;String&gt;,
+    collection: List&lt;String&gt;,
+    dict: Map&lt;usize&gt;,
+    nested_state: Inner
+    many_inners: List&lt;Inner&gt;
+}
+
+#[derive(State)]
+struct Inner {
+    value: StateValue&lt;i32&gt;
 }
 <span class="boring">}
 </span></code></pre></pre>

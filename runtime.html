@@ -135,31 +135,36 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="runtime"><a class="header" href="#runtime">Runtime</a></h1>
-<h2 id="configuring-the-runtime"><a class="header" href="#configuring-the-runtime">Configuring the runtime</a></h2>
-<p>The following settings are available:</p>
-<ul>
-<li><code>enable_mouse</code>. Default: <code>false</code>. Enable mouse support in the terminal (if
-it's supported).</li>
-<li><code>enable_alt_screen</code>. Default: <code>true</code>. Creates an alternate screen for rendering.
-Restores the previous content of the terminal to the previous state when the
-runtime ends.</li>
-<li><code>enable_ctrlc</code>. Default: <code>true</code>. If this is disabled then pressing control + c
-does nothing.</li>
-<li><code>enable_tabindex</code>. Default: <code>true</code>. Give a view a <code>tabindex</code> value to be able
-to tab to the view. Read more about <code>tabindex</code> under <a href="./views.html">Views</a>.</li>
-<li><code>fps</code>. Default: <code>30</code>. The number of frames to render per second.</li>
-</ul>
 <pre><pre class="playground"><code class="language-rust edition2021"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>use anathema::runtime::Runtime;
 
-let mut runtime = Runtime::new(&amp;expressions).unwrap();
+let mut runtime = Runtime::new(&amp;templates).unwrap();
 runtime.enable_alt_screen = false;
 runtime.fps = 12;
 runtime.enable_tabindex = false;
-runtime.run().unwrap();
 <span class="boring">}
 </span></code></pre></pre>
+<h2 id="configuring-the-runtime"><a class="header" href="#configuring-the-runtime">Configuring the runtime</a></h2>
+<p>The following settings are available:</p>
+<h3 id="enable_mouse"><a class="header" href="#enable_mouse"><code>enable_mouse</code></a></h3>
+<p>Default: <code>false</code></p>
+<p>Enable mouse support in the terminal (if it's supported).</p>
+<h3 id="enable_alt_screen"><a class="header" href="#enable_alt_screen"><code>enable_alt_screen</code></a></h3>
+<p>Default: <code>true</code></p>
+<p>Creates an alternate screen for rendering. 
+Restores the previous content of the terminal to the previous state 
+when the runtime ends.</p>
+<h3 id="enable_ctrlc"><a class="header" href="#enable_ctrlc"><code>enable_ctrlc</code></a></h3>
+<p>Default: <code>true</code> </p>
+<p>If this is disabled then pressing control + c does nothing.</p>
+<h3 id="enable_tabindex"><a class="header" href="#enable_tabindex"><code>enable_tabindex</code></a></h3>
+<p>Default: <code>true</code></p>
+<p>Give a view a <code>tabindex</code> value to be able to tab to the view. 
+Read more about <code>tabindices</code> under <a href="./views.html">Views</a>.</p>
+<h3 id="fps"><a class="header" href="#fps"><code>fps</code></a></h3>
+<p>Default: <code>30</code></p>
+<p>The number of frames to render per second.</p>
 
                     </main>
 

@@ -134,11 +134,12 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="views"><a class="header" href="#views">Views</a></h1>
-<p>A view is any type that implements the <code>anathema::core::View</code> trait.</p>
-<p>This trait has no required methods that has to be implemented, however note that
+                        <h1 id="view"><a class="header" href="#view">View</a></h1>
+<p>A view exposes event handling and passes any internal state to the runtime.
+Any type that implements the <code>anathema::core::View</code> trait is a view.</p>
+<p>This trait has no required methods, however note that
 without implementing the <code>fn state(&amp;self) -&gt; &amp;dyn State</code> method, no internal
-state will be exposed to the template.</p>
+state will be exposed to the template even if the view has a state.</p>
 <p>See <a href="./templates/state.html">State</a> for more information about state.</p>
 <h2 id="example"><a class="header" href="#example">Example</a></h2>
 <pre><pre class="playground"><code class="language-rust edition2021"><span class="boring">#![allow(unused)]
@@ -175,6 +176,63 @@ impl View for MyView {
 }
 <span class="boring">}
 </span></code></pre></pre>
+<h2 id="root-view"><a class="header" href="#root-view">Root view</a></h2>
+<p>The runtime needs at least one view, however since the <code>View</code> trait is
+implemented for the unit type it is possible to pass <code>()</code> as an argument
+instead of your own defined view:</p>
+<pre><pre class="playground"><code class="language-rust edition2021"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let view = ();
+
+let template = read_to_string(&quot;templates/index.aml&quot;).unwrap();
+
+// Pass associate the template with the root view:
+let mut templates = Templates::new(template, view);
+
+let templates = templates.compile().unwrap();
+let runtime = Runtime::new(&amp;templates).unwrap();
+<span class="boring">}
+</span></code></pre></pre>
+<p>This is suitable if no event handling or no internal state is required.</p>
+<h2 id="one-or-many-views"><a class="header" href="#one-or-many-views">One or many views</a></h2>
+<h3 id="singular-instance-of-a-view"><a class="header" href="#singular-instance-of-a-view">Singular instance of a view</a></h3>
+<p>If the number of instances are known at compile time, for instance the view is not
+created inside a for-loop, then use <code>add_view</code> to register a view with a
+template.</p>
+<pre><pre class="playground"><code class="language-rust edition2021"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let items_view = ItemsView::new();
+
+let items_template = read_to_string(&quot;templates/index.aml&quot;).unwrap();
+templates.add_view(
+    &quot;items&quot;,        // Name of the view in the template
+    items_template,  // Template
+    items_view       // A view instance
+);
+<span class="boring">}
+</span></code></pre></pre>
+<p>This is then accessible in the template with the view syntax:</p>
+<pre><code>@items
+</code></pre>
+<h3 id="multiple--dynamic-instances-of-a-view"><a class="header" href="#multiple--dynamic-instances-of-a-view">Multiple / dynamic instances of a view</a></h3>
+<p>If a view is used inside a for-loop or is otherwise generated as requested by
+the runtime use <code>add_prototype</code>:</p>
+<pre><pre class="playground"><code class="language-rust edition2021"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let item_view = ;
+
+let item_template = read_to_string(&quot;templates/index.aml&quot;).unwrap();
+templates.add_prototype(
+    &quot;item&quot;,             // Name of the view in the template
+    item_template,      // Template
+    || ItemView::new()  // A closure creating a view instance when called
+);
+<span class="boring">}
+</span></code></pre></pre>
+<p>This makes it possible to create views on the fly:</p>
+<pre><code>for item in items
+    @item item
+</code></pre>
 
                     </main>
 
