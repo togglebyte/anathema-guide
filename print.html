@@ -76,7 +76,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="getting-started.html"><strong aria-hidden="true">2.</strong> Getting started</a></li><li class="chapter-item expanded "><a href="runtime.html"><strong aria-hidden="true">3.</strong> Runtime</a></li><li class="chapter-item expanded "><a href="views.html"><strong aria-hidden="true">4.</strong> Views</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="templates/state.html"><strong aria-hidden="true">4.1.</strong> State</a></li></ol></li><li class="chapter-item expanded "><a href="templates.html"><strong aria-hidden="true">5.</strong> Templates</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="templates/widgets.html"><strong aria-hidden="true">5.1.</strong> Widgets</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="templates/widgets/text.html"><strong aria-hidden="true">5.1.1.</strong> text</a></li><li class="chapter-item expanded "><a href="templates/widgets/span.html"><strong aria-hidden="true">5.1.2.</strong> span</a></li><li class="chapter-item expanded "><a href="templates/widgets/border.html"><strong aria-hidden="true">5.1.3.</strong> border</a></li><li class="chapter-item expanded "><a href="templates/widgets/alignment.html"><strong aria-hidden="true">5.1.4.</strong> alignment</a></li><li class="chapter-item expanded "><a href="templates/widgets/vstack.html"><strong aria-hidden="true">5.1.5.</strong> vstack</a></li><li class="chapter-item expanded "><a href="templates/widgets/hstack.html"><strong aria-hidden="true">5.1.6.</strong> hstack</a></li><li class="chapter-item expanded "><a href="templates/widgets/zstack.html"><strong aria-hidden="true">5.1.7.</strong> zstack</a></li><li class="chapter-item expanded "><a href="templates/widgets/expand.html"><strong aria-hidden="true">5.1.8.</strong> expand</a></li></ol></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="getting-started.html"><strong aria-hidden="true">2.</strong> Getting started</a></li><li class="chapter-item expanded "><a href="runtime.html"><strong aria-hidden="true">3.</strong> Runtime</a></li><li class="chapter-item expanded "><a href="views.html"><strong aria-hidden="true">4.</strong> Views</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="templates/state.html"><strong aria-hidden="true">4.1.</strong> State</a></li></ol></li><li class="chapter-item expanded "><a href="templates.html"><strong aria-hidden="true">5.</strong> Templates</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="templates/widgets.html"><strong aria-hidden="true">5.1.</strong> Widgets</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="templates/widgets/text.html"><strong aria-hidden="true">5.1.1.</strong> text</a></li><li class="chapter-item expanded "><a href="templates/widgets/span.html"><strong aria-hidden="true">5.1.2.</strong> span</a></li><li class="chapter-item expanded "><a href="templates/widgets/border.html"><strong aria-hidden="true">5.1.3.</strong> border</a></li><li class="chapter-item expanded "><a href="templates/widgets/alignment.html"><strong aria-hidden="true">5.1.4.</strong> alignment</a></li><li class="chapter-item expanded "><a href="templates/widgets/vstack.html"><strong aria-hidden="true">5.1.5.</strong> vstack</a></li><li class="chapter-item expanded "><a href="templates/widgets/hstack.html"><strong aria-hidden="true">5.1.6.</strong> hstack</a></li><li class="chapter-item expanded "><a href="templates/widgets/zstack.html"><strong aria-hidden="true">5.1.7.</strong> zstack</a></li><li class="chapter-item expanded "><a href="templates/widgets/expand.html"><strong aria-hidden="true">5.1.8.</strong> expand</a></li><li class="chapter-item expanded "><a href="templates/widgets/position.html"><strong aria-hidden="true">5.1.9.</strong> position</a></li><li class="chapter-item expanded "><a href="templates/widgets/spacer.html"><strong aria-hidden="true">5.1.10.</strong> spacer</a></li><li class="chapter-item expanded "><a href="templates/widgets/viewport.html"><strong aria-hidden="true">5.1.11.</strong> viewport</a></li></ol></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -527,6 +527,9 @@ attributes:</p>
 <li><a href="templates/./widgets/hstack.html">HStack</a> (template name: <code>hstack</code>)</li>
 <li><a href="templates/./widgets/zstack.html">ZStack</a> (template name: <code>zstack</code>)</li>
 <li><a href="templates/./widgets/expand.html">Expand</a> (template name: <code>expand</code>)</li>
+<li><a href="templates/./widgets/spacer.html">Spacer</a> (template name: <code>spacer</code>)</li>
+<li><a href="templates/./widgets/position.html">Position</a> (template name: <code>position</code>)</li>
+<li><a href="templates/./widgets/viewport.html">Viewport</a> (template name: <code>viewport</code>)</li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="text-text"><a class="header" href="#text-text">Text (<code>text</code>)</a></h1>
 <p>Print text.</p>
@@ -834,6 +837,122 @@ of the total 33 height, and the remaining widget would receive 11.</p>
 │+-+-+-+-│
 └────────┘
 </code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="position-position"><a class="header" href="#position-position">Position (<code>position</code>)</a></h1>
+<p>Position the widget relative to its parent.</p>
+<h2 id="example-9"><a class="header" href="#example-9">Example</a></h2>
+<pre><code>border [width: 10, height: 5]
+    position [top: 1, left: 1]
+        text &quot;Hi&quot;
+</code></pre>
+<pre><code>┌────────┐
+│        │
+│ Hi     │
+│        │
+└────────┘
+</code></pre>
+<p>To position a widget on top of another widget combine the <code>position</code> widget with
+a <code>zstack</code>:</p>
+<pre><code>zstack
+    border [width: 10, height: 5]
+    position [top: 0, left: 2]
+        text &quot;] Hi [&quot;
+</code></pre>
+<pre><code>┌─] Hi [─┐
+│        │
+│        │
+│        │
+└────────┘
+</code></pre>
+<h2 id="attributes-8"><a class="header" href="#attributes-8">Attributes</a></h2>
+<h3 id="left"><a class="header" href="#left"><code>left</code></a></h3>
+<p>Position the <strong>left</strong> side of the widget with an offset of the given value.</p>
+<h3 id="right"><a class="header" href="#right"><code>right</code></a></h3>
+<p>Position the <strong>right</strong> side of the widget with an offset of the given value.</p>
+<pre><code>border [width: 10, height: 5]
+    position [top: 0, right: 0]
+        text &quot;Hi&quot;
+</code></pre>
+<pre><code>┌────────┐
+│      Hi│
+│        │
+│        │
+└────────┘
+</code></pre>
+<h3 id="top"><a class="header" href="#top"><code>top</code></a></h3>
+<p>Position the <strong>top</strong> side of the widget with an offset of the given value.</p>
+<h3 id="bottom"><a class="header" href="#bottom"><code>bottom</code></a></h3>
+<p>Position the <strong>bottom</strong> side of the widget with an offset of the given value.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="spacer-spacer"><a class="header" href="#spacer-spacer">Spacer (<code>spacer</code>)</a></h1>
+<p>The <code>spacer</code> widget will fill out any remaining space within a widget.</p>
+<h2 id="example-10"><a class="header" href="#example-10">Example</a></h2>
+<pre><code>border
+    hstack
+        text &quot;Hi&quot;
+        spacer
+</code></pre>
+<pre><code>┌─────────────────────────┐
+│Hi                       │
+└─────────────────────────┘
+</code></pre>
+<p>without the spacer:</p>
+<pre><code>border
+    hstack
+        text &quot;Hi&quot;
+</code></pre>
+<pre><code>┌──┐
+│Hi│
+└──┘
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="viewport-viewport"><a class="header" href="#viewport-viewport">Viewport (<code>viewport</code>)</a></h1>
+<p>The viewport allows the widgets to overflow in a given direction.</p>
+<p>It's important to note that the <code>viewport</code> is an unbounded widget.
+This means that widgets can be laid out indefinitely along a given axis.</p>
+<h2 id="example-11"><a class="header" href="#example-11">Example</a></h2>
+<pre><code>border [height: 4, width: 10]
+    viewport [offset: 2]
+        text &quot;1&quot;
+        text &quot;2&quot;
+        text &quot;3&quot;
+        text &quot;4&quot;
+</code></pre>
+<pre><code>┌────────┐
+│3       │
+│4       │
+└────────┘
+</code></pre>
+<h2 id="attributes-9"><a class="header" href="#attributes-9">Attributes</a></h2>
+<h3 id="direction"><a class="header" href="#direction"><code>direction</code></a></h3>
+<p>Specifies the direction to lay out the widgets.</p>
+<p>Default value: <code>&quot;forwards&quot;</code></p>
+<p>Valid values:</p>
+<ul>
+<li><code>&quot;backwards&quot;</code> or <code>&quot;backward&quot;</code></li>
+<li><code>&quot;forwards&quot;</code> or <code>&quot;forward&quot;</code></li>
+</ul>
+<pre><code>border [height: 5, width: 10]
+    viewport [direction: &quot;backward&quot;]
+        text &quot;1&quot;
+</code></pre>
+<pre><code>┌────────┐
+│        │
+│        │
+│1       │
+└────────┘
+</code></pre>
+<h3 id="axis-1"><a class="header" href="#axis-1"><code>axis</code></a></h3>
+<p>Specify along which axis to layout the widgets.</p>
+<p>Valid values:</p>
+<ul>
+<li><code>&quot;horz&quot;</code> | <code>&quot;horizontal&quot;</code></li>
+<li><code>&quot;vert&quot;</code> | <code>&quot;vertical&quot;</code></li>
+</ul>
+<h3 id="offset"><a class="header" href="#offset"><code>offset</code></a></h3>
+<p>Offset the widgets.
+See the example at the top.</p>
+<h3 id="clamp"><a class="header" href="#clamp"><code>clamp</code></a></h3>
+<p>Clamp the offset preventing the last widget from being drawn outside of the
+viewport.</p>
+<p><strong>Note</strong>: this feature is currently broken</p>
 
                     </main>
 
