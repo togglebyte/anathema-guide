@@ -56,6 +56,7 @@ of the total 33 height, and the remaining widget would receive 11.
 Expand along an axis.
 
 Valid values:
+
 * `"horz"` | `"horizontal"`
 * `"vert"` | `"vertical"`
 

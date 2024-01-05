@@ -40,3 +40,6 @@ The following is a list of available widgets and their template names:
 - [HStack](./widgets/hstack.md) (template name: `hstack`)
 - [ZStack](./widgets/zstack.md) (template name: `zstack`)
 - [Expand](./widgets/expand.md) (template name: `expand`)
+- [Spacer](./widgets/spacer.md) (template name: `spacer`)
+- [Position](./widgets/position.md) (template name: `position`)
+- [Viewport](./widgets/viewport.md) (template name: `viewport`)
