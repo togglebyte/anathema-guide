@@ -1,14 +1,14 @@
 # Templates
 
 Anathema has a template language to describe user interfaces.
-This makes it possible to ship the template(s) together with the binary so the
-application can be customised even after it's compiled.
+This makes it possible to ship the template(s) together with the compiled binary so the
+application can be customised without having to be recompiled.
 
-The widget syntax looks as follows:
+The widget syntax looks as follows: `<widget> <attributes> <value>`
 
 ```
   Widget name                                         
-  |    Start of attributes
+  |    Start of (optional) attributes
   |    |    Attribute name                            
   |    |    |          Attribute value
   |    |    |          |     Attribute separator      End of attributes
@@ -18,6 +18,15 @@ The widget syntax looks as follows:
   |    |    |          |     |                        | |      | | |
 widget [optional: "attribute", separated: "by a comma"] "text" 1 2 ident
 ```
+
+Widgets don't receive events (only `view`s does) and should be thought of as
+something that is drawn to the screen.
+
+There is for instance no "input" widget.
+To represent an input widget the view would handle the key press, capture the
+`char` and write it to a state value, and in the template an input field
+could be written as `text input_value`.
+
 ## Attributes
 
 Widget attributes are optional.
@@ -41,6 +50,7 @@ A value can be one of the following:
 * string:   `"Empty vessel, under the sun"`
 * integer:  `123`
 * float:    `1.23`
+* colour:    `#fab` or `#ffaabb`
 * boolean:  `true` or `false`
 * list:     `[1, 2, 3]`
 * map:      `{"key": "value"}`
@@ -76,8 +86,17 @@ Example: mixing loops and widgets
 ```
 vstack
     text "start"
-    for val in list
+    for val in [1, 2, 3]
         text "some value: " val "."
+    text "end"
+```
+The above example would render widgets as:
+```
+vstack
+    text "start"
+    text "some value: " 1 "."
+    text "some value: " 2 "."
+    text "some value: " 3 "."
     text "end"
 ```
 
