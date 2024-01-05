@@ -1,5 +1,9 @@
 # Text (`text`)
 
+Print text.
+
+To add styles to text in the middle of a string use a `span` widget.
+
 ## Example
 
 ```
