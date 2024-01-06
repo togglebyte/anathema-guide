@@ -79,3 +79,11 @@ impl View for Index {
 
 }
 ```
+
+Making a change to the wrapped value of `StateValue<T>` is what causes
+the update of the widgets, therefore the `StateValue<T>` should not be replaced, 
+but rather changes should be made to the inner value via deref mut:
+
+```rust
+*self.state += 1;
+```
