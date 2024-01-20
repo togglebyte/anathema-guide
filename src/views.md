@@ -15,7 +15,7 @@ See [State](./templates/state.md) for more information about state.
 use anathema::core::{Event, KeyCode, Nodes, View};
 
 impl View for MyView {
-    fn on_event(&mut self, event: Event, _: &mut Nodes<'_>) {
+    fn on_event(&mut self, event: Event, _: &mut Nodes<'_>) -> Event {
         match event {
             Event::KeyPress(KeyCode::Char(c), ..) => {
             }
@@ -23,6 +23,8 @@ impl View for MyView {
             }
             _ => {}
         }
+        
+        event
     }
 
     fn state(&self) -> &dyn State {
