@@ -5,11 +5,16 @@ The viewport allows the widgets to overflow in a given direction.
 It's important to note that the `viewport` is an unbounded widget.
 This means that widgets can be laid out indefinitely along a given axis.
 
+A `Viewport` offset has to be changed via events rather than template values (if
+the offset came from a `State` it wouldn't be possible to know when the offset
+was exceeded should it change as a result of a key press. Even though the
+viewport could clamp the offset, the offset it self would not be clamped).
+
 ## Example
 
 ```
 border [height: 4, width: 10]
-    viewport [offset: 2]
+    viewport
         text "1"
         text "2"
         text "3"
@@ -17,8 +22,8 @@ border [height: 4, width: 10]
 ```
 ```
 ┌────────┐
-│3       │
-│4       │
+│1       │
+│2       │
 └────────┘
 ```
 
@@ -38,11 +43,12 @@ Valid values:
 border [height: 5, width: 10]
     viewport [direction: "backward"]
         text "1"
+        text "2"
 ```
 ```
 ┌────────┐
 │        │
-│        │
+│2       │
 │1       │
 └────────┘
 ```
@@ -56,15 +62,4 @@ Valid values:
 * `"horz"` | `"horizontal"`
 * `"vert"` | `"vertical"`
 
-
-### `offset`
-
-Offset the widgets.
-See the example at the top.
-
-### `clamp`
-
-Clamp the offset preventing the last widget from being drawn outside of the
-viewport.
-
-**Note**: this feature is currently broken
+## Example

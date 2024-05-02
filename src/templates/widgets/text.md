@@ -21,38 +21,6 @@ Valid values:
 * `"overflow"`: the text is truncated when it can no longer fit
 * `"break"`: the text will wrap once it can no longer fit
 
-### Squash
-
-Squash will ignore any white-space that would be written on a singular line.
-Default is `true`
-
-Example with squash set to `true`:
-
-```
-border [width: 5 + 2]
-    text "hello world"
-```
-
-```
-┌─────┐
-│hello│
-│world│
-└─────┘
-```
-
-Example with squash set to `false`:
-```
-border [width: 5 + 2]
-    text [squash: false] "hello world"
-```
-```
-┌─────┐
-│hello│
-│     │
-│world│
-└─────┘
-```
-
 ### `text-align`
 
 Note that text align will align the text within the text widget.

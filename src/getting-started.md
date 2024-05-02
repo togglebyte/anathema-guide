@@ -6,12 +6,11 @@ Add `anathema` to your Cargo.toml file.
 ```toml
 ...
 [dependencies]
-anathema = { git = "https://github.com/togglebyte/anathema" }
+anathema = { git = "https://github.com/togglebyte/anathema/", branch = "dev" }
 ```
 
 ### Note
 
-This guide is written against the current version on [Github](https://github.com/togglebyte/anathema). 
 Even though efforts are made to keep this guide up to date there are
 possibilities of changes being made and published before they reach
 this guide.
@@ -20,7 +19,7 @@ At the time of writing, Anathema should be considered alpha.
 
 ## A basic example
 
-Render a border around the text, placing the text in the middle of the
+Render a border around three lines of text, placing the text in the middle of the
 terminal.
 
 ```rust
@@ -28,25 +27,31 @@ terminal.
 use std::fs::read_to_string;
 
 use anathema::runtime::Runtime;
-use anathema::vm::Templates;
+use anathema::templates::Document;
+use anathema::backend::tui::TuiBackend;
 
 fn main() {
-    // Step one: Load and compile templates
-    let template = read_to_string("templates/index.aml").unwrap();
-    let mut templates = Templates::new(template, ());
-    let templates = templates.compile().unwrap();
+    let template = read_to_string("template.aml").unwrap();
 
-    // Step two: Runtime
-    let runtime = Runtime::new(&templates).unwrap();
+    let mut doc = Document::new(template);
 
-    // Step three: start the runtime
-    runtime.run().unwrap();
+    let mut backend = TuiBackend::builder()
+        .enable_alt_screen()
+        .finish()
+        .unwrap();
+
+    let mut runtime = Runtime::new(doc, backend).unwrap();
+
+    runtime.run();
 }
 ```
 
 ```
-// templates/index.aml
-alignment [align : "center"]
-    border [foreground: "cyan"]
-        text [foreground: #fa0] "Hello world"
+// template.aml
+align [alignment: "center"]
+    border
+        vstack
+            text [foreground: "yellow"] "You"
+            text [foreground: "red"] "are"
+            text [foreground: "blue"] "great!"
 ```
