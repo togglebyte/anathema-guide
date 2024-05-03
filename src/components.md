@@ -35,15 +35,15 @@ This is done in two steps:
 let mut document = Document::new(template);
 let component = MyComponent;
 
-//                                         template
-//                                tag         |
-//                                 |          |
-let comp = document.add_component("my-comp", "text 'I be a component'");
+//                                                 template
+//                                        tag         |
+//                                         |          |
+let component_id = document.add_component("my-comp", "text 'I be a component'");
 
-//                                              component instance
-//                                       component id   |      state
-//                                            |         |        |
-let component_id = runtime.register_component(comp, MyComponent, ());
+//                                  component instance
+//                    component id        |         state
+//                         |              |           |
+runtime.register_component(component_id, MyComponent, ());
 ```
 
 Use a component in a template by prefixing the tag with the `@` sign:
@@ -267,11 +267,10 @@ fn send_messages(emitter: Emitter, recipient: usize) {
     }
 }
 
-// my_comp is the recipient
-let my_comp = runtime.register_component(my_comp, MyComp, my_state);
+let recipient = doc.add_component("my_comp", component_template);
 
 let emitter = runtime.emitter();
 std::thread::spawn(move || {
-    send_messages(emitter, my_comp);
+    send_messages(emitter, recipient);
 });
 ```
