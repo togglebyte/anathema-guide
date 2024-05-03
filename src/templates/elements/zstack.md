@@ -1,6 +1,8 @@
 # ZStack (`zstack`)
 
-Stack widgets on top of each other
+Stack elements on top of each other.
+
+Accepts many children.
 
 ## Example
 ```

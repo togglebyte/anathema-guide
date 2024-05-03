@@ -1,7 +1,8 @@
 # Alignment (`alignment`)
 
-Alignment will inflate the wrapping widget if any `align` value is given other
-than `"top-left"`.
+Alignment will inflate the wrapping element to use all the constraints.
+
+The alignment accepts at most one child.
 
 ## Example
 

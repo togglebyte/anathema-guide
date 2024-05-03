@@ -1,5 +1,7 @@
 # Border (`border`)
 
+The border accepts only a single child.
+
 ## Example
 
 ```
@@ -51,7 +53,7 @@ border [sides: "left"]
 ```
 or
 ```
-border [sides: "left"]
+border [sides: "top"]
     text "What a border!"
 ```
 ```
@@ -86,7 +88,7 @@ border [border-style: "thick"]
 ```
 
 It's also possible to customise the border style by providing an eight character
-string as input, where each character represents a portion of the corner in the 
+string as input, where each character represents a section of the border in the 
 following order:
 
 1. top left

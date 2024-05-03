@@ -1,15 +1,18 @@
-# HStack (`hstack`)
+# VStack (`vstack`)
 
-Horizontally stack widgets
+Vertically stack elements.
+
+Accepts many children.
 
 ## Example
 ```
-hstack
+vstack
     text "one"
     text "two"
 ```
 ```
-onetwo
+one
+two
 ```
 
 ## Attributes

@@ -1,10 +1,15 @@
 # Expand (`expand`)
 
-Expand the widget to fill the remaining space.
+Expand the element to fill the remaining space.
+
+Accepts one child.
 
 The layout process works as follows:
-First all widgets that are not `expand` or `spacer` will be laid out.
-The remaining space will be distributed between `expand` then `spacer`.
+
+First all elements that are not `expand` or `spacer` will be laid out.
+The remaining space will be distributed between `expand` then `spacer` in that
+order, meaning if one `expand` exists followed by a `spacer` the `expand` will
+consume all remaining space, leaving the `spacer` zero sized.
 
 The size is distributed evenly between all `expand`s.
 
@@ -45,11 +50,11 @@ border [width: 10, height: 11]
 
 The factor decides the amount of space to distribute between the `expand`s.
 
-Given a height of 33 and two `expand` widgets, the height would be divided by
+Given a height of `3` and two `expand` widgets, the height would be divided by
 two.
 
-If one of the `expand` widgets had a `factor` of two, then it would receive 22
-of the total 33 height, and the remaining widget would receive 11.
+If one of the `expand` widgets had a `factor` of two, then it would receive `2`
+of the total height, and the remaining widget would receive `1`.
 
 ### `axis`
 

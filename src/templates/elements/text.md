@@ -1,10 +1,12 @@
 # Text (`text`)
 
-Print text.
+Displays text.
 
 String literals can be wrapped in either `"` or `'`.
 
-To add styles to text in the middle of a string use a `span` widget.
+To add styles to text in the middle of a string use a `span` element as the 
+`text` element only accepts `span`s as children. Any other element will be
+ignored. 
 
 ## Example
 
@@ -25,10 +27,10 @@ Valid values:
 
 ### `text-align`
 
-Note that text align will align the text within the text widget.
-The text widget will size it self according to its constraint.
+Note that text align will align the text within the element.
+The text element will size it self according to its constraint.
 
-To right align a text to the right side of the screen therefore requires the use
+To right align text to the right side of the screen therefore requires the use
 of the alignment widget in combination with the text align attribute.
 
 Default: `left`
@@ -62,13 +64,4 @@ border [width: 5 + 2]
 │hello│
 │ you │
 └─────┘
-```
-
-### Additional styles
-
-* `bold`
-* `italic`
-
-```
-text [bold: true, italic: true] "bold AND italic?!"
 ```
