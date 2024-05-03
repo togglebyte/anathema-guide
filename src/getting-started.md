@@ -22,7 +22,7 @@ At the time of writing, Anathema should be considered alpha.
 Render a border around three lines of text, placing the text in the middle of the
 terminal.
 
-```rust
+```rust,ignore
 // src/main.rs
 use std::fs::read_to_string;
 

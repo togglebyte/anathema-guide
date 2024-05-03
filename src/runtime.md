@@ -1,6 +1,6 @@
 # Runtime and backend
 
-```rust
+```rust,ignore
 use anathema::runtime::Runtime;
 use anathema::backend::tui::TuiBackend;
 

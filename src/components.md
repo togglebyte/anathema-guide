@@ -12,15 +12,15 @@ there are two required associated types:
 If the component does not need to handle state or receive messages
 these can be set to the unit type.
 
-```rust
+```rust,ignore
 use anathema::widgets::components::Component;
 
 struct MyComp;
 
 impl Component for MyComp {
-    type State = ();
-
-    type Message = ();
+    type State = ();    // <-\ 
+                        //    -- Set to () to ignore
+    type Message = ();  // <-/
 }
 ```
 
@@ -31,19 +31,19 @@ This is done in two steps:
 1. Add the component template and associate a tag with the template
 2. Register the component with the runtime
 
-```rust
+```rust,ignore
 let mut document = Document::new(template);
 let component = MyComponent;
 
-//                                        template
-//                                tag        |
-//                                 |         |
+//                                         template
+//                                tag         |
+//                                 |          |
 let comp = document.add_component("my-comp", "text: 'I be a component'");
 
-//                           component instance
-//                    component id   |      state
-//                         |         |        |
-runtime.register_component(comp, MyComponent, ());
+//                                              component instance
+//                                       component id   |      state
+//                                            |         |        |
+let component_id = runtime.register_component(comp, MyComponent, ());
 ```
 
 Use a component in a template by prefixing the tag with the `@` sign:
@@ -82,16 +82,17 @@ A component can have internal state (mutable access) and external state
 (read-only).
 
 To pass external state to a component provide a map in the template
-with a key, value pair:
+with a key-value pair:
 
 ```
 @my-comp { key: "this is a value" }
 ```
 
-To use the external state in the component refer to the map passed into the
+To use the external state in the component refer to the keys in map passed into the
 component:
 
 ```
+// component template
 text "the value is " key
 ```
 
@@ -103,7 +104,7 @@ See [State](./templates/state.md) for more information about state.
 
 #### Example 
 
-```rust
+```rust,ignore
 use anathema::state::{State, Value, List};
 
 #[derive(State)]
@@ -135,26 +136,24 @@ implementing one or more of the following methods:
 
 ### `on_key`
 
-Accept a key event alongside a mutable reference to the state (if one is
+Accept a key event and a mutable reference to the state (if one is
 associated with the component).
 
-```rust
+```rust,ignore
 fn on_key(
     &mut self,
     key: KeyEvent,
     state: Option<&mut Self::State>,
     elements: Elements<'_, '_>,
-) { 
-
-}
+) { }
 ```
 
 ### on_mouse
 
-Accept a mouse event alongside a mutable reference to the state (if one is
+Accept a mouse event and a mutable reference to the state (if one is
 associated with the component).
 
-```rust
+```rust,ignore
 fn on_mouse(
     &mut self,
     mouse: MouseEvent,
@@ -167,21 +166,21 @@ fn on_mouse(
 
 The component gained focus.
 
-```rust
-fn on_focus(&mut self, _state: Option<&mut Self::State>) {}
+```rust,ignore
+fn on_focus(&mut self, state: Option<&mut Self::State>) {}
 ```
 
 ### on_blur
 
 The component lost focus.
 
-```rust
-fn on_blur(&mut self, _state: Option<&mut Self::State>) {}
+```rust,ignore
+fn on_blur(&mut self, state: Option<&mut Self::State>) {}
 ```
 
 ### Example
 
-```rust
+```rust,ignore
 use anathema::widgets::components::events::{KeyCode, KeyEvent, MouseEvent};
 use anathema::widgets::Elements;
 
@@ -189,9 +188,9 @@ impl Component for MyComp {
     type Message = ();
     type State = MyState;
 
-    fn on_blur(&mut self, _state: Option<&mut Self::State>) {}
+    fn on_blur(&mut self, state: Option<&mut Self::State>) {}
 
-    fn on_focus(&mut self, _state: Option<&mut Self::State>) {}
+    fn on_focus(&mut self, state: Option<&mut Self::State>) {}
 
     fn on_key(
         &mut self,
@@ -234,6 +233,9 @@ The recipient id is the id generated when calling `register_component`.
 If the recipient does not exist or if the message type is incorrect the message
 will be lost.
 
+**Note**: This means that when sending a `u32` to a component that expects `i32` the
+message will be lost.
+
 Implement the `message` method of the `Component` trait for a component to be
 able to receive messages.
 
@@ -242,7 +244,9 @@ that sends a `String` to the component every second.
 
 ### Example
 
-```rust
+```rust,ignore
+use anathema::runtime::{Emitter, Runtime};
+
 impl Component for MyComp {
     type Message = String; // <- accept strings
     type State = MyState;
