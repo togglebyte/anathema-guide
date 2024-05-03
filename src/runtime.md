@@ -4,6 +4,8 @@
 use anathema::runtime::Runtime;
 use anathema::backend::tui::TuiBackend;
 
+let doc = Document::new("text 'hello world'");
+
 let backend = TuiBackend::builder()
     .enable_alt_screen()
     .enable_raw_mode()
@@ -12,7 +14,7 @@ let backend = TuiBackend::builder()
     .finish()
     .unwrap();
     
-let mut runtime = Runtime::new("border").unwrap();
+let mut runtime = Runtime::new(doc, backend).unwrap();
 runtime.fps = 30; // default
 ```
 
