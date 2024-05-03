@@ -1,4 +1,4 @@
-# Alignment (`alignment`)
+# Alignment (`align`)
 
 Alignment will inflate the wrapping element to use all the constraints.
 
@@ -8,7 +8,7 @@ The alignment accepts at most one child.
 
 ```
 border [width: 16, height: 5]
-    alignment [align: "centre"]
+    align [alignment: "centre"]
         text "centre"
 ```
 ```
@@ -21,7 +21,7 @@ border [width: 16, height: 5]
 
 ## Attributes
 
-### `align`
+### `alignment`
 
 Valid values:
 * `"top-left"`
