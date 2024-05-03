@@ -15,9 +15,9 @@ these can be set to the unit type.
 ```rust,ignore
 use anathema::widgets::components::Component;
 
-struct MyComp;
+struct MyComponent;
 
-impl Component for MyComp {
+impl Component for MyComponent {
     type State = ();    // <-\ 
                         //    -- Set to () to ignore
     type Message = ();  // <-/
@@ -125,7 +125,7 @@ let mut my_state = MyState::new();
 my_state.numbers.push_back(1);
 my_state.numbers.push_back(2);
 
-runtime.register_component(my_comp, MyComp, my_state);
+runtime.register_component(my_comp, MyComponent, my_state);
 ```
 
 ## Event handling
@@ -183,7 +183,7 @@ fn on_blur(&mut self, state: Option<&mut Self::State>) {}
 use anathema::widgets::components::events::{KeyCode, KeyEvent, MouseEvent};
 use anathema::widgets::Elements;
 
-impl Component for MyComp {
+impl Component for MyComponent {
     type Message = ();
     type State = MyState;
 
@@ -246,7 +246,7 @@ that sends a `String` to the component every second.
 ```rust,ignore
 use anathema::runtime::{Emitter, Runtime};
 
-impl Component for MyComp {
+impl Component for MyComponent {
     type Message = String; // <- accept strings
     type State = MyState;
 
