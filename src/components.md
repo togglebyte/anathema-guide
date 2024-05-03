@@ -38,7 +38,7 @@ let component = MyComponent;
 //                                         template
 //                                tag         |
 //                                 |          |
-let comp = document.add_component("my-comp", "text: 'I be a component'");
+let comp = document.add_component("my-comp", "text 'I be a component'");
 
 //                                              component instance
 //                                       component id   |      state
