@@ -33,7 +33,6 @@ This is done in two steps:
 
 ```rust,ignore
 let mut document = Document::new(template);
-let component = MyComponent;
 
 //                                                 template
 //                                        tag         |
