@@ -37,6 +37,8 @@ fn main() {
 
     let mut backend = TuiBackend::builder()
         .enable_alt_screen()
+        .enable_raw_mode()
+        .hide_cursor()
         .finish()
         .unwrap();
 
