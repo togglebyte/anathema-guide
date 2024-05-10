@@ -166,7 +166,7 @@ fn on_mouse(
 The component gained focus.
 
 ```rust,ignore
-fn on_focus(&mut self, state: Option<&mut Self::State>) {}
+fn on_focus(&mut self, state: Option<&mut Self::State>, elements: Elements<'_, '_>) {}
 ```
 
 ### on_blur
@@ -174,7 +174,7 @@ fn on_focus(&mut self, state: Option<&mut Self::State>) {}
 The component lost focus.
 
 ```rust,ignore
-fn on_blur(&mut self, state: Option<&mut Self::State>) {}
+fn on_blur(&mut self, state: Option<&mut Self::State>, elements: Elements<'_, '_>) {}
 ```
 
 ### Example
@@ -187,9 +187,9 @@ impl Component for MyComponent {
     type Message = ();
     type State = MyState;
 
-    fn on_blur(&mut self, state: Option<&mut Self::State>) {}
+    fn on_blur(&mut self, state: Option<&mut Self::State>, elements: Elements<'_, '_>) {}
 
-    fn on_focus(&mut self, state: Option<&mut Self::State>) {}
+    fn on_focus(&mut self, state: Option<&mut Self::State>, elements: Elements<'_, '_>) {}
 
     fn on_key(
         &mut self,
@@ -250,7 +250,7 @@ impl Component for MyComponent {
     type Message = String; // <- accept strings
     type State = MyState;
 
-    fn message(&mut self, message: Self::Message, state: Option<&mut Self::State>) {
+    fn message(&mut self, message: Self::Message, state: Option<&mut Self::State>, elements: Elements<'_, '_>) {
         state.unwrap().messages.push_back(message);
     }
 }
