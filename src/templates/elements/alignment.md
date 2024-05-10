@@ -2,6 +2,9 @@
 
 Alignment will inflate the wrapping element to use all the constraints.
 
+This means it's not recommended to put an alignment widget inside an
+unconstrained widget such as a `Viewport`.
+
 The alignment accepts at most one child.
 
 ## Example
