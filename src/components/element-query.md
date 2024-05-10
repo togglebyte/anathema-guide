@@ -72,4 +72,35 @@ This is an attribute with a matching value on any element.
 
 ```
 
-## TODO explain how to insert state values into attributes 
+## Insert state value into attributes
+
+It is possible to assign a value from the state to attributes by taking a
+pending value from the state.
+
+A pending value is resolved to an actual value by setting the attribute.
+
+```rust,ignore
+#[derive(State)]
+struct MyState {
+    number: Value<u8>
+}
+
+// Component event
+fn on_key(
+    &mut self,
+    key: KeyEvent,
+    state: Option<&mut Self::State>,
+    elements: Elements<'_, '_>,
+) { 
+    let s = state.as_mut().unwrap();
+    let number = s.number.to_pending();
+    
+    elements
+        .query(&state)
+        .by_tag("position")
+        .each(|el, attrs| {
+            attrs.set_pending(number);
+        });
+}
+
+```
