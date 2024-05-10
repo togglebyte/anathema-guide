@@ -71,8 +71,6 @@ The main difference between registering a singular component vs a prototype is
 the closure creating an instance of the component and the state, rather
 than passing the actual component instance and state into the function.
 
-See [State](./templates/state.md) for more information about state.
-
 ## State
 
 ### External state
