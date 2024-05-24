@@ -9,7 +9,7 @@ Accepts many children.
 zstack
     text "333"
     text "22"
-    text "1
+    text "1"
 ```
 ```
 123
