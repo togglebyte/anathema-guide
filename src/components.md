@@ -97,7 +97,7 @@ text "the value is " key
 
 Internal state is anything that implements the `State` trait.
 
-See [State](./templates/state.md) for more information about state.
+See [State](./components/state.md) for more information about state.
 
 #### Example 
 

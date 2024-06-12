@@ -89,3 +89,54 @@ Valid values:
 
 * `"horz"` | `"horizontal"`
 * `"vert"` | `"vertical"`
+
+## Methods
+
+### `scroll_up()`
+
+Scroll the viewport forward.
+
+This is analogous to `Viewport::scroll(Direction::Forward, 1)`.
+
+### `scroll_up_by(n: u32)`
+
+Scroll the viewport forward `n` number of lines.
+
+This is analogous to `Viewport::scroll(Direction::Forward, n)`.
+
+### `scroll_down()`
+
+Scroll the viewport backward.
+
+This is analogous to `Viewport::scroll(Direction::Backward, 1)`.
+
+### `scroll_down_by(n: u32)`
+
+Scroll the viewport backward `n` number of lines.
+
+This is analogous to `Viewport::scroll(Direction::Backward, n)`.
+
+
+### `scroll_right()`
+
+Scroll the viewport forward.
+
+This is analogous to `Viewport::scroll(Direction::Forward, 1)`.
+
+### `scroll_right_by(n: u32)`
+
+Scroll the viewport forward `n` number of lines.
+
+This is analogous to `Viewport::scroll(Direction::Forward, n)`.
+
+### `scroll_left()`
+
+Scroll the viewport backward.
+
+This is analogous to `Viewport::scroll(Direction::Backward, 1)`.
+
+### `scroll_left_by(n: u32)`
+
+Scroll the viewport backward `n` number of lines.
+
+This is analogous to `Viewport::scroll(Direction::Backward, n)`.
