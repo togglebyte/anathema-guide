@@ -8,9 +8,39 @@ Since attribute values may originate from the component state it is not possible
 to access the state and the attributes at the same time. 
 
 For this reason the element query prevents any use of state via the `query`
-function:
+function.
 
-## Example
+## Cast an element
+
+It's possible to cast an element to a specific widget using the `to` method.
+
+The `to` method returns an `Option<&mut T>`.
+
+For an immutable reference use `to_ref`.
+
+### Example
+
+```rust,ignore
+
+fn on_key(
+    &mut self,
+    key: KeyEvent,
+    state: Option<&mut Self::State>,
+    mut elements: Elements<'_, '_>,
+) {
+    elements
+        .query(&state)
+        .by_attribute("abc", 123)
+        .first(|el, _| {
+            let viewport = el.to::<Viewport>().unwrap();
+            viewport.scroll_up();
+        });
+}
+```
+
+## Filter elements
+
+### Example
 
 ```rust,ignore
 fn on_mouse(
