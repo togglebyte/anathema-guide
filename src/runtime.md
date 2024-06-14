@@ -14,7 +14,7 @@ let backend = TuiBackend::builder()
     .finish()
     .unwrap();
     
-let mut runtime = Runtime::new(doc, backend).unwrap();
+let mut runtime = Runtime::new(doc, backend).finish().unwrap();
 runtime.fps = 30; // default
 ```
 

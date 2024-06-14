@@ -42,8 +42,7 @@ fn main() {
         .finish()
         .unwrap();
 
-    let mut runtime = Runtime::new(doc, backend).unwrap();
-
+    let mut runtime = Runtime::new(doc, backend).finish().unwrap();
     runtime.run();
 }
 ```
@@ -57,3 +56,22 @@ align [alignment: "center"]
             text [foreground: "red"] "are"
             text [foreground: "blue"] "great!"
 ```
+
+## Prelude
+
+Anathema has two convenience modules:
+
+The `prelude` can be used to bootstrap your application, as it contains the
+`Runtime`, `Document` setc.
+
+```rust
+use anathema::prelude::*;
+```
+
+and `components` is suitable for modules that only contains `Component`s.
+
+```rust
+use anathema::components::*;
+```
+
+See the [crate](https://docs.rs/anathema/latest/anathema/) documentation for more information.

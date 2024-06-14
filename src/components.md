@@ -140,7 +140,7 @@ associated with the component).
 fn on_key(
     &mut self,
     key: KeyEvent,
-    state: Option<&mut Self::State>,
+    state: &mut Self::State,
     elements: Elements<'_, '_>,
 ) { }
 ```
@@ -154,7 +154,7 @@ associated with the component).
 fn on_mouse(
     &mut self,
     mouse: MouseEvent,
-    state: Option<&mut Self::State>,
+    state: &mut Self::State,
     elements: Elements<'_, '_>,
 ) { }
 ```
@@ -164,7 +164,7 @@ fn on_mouse(
 The component gained focus.
 
 ```rust,ignore
-fn on_focus(&mut self, state: Option<&mut Self::State>, elements: Elements<'_, '_>) {}
+fn on_focus(&mut self, state: &mut Self::State, elements: Elements<'_, '_>) {}
 ```
 
 ### on_blur
@@ -172,7 +172,7 @@ fn on_focus(&mut self, state: Option<&mut Self::State>, elements: Elements<'_, '
 The component lost focus.
 
 ```rust,ignore
-fn on_blur(&mut self, state: Option<&mut Self::State>, elements: Elements<'_, '_>) {}
+fn on_blur(&mut self, state: &mut Self::State, elements: Elements<'_, '_>) {}
 ```
 
 ### Example
@@ -185,14 +185,14 @@ impl Component for MyComponent {
     type Message = ();
     type State = MyState;
 
-    fn on_blur(&mut self, state: Option<&mut Self::State>, elements: Elements<'_, '_>) {}
+    fn on_blur(&mut self, state: &mut Self::State, elements: Elements<'_, '_>) {}
 
-    fn on_focus(&mut self, state: Option<&mut Self::State>, elements: Elements<'_, '_>) {}
+    fn on_focus(&mut self, state: &mut Self::State, elements: Elements<'_, '_>) {}
 
     fn on_key(
         &mut self,
         key: KeyEvent,
-        state: Option<&mut Self::State>,
+        state: &mut Self::State,
         elements: Elements<'_, '_>,
     ) {
         let state = state.unwrap();
@@ -211,7 +211,7 @@ impl Component for MyComponent {
     fn on_mouse(
         &mut self,
         mouse: MouseEvent,
-        state: Option<&mut Self::State>,
+        state: &mut Self::State,
         elements: Elements<'_, '_>,
     ) {
         // Mouse event
@@ -248,7 +248,7 @@ impl Component for MyComponent {
     type Message = String; // <- accept strings
     type State = MyState;
 
-    fn message(&mut self, message: Self::Message, state: Option<&mut Self::State>, elements: Elements<'_, '_>) {
+    fn message(&mut self, message: Self::Message, state: &mut Self::State, elements: Elements<'_, '_>) {
         state.unwrap().messages.push_back(message);
     }
 }
