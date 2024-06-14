@@ -25,7 +25,7 @@ For an immutable reference use `to_ref`.
 fn on_key(
     &mut self,
     key: KeyEvent,
-    state: Option<&mut Self::State>,
+    state: &mut Self::State,
     mut elements: Elements<'_, '_>,
 ) {
     elements
@@ -46,7 +46,7 @@ fn on_key(
 fn on_mouse(
     &mut self,
     mouse: MouseEvent,
-    state: Option<&mut Self::State>,
+    state: &mut Self::State,
     elements: Elements<'_, '_>,
 ) { 
     elements
@@ -90,7 +90,7 @@ This is an attribute with a matching value on any element.
     fn on_mouse(
         &mut self,
         mouse: MouseEvent,
-        state: Option<&mut Self::State>,
+        state: &mut Self::State,
         elements: Elements<'_, '_>,
     ) {
         .query(&state)
@@ -119,7 +119,7 @@ struct MyState {
 fn on_key(
     &mut self,
     key: KeyEvent,
-    state: Option<&mut Self::State>,
+    state: &mut Self::State,
     elements: Elements<'_, '_>,
 ) { 
     let s = state.as_mut().unwrap();

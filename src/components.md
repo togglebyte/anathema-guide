@@ -32,17 +32,14 @@ This is done in two steps:
 2. Register the component with the runtime
 
 ```rust,ignore
-let mut document = Document::new(template);
+let runtime = Runtime::new(document, backend);
 
-//                                                 template
-//                                        tag         |
-//                                         |          |
-let component_id = document.add_component("my-comp", "text 'I be a component'");
-
-//                                  component instance
-//                    component id        |         state
-//                         |              |           |
-runtime.register_component(component_id, MyComponent, ());
+let component_id = runtime.register_component(
+    "my-comp",                                  // <- tag
+    "text 'I be a component'"                   // <- template
+    MyComponent,                                // <- component instance
+    ComponentState,                             // <- state
+);
 ```
 
 Use a component in a template by prefixing the tag with the `@` sign:
@@ -63,8 +60,13 @@ for i in [1, 2, 3]
 
 The component has to be registered as a prototype rather than a component:
 
-```
-runtime.register_prototype(comp, || MyComponent, || ());
+```rust
+runtime.register_prototype(
+    "comp", 
+    "text 'this is a template'",
+    || MyComponent, 
+    || ()
+);
 ```
 
 The main difference between registering a singular component vs a prototype is
@@ -123,7 +125,7 @@ let mut my_state = MyState::new();
 my_state.numbers.push_back(1);
 my_state.numbers.push_back(2);
 
-runtime.register_component(my_comp, MyComponent, my_state);
+runtime.register_component("my_comp", template, MyComponent, my_state);
 ```
 
 ## Event handling
