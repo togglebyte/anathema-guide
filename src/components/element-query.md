@@ -94,7 +94,7 @@ This is an attribute with a matching value on any element.
         elements: Elements<'_, '_>,
     ) {
         .query(&state)
-            .by_position(mouse.pos())
+            .at_position(mouse.pos())
             .each(|el, attributes| {
                 attributes.set("background", "red");
             });
