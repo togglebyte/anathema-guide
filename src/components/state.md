@@ -11,6 +11,13 @@ or
 names: Value<List<String>>
 ```
 
+## Updating state
+
+There are two ways to update a field on `State`.
+
+1. `state.field.set(new_value)`
+2. `*state.field.to_mut() = new_value`
+
 ## Ignore fields
 
 To store fields on the state that should be ignored by templates and widgets,

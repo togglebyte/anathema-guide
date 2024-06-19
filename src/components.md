@@ -97,6 +97,23 @@ text "the value is " key
 
 ### Internal state
 
+<div class="warning">
+<h4>Important note about state values</h4>
+
+When assigning a new value to a state, do not create a new instance of
+Value<T>.
+
+This is bad:
+
+    my_state.value = Value::new(123)
+
+This is how it should be done:
+
+    my_state.some_value.set(123);
+    my_state.another_value.to_mut() = 123;
+
+</div>
+
 Internal state is anything that implements the `State` trait.
 
 See [State](./components/state.md) for more information about state.
