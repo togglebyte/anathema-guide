@@ -1,10 +1,15 @@
 # Position (`position`)
 
-Absolute position of the child.
+Absolute or relative position of the child.
 
 Accepts at most one child.
 
 ## Attributes
+
+### `placement`
+
+Either `relative` (default)
+or `absolute`
 
 ### `left` 
 
@@ -16,7 +21,7 @@ Position the **right** side of the element with an offset of the given value.
 
 ```
 border [width: 10, height: 5]
-    position [top: 1, right: 1]
+    position [top: 1, right: 1, placement: "relative"]
         text "Hi"
 ```
 ```
