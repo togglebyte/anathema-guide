@@ -110,7 +110,7 @@ This is bad:
 This is how it should be done:
 
     my_state.some_value.set(123);
-    my_state.another_value.to_mut() = 123;
+    *my_state.another_value.to_mut() = 123;
 
 </div>
 
