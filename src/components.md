@@ -100,7 +100,7 @@ text "the value is " key
 <div class="warning">
 <h4>Important note about state values</h4>
 
-When assigning a new value to a state, do not create a new instance of
+When assigning a new value to a state, do <strong>not</strong> create a new instance of
 Value<T>.
 
 This is bad:
@@ -240,17 +240,13 @@ impl Component for MyComponent {
 
 ## Messages
 
-To communicate with components from outside of the runtime messages can be sent
-to components using the component id as an address.
+To communicate with components messages can be sent to components using the 
+component id as an address.
 
 An `Emitter` is used to send any message to any recipient.
-The recipient id is the id generated when calling `register_component`.
+The recipient id is returned when calling `register_component`.
 
-If the recipient does not exist or if the message type is incorrect the message
-will be lost.
-
-**Note**: This means that when sending a `u32` to a component that expects `i32` the
-message will be lost.
+If the recipient no longer exist the message will be lost.
 
 Implement the `message` method of the `Component` trait for a component to be
 able to receive messages.
@@ -277,13 +273,19 @@ fn send_messages(emitter: Emitter, recipient: usize) {
     let mut counter = 0;
 
     loop {
-        emitter.emit(format!("{counter} message"), recipient);
+        emitter.emit(recipient, format!("{counter} message"));
         counter += 1;
         std::thread::sleep_ms(1000);
     }
 }
 
-let recipient = doc.add_component("my_comp", component_template);
+// Get the component id when registering the component
+let recipient = runtime.register_component(
+    "my_comp", 
+    component_template,
+    MyComponent::new(),
+    MyState::new()
+);
 
 let emitter = runtime.emitter();
 std::thread::spawn(move || {
