@@ -33,16 +33,18 @@ Valid values:
 
 ## Default widgets
 
-The following is a list of available widgets and their template names:
+The following is a list of available widgets and their template tags:
 
-- [Text](./elements/text.md) (template name: `text`)
-- [Span](./elements/span.md) (template name: `span`)
-- [Border](./elements/border.md) (template name: `border`)
-- [Alignment](./elements/alignment.md) (template name: `alignment`)
-- [VStack](./elements/vstack.md) (template name: `vstack`)
-- [HStack](./elements/hstack.md) (template name: `hstack`)
-- [ZStack](./elements/zstack.md) (template name: `zstack`)
-- [Expand](./elements/expand.md) (template name: `expand`)
-- [Spacer](./elements/spacer.md) (template name: `spacer`)
-- [Position](./elements/position.md) (template name: `position`)
-- [Viewport](./elements/viewport.md) (template name: `viewport`)
+- [Text](./elements/text.md) (template tag: `text`)
+- [Span](./elements/span.md) (template tag: `span`)
+- [Border](./elements/border.md) (template tag: `border`)
+- [Alignment](./elements/alignment.md) (template tag: `alignment`)
+- [VStack](./elements/vstack.md) (template tag: `vstack`)
+- [HStack](./elements/hstack.md) (template tag: `hstack`)
+- [ZStack](./elements/zstack.md) (template tag: `zstack`)
+- [Expand](./elements/expand.md) (template tag: `expand`)
+- [Spacer](./elements/spacer.md) (template tag: `spacer`)
+- [Position](./elements/position.md) (template tag: `position`)
+- [Viewport](./elements/viewport.md) (template tag: `viewport`)
+- [Canvas](./elements/canvas.md) (template tag: `canvas`)
+- [Container](./elements/container.md) (template tag: `container`)
