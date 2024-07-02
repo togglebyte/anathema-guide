@@ -269,7 +269,7 @@ impl Component for MyComponent {
 }
 
 // Send a string to a recipient every second
-fn send_messages(emitter: Emitter, recipient: usize) {
+fn send_messages(emitter: Emitter, recipient: ComponentId<String>) {
     let mut counter = 0;
 
     loop {
