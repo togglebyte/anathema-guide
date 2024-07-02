@@ -246,6 +246,10 @@ component id as an address.
 An `Emitter` is used to send any message to any recipient.
 The recipient id is returned when calling `register_component`.
 
+The `Emitter` has two functions:
+* `emit` (use in a sync context)
+* `emit_async` (use in an async context)
+
 If the recipient no longer exist the message will be lost.
 
 Implement the `message` method of the `Component` trait for a component to be
