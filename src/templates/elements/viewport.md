@@ -90,6 +90,16 @@ Valid values:
 * `"horz"` | `"horizontal"`
 * `"vert"` | `"vertical"`
 
+### `clamp`
+
+Clamp the offset, preventing the content to scroll out of view
+
+Default value: `true`
+
+Value values: 
+
+* `false`
+
 ## Methods
 
 ### `scroll_up()`

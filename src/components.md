@@ -73,6 +73,26 @@ The main difference between registering a singular component vs a prototype is
 the closure creating an instance of the component and the state, rather
 than passing the actual component instance and state into the function.
 
+### Reusable components
+
+A component can have named placeholders for external children:
+
+```
+// The template for @mycomponent
+border
+    $my-children
+```
+
+When using a component with named children use the placeholder name
+to inject the elements:
+
+```
+for x in values
+    @mycomponent
+        $my-children
+            text "hello world"
+```
+
 ## State
 
 ### External state
