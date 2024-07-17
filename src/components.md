@@ -55,7 +55,8 @@ vstack
     @my-comp
 ```
 
-The component has to be registered as a **prototype**:
+The component has to be registered as a **prototype** using `register_prototype`
+(instead of `registering_comonent`):
 
 ```rust
 runtime.register_prototype(
