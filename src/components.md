@@ -24,12 +24,7 @@ impl Component for MyComponent {
 }
 ```
 
-A component has to be compiled by a `Document` and registered with the runtime before it can be used in the
-template.
-
-This is done in two steps:
-1. Add the component template and associate a tag with the template
-2. Register the component with the runtime
+A component has to be registered with the runtime before it can be used in the template.
 
 ```rust,ignore
 let runtime = Runtime::new(document, backend);
@@ -49,16 +44,18 @@ border
     @my-comp
 ```
 
-Registering a component is taking ownership of a single instance of that
-component.
+### Multiple instances of a component
+
 To repeatedly use a component in a template, e.g:
 
 ```
-for i in [1, 2, 3]
+vstack
+    @my-comp
+    @my-comp
     @my-comp
 ```
 
-The component has to be registered as a prototype rather than a component:
+The component has to be registered as a **prototype**:
 
 ```rust
 runtime.register_prototype(
