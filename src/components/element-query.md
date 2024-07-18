@@ -122,8 +122,7 @@ fn on_key(
     state: &mut Self::State,
     elements: Elements<'_, '_>,
 ) { 
-    let s = state.as_mut().unwrap();
-    let number = s.number.to_pending();
+    let number = state.number.to_pending();
     
     elements
         .query(&state)

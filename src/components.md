@@ -232,7 +232,6 @@ impl Component for MyComponent {
         state: &mut Self::State,
         elements: Elements<'_, '_>,
     ) {
-        let state = state.unwrap();
         // Get mutable access to the name
         let mut name = state.name.to_mut();
 
@@ -286,7 +285,7 @@ impl Component for MyComponent {
     type State = MyState;
 
     fn message(&mut self, message: Self::Message, state: &mut Self::State, elements: Elements<'_, '_>) {
-        state.unwrap().messages.push_back(message);
+        state.messages.push_back(message);
     }
 }
 
