@@ -62,7 +62,7 @@ align [alignment: "center"]
 Anathema has two convenience modules:
 
 The `prelude` can be used to bootstrap your application, as it contains the
-`Runtime`, `Document` setc.
+`Runtime`, `Document` etc.
 
 ```rust
 use anathema::prelude::*;
