@@ -37,6 +37,13 @@ let component_id = runtime.register_component(
 );
 ```
 
+## Register default component
+
+If a `Component` and it's associated state both implements `Default` it's
+shorter to use `register_default("component-name", "template-path.aml")`
+
+## Usage 
+
 Use a component in a template by prefixing the tag with the `@` sign:
 
 ```
