@@ -26,6 +26,14 @@ There is for instance no "input" element.
 To represent an input the component would handle the key press events and 
 simply pass the collected values as a string via state.
 
+## Comments
+
+Use `//` to add comments to a template:
+```
+    text "I will render"
+    // text "I will not"
+```
+
 ## Attributes
 
 Element attributes are optional.
