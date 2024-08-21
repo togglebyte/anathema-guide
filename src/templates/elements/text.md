@@ -25,7 +25,7 @@ Valid values:
 * `"overflow"`: the text is truncated when it can no longer fit
 * `"break"`: the text will wrap once it can no longer fit
 
-### `text-align`
+### `text_align`
 
 Note that text align will align the text within the element.
 The text element will size it self according to its constraint.
@@ -43,7 +43,7 @@ Valid values:
 Example of right aligned text
 ```
 border [width: 5 + 2]
-    text [text-align: "right"] "hello you"
+    text [text_align: "right"] "hello you"
 ```
 
 ```
@@ -56,7 +56,7 @@ border [width: 5 + 2]
 Example of centre aligned text
 ```
 border [width: 5 + 2]
-    text [text-align: "centre"] "hello you"
+    text [text_align: "centre"] "hello you"
 ```
 
 ```
