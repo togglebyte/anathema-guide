@@ -30,7 +30,7 @@ A component has to be registered with the runtime before it can be used in the t
 let runtime = Runtime::new(document, backend);
 
 let component_id = runtime.register_component(
-    "my-comp",                                  // <- tag
+    "my_comp",                                  // <- tag
     "text 'I be a component'"                   // <- template
     MyComponent,                                // <- component instance
     ComponentState,                             // <- state
@@ -48,7 +48,7 @@ Use a component in a template by prefixing the tag with the `@` sign:
 
 ```
 border
-    @my-comp
+    @my_comp
 ```
 
 ### Multiple instances of a component
@@ -57,9 +57,9 @@ To repeatedly use a component in a template, e.g:
 
 ```
 vstack
-    @my-comp
-    @my-comp
-    @my-comp
+    @my_comp
+    @my_comp
+    @my_comp
 ```
 
 The component has to be registered as a **prototype** using `register_prototype`
@@ -85,7 +85,7 @@ A component can have named placeholders for external children:
 ```
 // The template for @mycomponent
 border
-    $my-children
+    $my_children
 ```
 
 When using a component with named children use the placeholder name
@@ -94,7 +94,7 @@ to inject the elements:
 ```
 for x in values
     @mycomponent
-        $my-children
+        $my_children
             text "hello world"
 ```
 
