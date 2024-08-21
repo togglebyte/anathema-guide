@@ -24,10 +24,10 @@ Fixed width
 
 Fixed height
 
-### `min-width`
+### `min_width`
 
 Minimum width
 
-### `min-height`
+### `min_height`
 
 Minimum height

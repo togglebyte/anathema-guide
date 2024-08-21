@@ -27,12 +27,12 @@ border [width: 16, height: 5]
 ### `alignment`
 
 Valid values:
-* `"top-left"`
+* `"top_left"`
 * `"top"`
-* `"top-right"`
+* `"top_right"`
 * `"right"`
-* `"bottom-right"`
+* `"bottom_right"`
 * `"bottom"`
-* `"bottom-left"`
+* `"bottom_left"`
 * `"left"`
 * `"centre"` or `"center"`

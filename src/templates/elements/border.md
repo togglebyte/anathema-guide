@@ -24,11 +24,11 @@ The fixed width of the border
 
 The fixed height of the border
 
-### `min-width`
+### `min_width`
 
 The minimum width of the border
 
-### `min-height`
+### `min_height`
 
 The minimum height of the border
 
@@ -71,14 +71,14 @@ border [sides: ["left", "top"]]
 │What a border!
 ```
 
-### `border-style`
+### `border_style`
 
 The default border style is `"thin"`.
 
 For a thicker border style the value `"tick"` can be used:
 
 ```
-border [border-style: "thick"]
+border [border_style: "thick"]
     text  "What a border!"
 ```
 ```
@@ -103,7 +103,7 @@ following order:
 See the following example:
 
 ```
-border [border-style: "12345678"]
+border [border_style: "12345678"]
     text  "What a border!"
 ```
 ```

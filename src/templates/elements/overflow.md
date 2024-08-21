@@ -96,7 +96,13 @@ Clamp the offset, preventing the content to scroll out of view
 
 Default value: `true`
 
-Value values: 
+### `unconstrained`
+
+If this is set to true, both axis are unconstrained.
+If this is false, only the given axis is unconstrained.
+
+Default value: `false`
+
 
 * `false`
 

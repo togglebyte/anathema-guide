@@ -25,12 +25,12 @@ border [width: 16, height: 5]
 
 ### `height`
 
-### `min-width`
+### `min_width`
 
-### `min-height`
+### `min_height`
 
-### `max-width`
+### `max_width`
 
-### `max-height`
+### `max_height`
 
 ### `background`
