@@ -40,7 +40,7 @@ let component_id = runtime.register_component(
 ## Register default component
 
 If a `Component` and it's associated state both implements `Default` it's
-shorter to use `register_default("component-name", "template-path.aml")`
+shorter to use `register_default("component_name", "template-path.aml")`
 
 ## Usage 
 
@@ -109,7 +109,7 @@ To pass external state to a component provide a map in the template
 with a key-value pair:
 
 ```
-@my-comp { key: "this is a value" }
+@my_comp { key: "this is a value" }
 ```
 
 To use the external state in the component refer to the keys in map passed into the
