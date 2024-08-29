@@ -23,16 +23,43 @@ runtime.fps = 30; // default
 Before components can be used in a template they have to be registered with the
 runtime.
 
-
 ```rust,ignore
 let runtime = Runtime::new(document, backend);
 
 let component_id = runtime.register_component(
     "my_comp",                                  // <- tag
-    "text 'I be a component'"                   // <- template
+    "template.aml",                             // <- template
     MyComponent,                                // <- component instance
     ComponentState,                             // <- state
 );
+```
+
+## File path vs embedded template
+
+If the template is passed as a string it is assumed to be a path and
+hot reloading will be enabled by default.
+
+To to pass a template (rather than a path to a template) call `to_template` on
+the template string:
+
+```rust,ignore
+static TEMPLATE: &str = include_str!("template.aml");
+
+let component_id = runtime.register_component(
+    "my_comp",
+    TEMPLATE.to_template(),
+    MyComponent,
+    ComponentState,
+);
+
+### Hot reload
+
+```
+To disable hot reloading set the documents `hot_reload = false`.
+
+```rust,ignore
+let mut doc = Document::new("@index");
+doc.hot_reload = false;
 ```
 
 ### Multiple instances of a component
