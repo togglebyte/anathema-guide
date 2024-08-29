@@ -1,22 +1,19 @@
 # Element query
 
 Both component events and messages provide an element query that can be used to
-access elements and attributes in the component.
+access elements and attributes of the component.
 
-Attributes can be read or written to.
-Since attribute values may originate from the component state it is not possible
-to access the state and the attributes at the same time. 
-
-For this reason the element query prevents any use of state via the `query`
-function.
+Attributes can be read and written to.
 
 ## Cast an element
 
 It's possible to cast an element to a specific widget using the `to` method.
 
-The `to` method returns an `Option<&mut T>`.
+The `to` method returns a `&mut T`.
 
 For an immutable reference use `to_ref`.
+
+If the element type is unknown use `try_to` and `try_to_ref` respectively.
 
 ### Example
 
@@ -27,12 +24,13 @@ fn on_key(
     key: KeyEvent,
     state: &mut Self::State,
     mut elements: Elements<'_, '_>,
+    context: Context<'_, Self::State>,
 ) {
     elements
-        .query(&state)
+        .by_tag("viewport")
         .by_attribute("abc", 123)
         .first(|el, _| {
-            let viewport = el.to::<Viewport>().unwrap();
+            let viewport = el.to::<Viewport>();
             viewport.scroll_up();
         });
 }
@@ -48,11 +46,11 @@ fn on_mouse(
     mouse: MouseEvent,
     state: &mut Self::State,
     elements: Elements<'_, '_>,
+    context: Context<'_, Self::State>,
 ) { 
     elements
-        .query(&state)
         .by_attribute("abc", 123)
-        .first(|el, attributes| {
+        .each(|el, attributes| {
             attributes.set("background", "green");
         });
 }
@@ -65,7 +63,7 @@ There are three methods to query the elements inside the component:
 This is the element tag name in the template, e.g `text` or `viewport`.
 
 ```rust, ignore
-.query(&state)
+elements
     .by_tag("text")
     .each(|el, attributes| {
         attributes.set("background", "green");
@@ -77,7 +75,7 @@ This is the element tag name in the template, e.g `text` or `viewport`.
 This is an attribute with a matching value on any element.
 
 ```rust, ignore
-.query(&state)
+elements
     .by_attribute("background", "green")
     .each(|el, attributes| {
         attributes.set("background", "red");
@@ -92,8 +90,9 @@ This is an attribute with a matching value on any element.
         mouse: MouseEvent,
         state: &mut Self::State,
         elements: Elements<'_, '_>,
+        context: Context<'_, Self::State>,
     ) {
-        .query(&state)
+        elements
             .at_position(mouse.pos())
             .each(|el, attributes| {
                 attributes.set("background", "red");
@@ -104,17 +103,10 @@ This is an attribute with a matching value on any element.
 
 ## Insert state value into attributes
 
-It is possible to assign a value from the state to attributes by taking a
-pending value from the state.
-
-A pending value is resolved to an actual value by setting the attribute.
+It is possible to assign a value to an element using the `set` function on the
+attributes.
 
 ```rust,ignore
-#[derive(State)]
-struct MyState {
-    number: Value<u8>
-}
-
 // Component event
 fn on_key(
     &mut self,
@@ -122,14 +114,39 @@ fn on_key(
     state: &mut Self::State,
     elements: Elements<'_, '_>,
 ) { 
-    let number = state.number.to_pending();
-    
     elements
-        .query(&state)
         .by_tag("position")
         .each(|el, attrs| {
-            attrs.set_pending(number);
+            attrs.set("background", "red");
         });
 }
+```
 
+## Getting values from attributes
+
+To read copy values from attributes use the `get` function.
+To get a reference (like a string slice) use `get_ref`.
+
+Note that integers in the template can be auto cast to any integer type as long
+as the value is hard coded into the template (and not originating from state).
+
+E.g `i64` can be cast to a `u8`.
+However integers can not be cast to floats, and floats can not be cast to
+integers.
+
+```rust,ignore
+// Component event
+fn on_key(
+    &mut self,
+    key: KeyEvent,
+    state: &mut Self::State,
+    elements: Elements<'_, '_>,
+) { 
+    elements
+        .by_tag("position")
+        .each(|el, attrs| {
+            let boolean = attrs.get::<bool>("is_true");
+            let string = attrs.get_ref("background");
+        });
+}
 ```

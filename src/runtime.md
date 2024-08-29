@@ -1,4 +1,4 @@
-# Runtime and backend
+# Runtime
 
 ```rust,ignore
 use anathema::runtime::Runtime;
@@ -18,33 +18,52 @@ let mut runtime = Runtime::builder(doc, backend).finish().unwrap();
 runtime.fps = 30; // default
 ```
 
-## Configuring the backend
+## Registering components
 
-The following settings are available:
+Before components can be used in a template they have to be registered with the
+runtime.
 
-### `enable_raw_mode`
 
-Raw mode prevents inputs from being forwarded to the screen (the event system
-will pick them up but the terminal will not try to print them).
+```rust,ignore
+let runtime = Runtime::new(document, backend);
 
-### `enable_mouse`
+let component_id = runtime.register_component(
+    "my_comp",                                  // <- tag
+    "text 'I be a component'"                   // <- template
+    MyComponent,                                // <- component instance
+    ComponentState,                             // <- state
+);
+```
 
-Enable mouse support in the terminal (if it's supported).
+### Multiple instances of a component
 
-### `enable_alt_screen`
+To repeatedly use a component in a template, e.g:
 
-Creates an alternate screen for rendering. 
-Restores the previous content of the terminal to its previous state 
-when the runtime ends.
+```
+vstack
+    @my_comp
+    @my_comp
+    @my_comp
+```
 
-### `hide_cursor`
+The component has to be registered as a **prototype** using `register_prototype`
+(instead of `registering_comonent`):
 
-Hides the cursor.
+```rust
+runtime.register_prototype(
+    "comp", 
+    "text 'this is a template'",
+    || MyComponent, 
+    || ()
+);
+```
 
-### Quit on Ctrl-c
+The main difference between registering a singular component vs a prototype is
+the closure creating an instance of the component and the state, rather
+than passing the actual component instance and state into the function.
 
-This is enabled by default on the TUI backend.
-To disable this set `backend.quit_on_ctrl_c = false`.
+Also note that prototypes does not have a component id and can not have messages
+emitted to them.
 
 ## Configuring the runtime
 

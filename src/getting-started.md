@@ -6,7 +6,7 @@ Add `anathema` to your Cargo.toml file.
 ```toml
 ...
 [dependencies]
-anathema = { git = "https://github.com/togglebyte/anathema/", branch = "dev" }
+anathema = { git = "https://github.com/togglebyte/anathema/" }
 ```
 
 ### Note
