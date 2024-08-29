@@ -46,3 +46,21 @@ border [width: 16, height: 5]
 ### `width`
 
 ### `height`
+
+## Methods
+
+### `erase(pos: impl Into<LocalPos>)`
+
+Erase a character at a given position in local canvas space
+
+### `get(pos: impl Into<LocalPos>) -> Option<(&mut char, &mut CanvasAttribs)>`
+
+Get a mutable reference to the character and attributes at a given position.
+
+### `put(c: char, style: Style, pos: LocalPos)`
+
+Put a character with a style at a given position.
+
+### `translate(pos: Pos) -> LocalPos`
+
+Translate global coords to local (to the canvas) coords.
