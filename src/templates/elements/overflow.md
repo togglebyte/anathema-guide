@@ -40,10 +40,9 @@ struct MyComponent {
     ) {
         if let Some(c) = key.get_char() {
             elements
-                .query(state)
                 .by_tag("overflow")
                 .first(|el| {
-                    let (overflow, _) = el.to_inner_mut::<Overflow>().unwrap();
+                    let (overflow, _) = el.to::<Overflow>();
                     match c {
                         'k' => overflow.scroll_up(),
                         'j' => overflow.scroll_down(),

@@ -27,11 +27,11 @@ fn on_key(
     context: Context<'_, Self::State>,
 ) {
     elements
-        .by_tag("viewport")
+        .by_tag("overflow")
         .by_attribute("abc", 123)
         .first(|el, _| {
-            let viewport = el.to::<Viewport>();
-            viewport.scroll_up();
+            let overflow = el.to::<Overflow>();
+            overflow.scroll_up();
         });
 }
 ```
@@ -60,7 +60,7 @@ There are three methods to query the elements inside the component:
 
 ### `by_tag`
 
-This is the element tag name in the template, e.g `text` or `viewport`.
+This is the element tag name in the template, e.g `text` or `overflow`.
 
 ```rust, ignore
 elements

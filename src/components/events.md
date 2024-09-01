@@ -13,8 +13,8 @@ fn on_key(
     &mut self,
     key: KeyEvent,
     state: &mut Self::State,
-    elements: Elements<'_, '_>,
-    context: Context<'_, Self::State>,
+    mut elements: Elements<'_, '_>,
+    mut context: Context<'_, Self::State>,
 ) { }
 ```
 
@@ -28,8 +28,8 @@ fn on_mouse(
     &mut self,
     mouse: MouseEvent,
     state: &mut Self::State,
-    elements: Elements<'_, '_>,
-    context: Context<'_, Self::State>,
+    mut elements: Elements<'_, '_>,
+    mut context: Context<'_, Self::State>,
 ) { }
 ```
 
@@ -41,8 +41,8 @@ The component gained focus.
 fn on_focus(
     &mut self, 
     state: &mut Self::State, 
-    elements: Elements<'_, '_>,
-    context: Context<'_, Self::State>,
+    mut elements: Elements<'_, '_>,
+    mut context: Context<'_, Self::State>,
 ) {}
 ```
 
@@ -54,8 +54,8 @@ The component lost focus.
 fn on_blur(
     &mut self, 
     state: &mut Self::State, 
-    elements: Elements<'_, '_>,
-    context: Context<'_, Self::State>,
+    mut elements: Elements<'_, '_>,
+    mut context: Context<'_, Self::State>,
 ) {}
 ```
 
@@ -73,8 +73,8 @@ impl Component for MyComponent {
         &mut self,
         key: KeyEvent,
         state: &mut Self::State,
-        elements: Elements<'_, '_>,
-        context: Context<'_, Self::State>,
+        mut elements: Elements<'_, '_>,
+        mut context: Context<'_, Self::State>,
     ) {
         // Get mutable access to the name
         let mut name = state.name.to_mut();
@@ -92,8 +92,8 @@ impl Component for MyComponent {
         &mut self,
         mouse: MouseEvent,
         state: &mut Self::State,
-        elements: Elements<'_, '_>,
-        context: Context<'_, Self::State>,
+        mut elements: Elements<'_, '_>,
+        mut context: Context<'_, Self::State>,
     ) {
         // Mouse event
     }
