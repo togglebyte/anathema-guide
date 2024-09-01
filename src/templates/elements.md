@@ -38,7 +38,7 @@ The following is a list of available widgets and their template tags:
 - [Text](./elements/text.md) (template tag: `text`)
 - [Span](./elements/span.md) (template tag: `span`)
 - [Border](./elements/border.md) (template tag: `border`)
-- [Alignment](./elements/alignment.md) (template tag: `alignment`)
+- [Alignment](./elements/alignment.md) (template tag: `align`)
 - [VStack](./elements/vstack.md) (template tag: `vstack`)
 - [HStack](./elements/hstack.md) (template tag: `hstack`)
 - [ZStack](./elements/zstack.md) (template tag: `zstack`)
