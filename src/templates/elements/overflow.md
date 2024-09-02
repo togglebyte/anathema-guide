@@ -35,20 +35,19 @@ struct MyComponent {
     fn on_key(
         &mut self,
         key: KeyEvent,
-        state: Option<&mut Self::State>,
+        state: &mut Self::State,
         mut elements: Elements<'_, '_>,
+        mut context: Context<'_, Self::State>,
     ) {
         if let Some(c) = key.get_char() {
-            elements
-                .by_tag("overflow")
-                .first(|el| {
-                    let (overflow, _) = el.to::<Overflow>();
-                    match c {
-                        'k' => overflow.scroll_up(),
-                        'j' => overflow.scroll_down(),
-                        _ => {}
-                    }
-                });
+            elements.by_tag("overflow").first(|el, _| {
+                let overflow = el.to::<Overflow>();
+                match c {
+                    'k' => overflow.scroll_up(),
+                    'j' => overflow.scroll_down(),
+                    _ => {}
+                }
+            });
         }
     }
 }
