@@ -31,6 +31,16 @@ Valid values:
 Valid values:
 `true` or `false`
 
+### `display`
+
+Changes the behavior of the rendering and layout step.
+`show` is default and makes the element behave like normal.
+`hide` just stops the rendering, but the element will still take up space.
+`exclude` excludes it from layout as well, thus the element won't take up any space and be hidden.
+
+Valid Values:
+`show`, `hide` or `exclude`
+
 ## Default widgets
 
 The following is a list of available widgets and their template tags:
