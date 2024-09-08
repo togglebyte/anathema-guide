@@ -31,6 +31,16 @@ Valid values:
 Valid values:
 `true` or `false`
 
+### `display`
+
+Changes the behavior of the rendering and layout step.
+`show` is default and makes the element behave like normal.
+`hide` just stops the rendering, but the element will still take up space.
+`exclude` excludes it from layout as well, thus the element won't take up any space and be hidden.
+
+Valid Values:
+`show`, `hide` or `exclude`
+
 ## Default widgets
 
 The following is a list of available widgets and their template tags:
@@ -48,3 +58,6 @@ The following is a list of available widgets and their template tags:
 - [Overflow](./elements/overflow.md) (template tag: `overflow`)
 - [Canvas](./elements/canvas.md) (template tag: `canvas`)
 - [Container](./elements/container.md) (template tag: `container`)
+- [Column](./elements/column.md) (template tag: `column`)
+- [Row](./elements/row.md) (template tag: `row`)
+- [Padding](./elements/padding.md) (template tag: `padding`)

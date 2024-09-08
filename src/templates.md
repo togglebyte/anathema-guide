@@ -113,7 +113,24 @@ vstack
     text "end"
 ```
 
-Note: For-loops does not work inside attributes, and can only produce
+For-loops also expose a `loop` variable that is set to the current loop iteration.
+
+Example: `loop` variable
+```
+vstack
+    for val in ["a", "b", "c", "d"]
+        text "#" loop ": " val
+```
+The above code example would render as:
+```
+vstack
+    text "#" 0 ": " "a"
+    text "#" 1 ": " "b"
+    text "#" 2 ": " "c"
+    text "#" 3 ": " "d"
+```
+
+Note: For-loops do not work inside attributes, and can only produce
 elements.
 
 ## If / Else
