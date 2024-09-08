@@ -51,10 +51,10 @@ let component_id = runtime.register_component(
     MyComponent,
     ComponentState,
 );
+```
 
 ### Hot reload
 
-```
 To disable hot reloading set the documents `hot_reload = false`.
 
 ```rust,ignore

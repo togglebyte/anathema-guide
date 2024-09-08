@@ -26,6 +26,20 @@ impl Component for MyComponent {
 
 A component has to be [registered](./runtime.md#registering-components) with the runtime before it can be used in the template.
 
+## Template syntax
+
+The component name is prefixed with an `@` sign: `@component_name`, followed by
+optional associated events, attributes and external state.
+
+```
+@ means it's a component
+|   Component name                   Attribute name
+|   |         Component event        |      Attribute value
+|   |         |        Parent event  |      |          External state
+V   V         V        V             V      V          V
+@component (click->parent_click) [attrib: "value"] { external_state: 123 }
+```
+
 ## Usage 
 
 Use a component in a template by prefixing the tag with the `@` sign:
@@ -33,4 +47,42 @@ Use a component in a template by prefixing the tag with the `@` sign:
 ```
 border
     @my_comp
+```
+
+## Focus and receiving events
+
+Mouse events are sent to all components, however key events are only sent to the
+component that currently has focus.
+
+It is possible to assign focus to a component from another component using
+`context.set_focus`.
+
+`set_focus` takes an attribute name and a value. It is possible to call
+`set_focus` on multiple components with a single frame. This will result in
+multiple components receiving both `on_focus` and `on_blur` until the last
+component in the focus queue which only receives `on_focus`.
+
+### Example
+
+The following example would set focus on `@component_a` as it has a matching id.
+It's not required to name the attribute `id`, it can be any alphanumerical value
+(as long as it doesn't start with a number).
+
+```
+vstack
+    @component_a [id: 1]
+    @component_b [id: 2]
+    @component_c [id: "not a number"]
+```
+
+```rust,ignore
+fn on_key(
+    &mut self,
+    key: KeyEvent,
+    state: &mut Self::State,
+    mut elements: Elements<'_, '_>,
+    mut context: Context<'_, Self::State>,
+) { 
+    context.set_focus("id", 1);
+}
 ```

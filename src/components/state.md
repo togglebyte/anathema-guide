@@ -55,6 +55,29 @@ component:
 text "the value is " key
 ```
 
+### Accessing external state from a component
+
+It's possible to access external state from within the component, using
+`context.external_get`.
+
+### Example
+
+```
+@comp { key: 123 }
+```
+
+```rust
+fn on_key(
+    &mut self,
+    key: KeyEvent,
+    state: &mut Self::State,
+    mut elements: Elements<'_, '_>,
+    mut context: Context<'_, Self::State>,
+) { 
+    context.external_get("key").unwrap();
+}
+```
+
 ## Internal state
 
 Internal state is anything that implements the `State` trait.
@@ -114,7 +137,7 @@ Types from third party crates can be wrapped using the new-type pattern.
 
 ### Example
 
-```rust
+```rust,ignore
 use anathema::component::*;
 use anathema::state::CommonVal;
 
