@@ -33,9 +33,9 @@ Valid values:
 
 ### `display`
 
-Changes the behavior of the rendering and layout step.
-`show` is default and makes the element behave like normal.
-`hide` just stops the rendering, but the element will still take up space.
+Changes the behaviour of the rendering and layout step.
+`show` is default and renders the element.
+`hide` will not paint the element, but it will be part of the layout,
 `exclude` excludes it from layout as well, thus the element won't take up any space and be hidden.
 
 Valid Values:

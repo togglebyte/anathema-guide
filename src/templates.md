@@ -103,14 +103,13 @@ vstack
         text "some value: " val "."
     text "end"
 ```
-The above example would render elements as:
+The above example would render:
 ```
-vstack
-    text "start"
-    text "some value: " 1 "."
-    text "some value: " 2 "."
-    text "some value: " 3 "."
-    text "end"
+start
+some value: 1.
+some value: 2.
+some value: 3.
+end
 ```
 
 For-loops also expose a `loop` variable that is set to the current loop iteration.
@@ -121,13 +120,12 @@ vstack
     for val in ["a", "b", "c", "d"]
         text "#" loop ": " val
 ```
-The above code example would render as:
+The above example would render:
 ```
-vstack
-    text "#" 0 ": " "a"
-    text "#" 1 ": " "b"
-    text "#" 2 ": " "c"
-    text "#" 3 ": " "d"
+#0: a
+#1: b
+#2: c
+#3: d
 ```
 
 Note: For-loops do not work inside attributes, and can only produce
