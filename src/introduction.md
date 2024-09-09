@@ -4,8 +4,12 @@ Anathema is a library for building text user interfaces using composable
 components, with a custom markup language.
 
 Anathema was created with the intent to give developers a fast and easy way to
-write large text user interfaces (TUI) and ship the template(s) along with the application,
+build text user interfaces (TUI) and ship the template(s) along with the application,
 giving the end user the option to customise the layout.
+
+By separating the layout from the rest of the application, reducing the amount of
+code needed to express your design, and featuring hot reloading it becomes incredibly fast 
+to iterate over the design.
 
 ## Why
 
