@@ -1,6 +1,6 @@
 # Introduction
 
-Anathema is a library for building text user interfaces with composable
+Anathema is a library for building text user interfaces using composable
 components, with a custom markup language.
 
 Anathema was created with the intent to give developers a fast and easy way to
