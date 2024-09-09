@@ -3,8 +3,8 @@
 Anathema is a library for building text user interfaces using composable
 components, with a custom markup language.
 
-Anathema was created with the intent to give developers a fast and easy way to
-build text user interfaces (TUI) and ship the template(s) along with the application,
+It was created with the intent to give developers a fast and easy way to
+build text user interfaces (TUI) and ship the template(s) alongside the application,
 giving the end user the option to customise the layout.
 
 By separating the layout from the rest of the application, reducing the amount of
@@ -16,7 +16,6 @@ to iterate over the design.
 * Templates can be shipped with the application, giving the end user the ability
   to customise the entire layout of the application.
 * Easy to prototype with the markup language and runtime.
-
 
 ## Alternatives
 * [dioxus-tui](https://crates.io/crates/dioxus-tui)
