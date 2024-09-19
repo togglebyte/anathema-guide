@@ -92,6 +92,48 @@ than passing the actual component instance and state into the function.
 Also note that prototypes does not have a component id and can not have messages
 emitted to them.
 
+## Global Events
+
+The global shortcuts can be changed by modifying the runtime's global event handler.
+A custom global event handler is any struct that implements `GlobalEvents`.
+The global event handler can be set using the `global_events` function.
+
+The `GlobalEvents` trait has 3 functions: `handle`, `ctrl_c` and `enable_tab_navigation`.
+
+### `enable_tab_navigation`
+
+Default: `true`
+
+Returning a `bool` will enable/disable tabbing.
+
+### `ctrl_c`
+
+```rust,ignore
+fn ctrl_c(
+    &mut self,
+    event: Event,
+    elements: &mut Elements<'_, '_>,
+    global_context: &mut GlobalContext<'_>
+) -> Option<Event> { }
+```
+
+Default: `Some(event)`
+
+Returning `Some(event)` from this will cause the event to stop propagating and close down the runtime.
+
+### `handle`
+
+```rust,ignore
+fn handle(
+    &mut self,
+    event: Event,
+    elements: &mut Elements<'_, '_>,
+    ctx: &mut GlobalContext<'_>
+) -> Option<Event> { }
+```
+
+This function receives any events that weren't catched by ctrl-c or tabbing. Returning `None` will stop the propagation of the event to the components.
+
 ## Configuring the runtime
 
 ### `fps`
@@ -99,4 +141,3 @@ emitted to them.
 Default: `30`
 
 The number of frames to (try to) render per second.
-
