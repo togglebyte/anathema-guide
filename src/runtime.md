@@ -24,7 +24,7 @@ Before components can be used in a template they have to be registered with the
 runtime.
 
 ```rust,ignore
-let runtime = Runtime::new(document, backend);
+let runtime = Runtime::builder(document, backend);
 
 let component_id = runtime.register_component(
     "my_comp",                                  // <- tag
