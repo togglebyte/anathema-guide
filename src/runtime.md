@@ -96,7 +96,7 @@ emitted to them.
 
 The global shortcuts can be changed by modifying the runtime's global event handler.
 A custom global event handler is any struct that implements `GlobalEvents`.
-The global event handler can be set using the `global_events` function.
+The global event handler can be set using the `set_global_event_handler` function.
 
 The `GlobalEvents` trait has three functions: `handle`, `ctrl_c` and `enable_tab_navigation`.
 
@@ -132,7 +132,7 @@ fn handle(
 ) -> Option<Event> { }
 ```
 
-This function receives any events that weren't catched by ctrl-c or tabbing. Returning `None` will stop the propagation of the event to the components.
+This function receives any events that weren't caught by ctrl-c or tabbing. Returning `None` will stop the propagation of the event to the components.
 
 ## Configuring the runtime
 
