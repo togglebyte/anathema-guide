@@ -98,7 +98,7 @@ The global shortcuts can be changed by modifying the runtime's global event hand
 A custom global event handler is any struct that implements `GlobalEvents`.
 The global event handler can be set using the `global_events` function.
 
-The `GlobalEvents` trait has 3 functions: `handle`, `ctrl_c` and `enable_tab_navigation`.
+The `GlobalEvents` trait has three functions: `handle`, `ctrl_c` and `enable_tab_navigation`.
 
 ### `enable_tab_navigation`
 
