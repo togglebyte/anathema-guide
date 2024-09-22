@@ -64,21 +64,3 @@ Valid values:
 
 * `"horz"` | `"horizontal"`
 * `"vert"` | `"vertical"`
-
-### `fill`
-
-Fill the unpainted space with a string.
-
-Example:
-```
-border [width: 10, height: 5]
-    expand [fill: "+-"]
-        text "Hello"
-```
-```
-┌────────┐
-│Hello-+-│
-│+-+-+-+-│
-│+-+-+-+-│
-└────────┘
-```
