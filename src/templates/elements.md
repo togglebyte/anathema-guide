@@ -41,6 +41,23 @@ Changes the behaviour of the rendering and layout step.
 Valid Values:
 `show`, `hide` or `exclude`
 
+### `fill`
+
+Fill the unpainted space with a string.
+
+Example:
+```
+border [width: 10, height: 5, fill: "+-"]
+    text "Hello"
+```
+```
+┌────────┐
+│Hello-+-│
+│+-+-+-+-│
+│+-+-+-+-│
+└────────┘
+```
+
 ## Default widgets
 
 The following is a list of available widgets and their template tags:
