@@ -106,21 +106,6 @@ Default: `true`
 
 Returning a `bool` will enable/disable tabbing.
 
-### `ctrl_c`
-
-```rust,ignore
-fn ctrl_c(
-    &mut self,
-    event: Event,
-    elements: &mut Elements<'_, '_>,
-    global_context: &mut GlobalContext<'_>
-) -> Option<Event> { }
-```
-
-Default: `Some(event)`
-
-Returning `Some(event)` from this will cause the event to stop propagating and close down the runtime.
-
 ### `handle`
 
 ```rust,ignore

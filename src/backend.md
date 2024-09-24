@@ -22,8 +22,3 @@ when the runtime ends.
 ### `hide_cursor`
 
 Hides the cursor.
-
-### Quit on Ctrl-c
-
-This is enabled by default on the TUI backend.
-To disable this set `backend.quit_on_ctrl_c = false`.
