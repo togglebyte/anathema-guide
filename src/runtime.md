@@ -105,7 +105,7 @@ This is equivalent to `builder.prototype(comp, template, || (), || ())`
 ## Global Events
 
 You can register a global event handler on a runtime builder using the `with_global_event_handler` function, passing a closure to it that accepts 3 arguments and returns an `Option<Event>`.
-The arguments are of types `Event`, `&mut TabIndex` and `&mut DeferredComponents`. You should not need to type those out as the closure should be able to infer them.
+The arguments are of types `Event`, `&mut TabIndex` and `&mut DeferredComponents`.
 
 You have to return the event that is supposed to be handled. When returning `None`, the event does not get handled. It is possible to change the event.
 You might want to do that if the event is a key event matching Ctrl + C, which can be checked using `event.is_ctrl_c()`. In that case you could return `Some(Event::Stop)` to shut down the runtime.
