@@ -47,10 +47,10 @@ impl Component for Input {
         &mut self,
         key: KeyEvent,
         state: &mut Self::State,
-        elements: Elements<'_, '_>,
-        mut context: Context<'_, Self::State>,
+        mut elements: Children<'_, '_>,
+        mut context: Context<'_, '_, Self::State>,
     ) {
-        context.publish("text_change", |state| &state.text);
+        context.publish("text_change");
     }
 }
 ```
@@ -64,13 +64,13 @@ impl Component for Parent {
     fn receive(
         &mut self,
         ident: &str,
-        value: CommonVal<'_>,
+        value: &dyn AnyState,
         state: &mut Self::State,
-        elements: Elements<'_, '_>,
-        mut context: Context<'_, Self::State>,
+        mut elements: Children<'_, '_>,
+        mut context: Context<'_, '_, Self::State>,
     ) {
         if ident == "update_username" {
-            let value = &*value.to_common_str();
+            let value: &str = value.to_any_ref().downcast_ref::<InputState>().unwrap().value.to_ref().as_ref();
         }
     }
 }

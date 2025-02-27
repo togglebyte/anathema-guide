@@ -6,7 +6,7 @@ Add `anathema` to your Cargo.toml file.
 ```toml
 ...
 [dependencies]
-anathema = { git = "https://github.com/togglebyte/anathema/" }
+anathema = { git = "https://github.com/togglebyte/anathema/", branch = "dev" }
 ```
 
 ### Note
@@ -42,8 +42,8 @@ fn main() {
         .finish()
         .unwrap();
 
-    let mut runtime = Runtime::builder(doc, backend);
-    runtime.finish().unwrap().run();
+    let mut runtime = Runtime::builder(doc, &backend);
+    runtime.finish(|rt| rt.run(&mut backend)).unwrap();
 }
 ```
 

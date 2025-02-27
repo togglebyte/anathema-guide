@@ -62,12 +62,13 @@ A literal value can be one of the following:
 * list:     `[1, 2, 3]`
 * map:      `{"key": "value"}`
 
-To access a state value use an `ident` (a string without spaces that is not
-wrapped in quotes).
+To access a state or attribute value, use an `ident` (a string without spaces that is not
+wrapped in quotes). Note that state values are under the `state` variable and attribute values are under the `attribute` variable.
 
 ```rust, ignore
 text "string literal"
-text ident
+text "`ident` in the component state: " state.ident
+text "`ident` in the component attributes: " attributes.ident
 ```
 
 ## Elements and children
@@ -157,6 +158,13 @@ else
 * Less than or equals `<=`
 * And `&&`
 * Or `||`
+* Addition `+`
+* Subtraction `-`
+* Multiplication `*`
+* Division `/`
+* Remainder (Modulo) `%`
+* Negation `!`
+* Either `?` (Uses the right value if the left value does not exist)
 
 Note: just like for-loops it's not possible to use if / else with attributes.
 

@@ -23,10 +23,11 @@ fn on_key(
     &mut self,
     key: KeyEvent,
     state: &mut Self::State,
-    mut elements: Elements<'_, '_>,
-    context: Context<'_, Self::State>,
+    mut elements: Children<'_, '_>,
+    mut context: Context<'_, '_, Self::State>,
 ) {
     elements
+        .elements()
         .by_tag("overflow")
         .by_attribute("abc", 123)
         .first(|el, _| {
@@ -45,9 +46,9 @@ fn on_mouse(
     &mut self,
     mouse: MouseEvent,
     state: &mut Self::State,
-    elements: Elements<'_, '_>,
-    context: Context<'_, Self::State>,
-) { 
+    mut elements: Children<'_, '_>,
+    mut context: Context<'_, '_, Self::State>,
+) {
     elements
         .by_attribute("abc", 123)
         .each(|el, attributes| {
@@ -64,6 +65,7 @@ This is the element tag name in the template, e.g `text` or `overflow`.
 
 ```rust, ignore
 elements
+    .elements()
     .by_tag("text")
     .each(|el, attributes| {
         attributes.set("background", "green");
@@ -76,6 +78,7 @@ This is an attribute with a matching value on any element.
 
 ```rust, ignore
 elements
+    .elements()
     .by_attribute("background", "green")
     .each(|el, attributes| {
         attributes.set("background", "red");
@@ -93,6 +96,7 @@ elements
         context: Context<'_, Self::State>,
     ) {
         elements
+            .elements()
             .at_position(mouse.pos())
             .each(|el, attributes| {
                 attributes.set("background", "red");
@@ -110,11 +114,13 @@ attributes.
 // Component event
 fn on_key(
     &mut self,
-    key: KeyEvent,
+    mouse: MouseEvent,
     state: &mut Self::State,
-    elements: Elements<'_, '_>,
+    mut elements: Children<'_, '_>,
+    mut context: Context<'_, '_, Self::State>,
 ) { 
     elements
+        .elements()
         .by_tag("position")
         .each(|el, attrs| {
             attrs.set("background", "red");
@@ -145,8 +151,8 @@ fn on_key(
     elements
         .by_tag("position")
         .each(|el, attrs| {
-            let boolean = attrs.get::<bool>("is_true");
-            let string = attrs.get_ref("background");
+            let boolean = attrs.get_as::<bool>("is_true").unwrap();
+            let string = attrs.get("background").unwrap().as_str().unwrap();
         });
 }
 ```
