@@ -13,9 +13,13 @@ let backend = TuiBackend::builder()
     .hide_cursor()
     .finish()
     .unwrap();
-    
-let mut runtime = Runtime::builder(doc, backend).finish().unwrap();
-runtime.fps = 30; // default
+
+// finalize the backend (enable alt mode, ...)
+backend.finalize();
+
+let mut builder = Runtime::builder(doc, &backend);
+runtime.fps(30); // default
+runtime.finish(|rt| rt.run(&mut backend)).unwrap();
 ```
 
 ## Registering components
@@ -24,15 +28,18 @@ Before components can be used in a template they have to be registered with the
 runtime.
 
 ```rust,ignore
-let runtime = Runtime::builder(document, backend);
+let builder = Runtime::builder(document, &backend);
 
-let component_id = runtime.register_component(
+let component_id = builder.component(
     "my_comp",                                  // <- tag
     "template.aml",                             // <- template
     MyComponent,                                // <- component instance
     ComponentState,                             // <- state
 );
 ```
+
+You can use `from_default` if your component and its state implements Default.
+`builder.from_default::<C>(comp, template)` is equivalent to `builder.component(comp, template, C::default(), C::State::default())`.
 
 ## File path vs embedded template
 
@@ -45,7 +52,7 @@ the template string:
 ```rust,ignore
 static TEMPLATE: &str = include_str!("template.aml");
 
-let component_id = runtime.register_component(
+let component_id = builder.component(
     "my_comp",
     TEMPLATE.to_template(),
     MyComponent,
@@ -73,11 +80,11 @@ vstack
     @my_comp
 ```
 
-The component has to be registered as a **prototype** using `register_prototype`
-(instead of `registering_comonent`):
+The component has to be registered as a **prototype** using `prototype`
+(instead of `component`):
 
 ```rust
-runtime.register_prototype(
+builder.prototype(
     "comp", 
     "text 'this is a template'",
     || MyComponent, 
@@ -92,47 +99,18 @@ than passing the actual component instance and state into the function.
 Also note that prototypes does not have a component id and can not have messages
 emitted to them.
 
+If your component and state is empty (zero-sized) and does not have any special functionality, you can also use `template` without passing the component and state closure.
+This is equivalent to `builder.prototype(comp, template, || (), || ())`
+
 ## Global Events
 
-The global shortcuts can be changed by modifying the runtime's global event handler.
-A custom global event handler is any struct that implements `GlobalEvents`.
-The global event handler can be set using the `set_global_event_handler` function.
+You can register a global event handler on a runtime builder using the `with_global_event_handler` function, passing a closure to it that accepts 3 arguments and returns an `Option<Event>`.
+The arguments are of types `Event`, `&mut TabIndex` and `&mut DeferredComponents`.
 
-The `GlobalEvents` trait has three functions: `handle`, `ctrl_c` and `enable_tab_navigation`.
+You have to return the event that is supposed to be handled. When returning `None`, the event does not get handled. It is possible to change the event.
+You might want to do that if the event is a key event matching Ctrl + C, which can be checked using `event.is_ctrl_c()`. In that case you could return `Some(Event::Stop)` to shut down the runtime.
 
-### `enable_tab_navigation`
-
-Default: `true`
-
-Returning a `bool` will enable/disable tabbing.
-
-### `ctrl_c`
-
-```rust,ignore
-fn ctrl_c(
-    &mut self,
-    event: Event,
-    elements: &mut Elements<'_, '_>,
-    global_context: &mut GlobalContext<'_>
-) -> Option<Event> { }
-```
-
-Default: `Some(event)`
-
-Returning `Some(event)` from this will cause the event to stop propagating and close down the runtime.
-
-### `handle`
-
-```rust,ignore
-fn handle(
-    &mut self,
-    event: Event,
-    elements: &mut Elements<'_, '_>,
-    ctx: &mut GlobalContext<'_>
-) -> Option<Event> { }
-```
-
-This function receives any events that weren't caught by ctrl-c or tabbing. Returning `None` will stop the propagation of the event to the components.
+You can use the 2nd argument to change the currently selected element using the `next` and `prev` values.
 
 ## Configuring the runtime
 
@@ -140,4 +118,4 @@ This function receives any events that weren't caught by ctrl-c or tabbing. Retu
 
 Default: `30`
 
-The number of frames to (try to) render per second.
+The number of frames to (try to) render per second. Call this function with the number of fps.

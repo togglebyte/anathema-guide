@@ -18,7 +18,7 @@ use anathema::widgets::components::Component;
 struct MyComponent;
 
 impl Component for MyComponent {
-    type State = ();    // <-\ 
+    type State = ();    // <-\
                         //    -- Set to () to ignore
     type Message = ();  // <-/
 }
@@ -35,9 +35,9 @@ optional associated events, attributes and external state.
 @ means it's a component
 |   Component name                   Attribute name
 |   |         Component event        |      Attribute value
-|   |         |        Parent event  |      |          External state
-V   V         V        V             V      V          V
-@component (click->parent_click) [attrib: "value"] { external_state: 123 }
+|   |         |        Parent event  |      |
+V   V         V        V             V      V
+@component (click->parent_click) [attrib: "value"]
 ```
 
 ## Usage 
@@ -80,9 +80,9 @@ fn on_key(
     &mut self,
     key: KeyEvent,
     state: &mut Self::State,
-    mut elements: Elements<'_, '_>,
-    mut context: Context<'_, Self::State>,
-) { 
-    context.set_focus("id", 1);
+    mut elements: Children<'_, '_>,
+    mut context: Context<'_, '_, Self::State>,
+) {
+    context.components.by_attribute("id", 1).focus();
 }
 ```

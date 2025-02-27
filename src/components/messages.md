@@ -3,7 +3,7 @@
 Communicate between components using messages and component ids.
 
 An `Emitter` is used to send a message to any recipient.
-The recipient id is returned when calling `register_component`.
+The recipient id is returned when calling `component`.
 
 The `Emitter` has two functions:
 * `emit` (use in a sync context)
@@ -28,10 +28,10 @@ impl Component for MyComponent {
 
     fn message(
         &mut self,
-        message: Self::Message, 
-        state: &mut Self::State, 
-        elements: Elements<'_, '_>,
-        context: Context<'_, Self::State>
+        message: Self::Message,
+        state: &mut Self::State,
+        mut elements: Children<'_, '_>,
+        mut context: Context<'_, '_, Self::State>,
     ) {
         state.messages.push_back(message);
     }
@@ -49,7 +49,7 @@ fn send_messages(emitter: Emitter, recipient: ComponentId<String>) {
 }
 
 // Get the component id when registering the component
-let recipient = runtime.register_component(
+let recipient = runtime.component(
     "my_comp", 
     component_template,
     MyComponent::new(),

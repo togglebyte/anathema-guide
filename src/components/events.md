@@ -13,8 +13,8 @@ fn on_key(
     &mut self,
     key: KeyEvent,
     state: &mut Self::State,
-    mut elements: Elements<'_, '_>,
-    mut context: Context<'_, Self::State>,
+    mut elements: Children<'_, '_>,
+    mut context: Context<'_, '_, Self::State>,
 ) { }
 ```
 
@@ -28,8 +28,8 @@ fn on_mouse(
     &mut self,
     mouse: MouseEvent,
     state: &mut Self::State,
-    mut elements: Elements<'_, '_>,
-    mut context: Context<'_, Self::State>,
+    mut elements: Children<'_, '_>,
+    mut context: Context<'_, '_, Self::State>,
 ) { }
 ```
 
@@ -39,11 +39,11 @@ The component gained focus.
 
 ```rust,ignore
 fn on_focus(
-    &mut self, 
-    state: &mut Self::State, 
-    mut elements: Elements<'_, '_>,
-    mut context: Context<'_, Self::State>,
-) {}
+    &mut self,
+    state: &mut Self::State,
+    mut elements: Children<'_, '_>,
+    mut context: Context<'_, '_, Self::State>,
+) { }
 ```
 
 ### on_blur
@@ -52,10 +52,10 @@ The component lost focus.
 
 ```rust,ignore
 fn on_blur(
-    &mut self, 
-    state: &mut Self::State, 
-    mut elements: Elements<'_, '_>,
-    mut context: Context<'_, Self::State>,
+    &mut self,
+    state: &mut Self::State,
+    mut elements: Children<'_, '_>,
+    mut context: Context<'_, '_, Self::State>,
 ) {}
 ```
 
