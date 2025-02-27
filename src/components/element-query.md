@@ -114,7 +114,7 @@ attributes.
 // Component event
 fn on_key(
     &mut self,
-    mouse: MouseEvent,
+    key: KeyEvent,
     state: &mut Self::State,
     mut elements: Children<'_, '_>,
     mut context: Context<'_, '_, Self::State>,
@@ -146,7 +146,8 @@ fn on_key(
     &mut self,
     key: KeyEvent,
     state: &mut Self::State,
-    elements: Elements<'_, '_>,
+    mut elements: Children<'_, '_>,
+    mut context: Context<'_, '_, Self::State>,
 ) { 
     elements
         .by_tag("position")

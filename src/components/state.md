@@ -77,7 +77,7 @@ fn on_key(
     mut elements: Elements<'_, '_>,
     mut context: Context<'_, Self::State>,
 ) { 
-    let v: i64 = context.attributes.get("key").unwrap().to_int().unwrap();
+    let v: i64 = context.attributes.get_as::<i64>("key").unwrap();
 }
 ```
 

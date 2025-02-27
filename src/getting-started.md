@@ -41,6 +41,8 @@ fn main() {
         .hide_cursor()
         .finish()
         .unwrap();
+    // finalize the backend (enable alt mode, ...)
+    backend.finalize();
 
     let mut runtime = Runtime::builder(doc, &backend);
     runtime.finish(|rt| rt.run(&mut backend)).unwrap();

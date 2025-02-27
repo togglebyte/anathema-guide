@@ -13,7 +13,10 @@ let backend = TuiBackend::builder()
     .hide_cursor()
     .finish()
     .unwrap();
-    
+
+// finalize the backend (enable alt mode, ...)
+backend.finalize();
+
 let mut builder = Runtime::builder(doc, &backend);
 runtime.fps(30); // default
 runtime.finish(|rt| rt.run(&mut backend)).unwrap();
@@ -78,7 +81,7 @@ vstack
 ```
 
 The component has to be registered as a **prototype** using `prototype`
-(instead of `comonent`):
+(instead of `component`):
 
 ```rust
 builder.prototype(

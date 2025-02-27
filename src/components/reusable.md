@@ -70,7 +70,7 @@ impl Component for Parent {
         mut context: Context<'_, '_, Self::State>,
     ) {
         if ident == "update_username" {
-            let value: &str = value.to_any_ref().downcast_ref::<InputState>().unwrap().value.to_ref().as_ref();
+            let value: &str = value.to::<InputState>().value.to_ref().as_ref();
         }
     }
 }
