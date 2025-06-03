@@ -105,10 +105,9 @@ elements
 
 ```
 
-## Insert state value into attributes
+## Setting attribute values
 
-It is possible to assign a value to an element using the `set` function on the
-attributes.
+It is possible to assign an attribute to an element using the `set` function on the attributes.
 
 ```rust,ignore
 // Component event
@@ -123,22 +122,21 @@ fn on_key(
         .elements()
         .by_tag("position")
         .each(|el, attrs| {
-            attrs.set("background", "red");
+            attrs.set("background", Color::Red);
         });
 }
 ```
 
 ## Getting values from attributes
 
-To read copy values from attributes use the `get` function.
-To get a reference (like a string slice) use `get_ref`.
+To get values from attributes use the `get_as` function.
 
-Note that integers in the template can be auto cast to any integer type as long
-as the value is hard coded into the template (and not originating from state).
+E.e `context.attributes.get_as::<&str>("name").unwrap();`
+
+Note that integers in the template can be auto cast to any integer type.
 
 E.g `i64` can be cast to a `u8`.
-However integers can not be cast to floats, and floats can not be cast to
-integers.
+However integers can not be cast to floats, and floats can not be cast to integers.
 
 ```rust,ignore
 // Component event

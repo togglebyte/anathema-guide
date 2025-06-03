@@ -1,8 +1,10 @@
 # Messages
 
-Communicate between components using messages and component ids.
+Communication between components is done either with component queries or an
+`Emitter`.
 
-An `Emitter` is used to send a message to any recipient.
+An `Emitter` is used to send a message to any recipient and can be used outside
+of the runtime (e.g from another thread etc.).
 The recipient id is returned when calling `component`.
 
 The `Emitter` has two functions:
@@ -51,7 +53,7 @@ fn send_messages(emitter: Emitter, recipient: ComponentId<String>) {
 // Get the component id when registering the component
 let recipient = runtime.component(
     "my_comp", 
-    component_template,
+    "path/to/template.aml",
     MyComponent::new(),
     MyState::new()
 );
@@ -60,4 +62,54 @@ let emitter = runtime.emitter();
 std::thread::spawn(move || {
     send_messages(emitter, recipient);
 });
+```
+
+## Internal messaging
+
+It is possible to send a message from one component to another without using an
+emitter.
+
+Using the `Context` it's possible to send a message to the first components that fits
+the query. Note that only one instance of the value will be sent, even if the
+query matches multiple components.
+
+### Example
+
+An example of a component sending a `String` to another component.
+
+```rust,ignore
+// Component accepting messages
+impl Component for ReceiverComponent {
+    type Message = String; // <- accept strings
+    type State = MyState;
+
+    fn message(
+        &mut self,
+        message: Self::Message,
+        state: &mut Self::State,
+        mut elements: Children<'_, '_>,
+        mut context: Context<'_, '_, Self::State>,
+    ) {
+        state.messages.push_back(message);
+    }
+}
+
+// Component sending messages
+impl Component for SenderComponent {
+    type Message = ();
+    type State = ();
+
+    fn message(
+        &mut self,
+        message: Self::Message,
+        state: &mut Self::State,
+        mut elements: Children<'_, '_>,
+        mut context: Context<'_, '_, Self::State>,
+    ) {
+        context.components.by_name("receiver").send(String::from("What a lovely sweater you have"));
+    }
+}
+
+runtime.component("receiver", "path/to/template.aml", ReceiverComponent, ()).unwrap();
+runtime.component("sender", "path/to/template.aml", SenderComponent, ()).unwrap();
 ```

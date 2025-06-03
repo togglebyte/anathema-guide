@@ -22,7 +22,6 @@ Default is to wrap on word boundaries such as space and hyphen, and this method
 of wrapping will be used if no `wrap` attribute is given.
 
 Valid values:
-* `"overflow"`: the text is truncated when it can no longer fit
 * `"break"`: the text will wrap once it can no longer fit
 
 ### `text_align`

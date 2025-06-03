@@ -21,12 +21,26 @@ for x in values
             text "hello world"
 ```
 
+Note that if no placeholder name is given a default of `$children` is assumed:
+
+```
+for x in values
+    @mycomponent
+        text "hello world"
+```
+
+```
+// The template for @mycomponent
+border
+    $children
+```
+
 ## Associated functions
 
 These look almost like callbacks however they run at the end of the update
 cycle, and not instantly.
 
-To associate a function with the parent use the following syntax:
+To associate a function with the parent use the following template syntax:
 
 ```
 @input (text_change->update_username)
@@ -55,9 +69,8 @@ impl Component for Input {
 }
 ```
 
-The parent component will receive the associated ident ("update_username") and the value (as a
-`CommonVal`).
-
+The parent component will receive the associated ident "update_username" and 
+an immutable reference to the components state.
 
 ```rust,ignore
 impl Component for Parent {
@@ -70,7 +83,7 @@ impl Component for Parent {
         mut context: Context<'_, '_, Self::State>,
     ) {
         if ident == "update_username" {
-            let value: &str = value.to::<InputState>().value.to_ref().as_ref();
+            let value: &String = *value.to::<InputState>().value.to_ref();
         }
     }
 }

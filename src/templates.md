@@ -63,7 +63,7 @@ A literal value can be one of the following:
 * map:      `{"key": "value"}`
 
 To access a state or attribute value, use an `ident` (a string without spaces that is not
-wrapped in quotes). Note that state values are under the `state` variable and attribute values are under the `attribute` variable.
+wrapped in quotes). Note that state values are under the `state` variable and attribute values are under the `attributes` variable.
 
 ```rust, ignore
 text "string literal"
@@ -147,6 +147,34 @@ else if value > 5
     text "Larger than five but less than ten"
 else
     text "It's a small value..."
+```
+
+### Conditional ??
+
+Changing colors and style depending on a condition can be achieved by declaring
+a constant. All constants are global.
+
+```
+let THEME = {
+    enabled: { bg: "grey" },
+    disabled: { bg: "reset" },
+}
+
+text [background: THEME["disabled"].bg] "Hello, tea"
+```
+
+Since boolean values can translate to numbers it's also possible to use
+them as index lookups.
+
+```
+let THEME = [
+    // False
+    { bg: "grey" },
+    // True
+    { bg: "reset" },
+]
+
+text [background: THEME[state.some_bool].bg] "Hello, tea"
 ```
 
 ### Operators

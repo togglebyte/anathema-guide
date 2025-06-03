@@ -17,6 +17,12 @@ to iterate over the design.
   to customise the entire layout of the application.
 * Easy to prototype with the markup language and runtime.
 
+## Why not
+
+Anathema does not excel when it comes to building dynamic layouts such as
+splitting buffers for your next Vim clone.
+
+
 ## Alternatives
 * [dioxus-tui](https://crates.io/crates/dioxus-tui)
 * [tuirealm](https://crates.io/crates/tuirealm)

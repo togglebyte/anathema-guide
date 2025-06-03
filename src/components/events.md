@@ -5,8 +5,7 @@ implementing one or more of the following methods:
 
 ### `on_key`
 
-Accept a key event and a mutable reference to the state (if one is
-associated with the component).
+Accept a key event and a mutable reference to the state.
 
 ```rust,ignore
 fn on_key(
@@ -20,8 +19,7 @@ fn on_key(
 
 ### on_mouse
 
-Accept a mouse event and a mutable reference to the state (if one is
-associated with the component).
+Accept a mouse event and a mutable reference to the state.
 
 ```rust,ignore
 fn on_mouse(
@@ -73,8 +71,8 @@ impl Component for MyComponent {
         &mut self,
         key: KeyEvent,
         state: &mut Self::State,
-        mut elements: Elements<'_, '_>,
-        mut context: Context<'_, Self::State>,
+        mut children: Children<'_, '_>,
+        mut context: Context<'_, '_, Self::State>,
     ) {
         // Get mutable access to the name
         let mut name = state.name.to_mut();
@@ -92,8 +90,8 @@ impl Component for MyComponent {
         &mut self,
         mouse: MouseEvent,
         state: &mut Self::State,
-        mut elements: Elements<'_, '_>,
-        mut context: Context<'_, Self::State>,
+        mut children: Children<'_, '_>,
+        mut context: Context<'_, '_, Self::State>,
     ) {
         // Mouse event
     }

@@ -21,7 +21,7 @@ Position the **right** side of the element with an offset of the given value.
 
 ```
 border [width: 10, height: 5]
-    position [top: 1, right: 1, placement: "relative"]
+    position [top: 0, right: 0, placement: "relative"]
         text "Hi"
 ```
 ```

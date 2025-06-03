@@ -6,14 +6,14 @@ use anathema::backend::tui::TuiBackend;
 
 let doc = Document::new("text 'hello world'");
 
-let backend = TuiBackend::builder()
+let mut backend = TuiBackend::builder()
     .enable_alt_screen()
     .enable_raw_mode()
     .enable_mouse()
     .hide_cursor()
     .finish()
     .unwrap();
-
+    
 // finalize the backend (enable alt mode, ...)
 backend.finalize();
 
@@ -44,7 +44,7 @@ You can use `from_default` if your component and its state implements Default.
 ## File path vs embedded template
 
 If the template is passed as a string it is assumed to be a path and
-hot reloading will be enabled by default.
+hot reloading will be enabled.
 
 To to pass a template (rather than a path to a template) call `to_template` on
 the template string:
@@ -60,14 +60,14 @@ let component_id = builder.component(
 );
 ```
 
-### Hot reload
+%% ### Hot reload
 
-To disable hot reloading set the documents `hot_reload = false`.
+%% To disable hot reloading set the documents `hot_reload = false`.
 
-```rust,ignore
-let mut doc = Document::new("@index");
-doc.hot_reload = false;
-```
+%% ```rust,ignore
+%% let mut doc = Document::new("@index");
+%% doc.hot_reload = false;
+%% ```
 
 ### Multiple instances of a component
 
@@ -98,19 +98,36 @@ than passing the actual component instance and state into the function.
 
 Also note that prototypes does not have a component id and can not have messages
 emitted to them.
+However, messages can be sent using component queries.
 
-If your component and state is empty (zero-sized) and does not have any special functionality, you can also use `template` without passing the component and state closure.
+If a component and state is empty (zero-sized) and does not have any special functionality, it can be registered with the `template` function: `builder.template("name", "path/to/template.aml");`.
+
 This is equivalent to `builder.prototype(comp, template, || (), || ())`
 
 ## Global Events
 
-You can register a global event handler on a runtime builder using the `with_global_event_handler` function, passing a closure to it that accepts 3 arguments and returns an `Option<Event>`.
+To register a global event handler on a runtime builder use the `with_global_event_handler` function.
+
+```rust
+Runtime::builder(doc, &backend)
+    .with_global_event_handler(|event, tabindex, components| {
+    Some(event)
+});
+```
+
 The arguments are of types `Event`, `&mut TabIndex` and `&mut DeferredComponents`.
 
-You have to return the event that is supposed to be handled. When returning `None`, the event does not get handled. It is possible to change the event.
-You might want to do that if the event is a key event matching Ctrl + C, which can be checked using `event.is_ctrl_c()`. In that case you could return `Some(Event::Stop)` to shut down the runtime.
+Return the event that is supposed to propagate to the component that currently
+has focus.
 
-You can use the 2nd argument to change the currently selected element using the `next` and `prev` values.
+When returning `None`, no event will be triggered.
+
+By default `event.is_ctrl_c()` will return `Some(Event::Stop)`.
+If a custom event handler is used this has to be added manually if the behaviour
+is desired.
+
+To move focus forwards and backwards between components use `tabindex.next()`
+and `tabindex.prev()` respectively.
 
 ## Configuring the runtime
 
@@ -118,4 +135,4 @@ You can use the 2nd argument to change the currently selected element using the 
 
 Default: `30`
 
-The number of frames to (try to) render per second. Call this function with the number of fps.
+The number of frames to (try to) render per second
