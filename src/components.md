@@ -29,7 +29,7 @@ A component has to be [registered](./runtime.md#registering-components) with the
 ## Template syntax
 
 The component name is prefixed with an `@` sign: `@component_name`, followed by
-optional associated events, attributes and external state.
+optional associated events and attributes.
 
 ```
 @ means it's a component
@@ -58,7 +58,7 @@ It is possible to assign focus to a component from another component using
 `context.set_focus`.
 
 `set_focus` takes an attribute name and a value. It is possible to call
-`set_focus` on multiple components with a single frame. This will result in
+`set_focus` on multiple components within a single frame. This will result in
 multiple components receiving both `on_focus` and `on_blur` until the last
 component in the focus queue which only receives `on_focus`.
 

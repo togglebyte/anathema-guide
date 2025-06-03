@@ -39,29 +39,25 @@ This is how it should be done:
 
 </div>
 
-## External state
+## Attributes
 
-A component can have internal state (mutable access) and external state
-(read-only).
+A component can have state (mutable access) and attributes.
 
-To pass external state to a component provide a map in the template
-with a key-value pair:
+Passing attributes to a component is done the same way as for elements:
 
 ```
 @my_comp [key: "this is a value"]
 ```
 
-To use the external state in the component refer to the keys in the map passed into the
-component:
+To use the attributes in the component refer to the keys passed into the component:
 ```
 // component template
 text "the value is " attributes.key
 ```
 
-### Accessing external state from a component
+### Accessing attributes from a component
 
-It's possible to access external state from within the component, using
-`context.attributes`.
+It's possible to access attributes from within the component, using `context.attributes`.
 
 ### Example
 
@@ -81,10 +77,9 @@ fn on_key(
 }
 ```
 
-## Internal state
+## State
 
-Internal state is anything that implements the `State` trait. It can be accessed in the template using `state.<value>`.
-If the state is an enum, you can compare `state` to a string matching the variants name to check if the variant is active.
+State is anything that implements the `State` trait. It can be accessed in the template using `state.<value>`.
 
 ### Example 
 
@@ -110,13 +105,13 @@ let mut my_state = MyState::new();
 my_state.numbers.push_back(1);
 my_state.numbers.push_back(2);
 
-runtime.component("my_comp", template, MyComponent, my_state);
+runtime.component("my_comp", "path/to/template.aml", MyComponent, my_state);
 ```
 
 ## Ignore fields
 
 To store fields on the state that should be ignored by templates and widgets,
-decorate the fields with `#[state_ignore]`.
+decorate the fields with `#[anathema(ignore)]`.
 
 ### Example
 
@@ -125,7 +120,7 @@ decorate the fields with `#[state_ignore]`.
 struct MyState {
     word: Value<String>,
 
-    #[state_ignore]
+    #[anathema(ignore)]
     ignored_value: usize,
 }
 ```

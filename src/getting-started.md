@@ -24,16 +24,11 @@ terminal.
 
 ```rust,ignore
 // src/main.rs
-use std::fs::read_to_string;
-
+use anathema::prelude::{Backend, Document, TuiBackend};
 use anathema::runtime::Runtime;
-use anathema::templates::Document;
-use anathema::backend::tui::TuiBackend;
 
 fn main() {
-    let template = read_to_string("template.aml").unwrap();
-
-    let mut doc = Document::new(template);
+    let doc = Document::new("@index");
 
     let mut backend = TuiBackend::builder()
         .enable_alt_screen()
@@ -41,16 +36,19 @@ fn main() {
         .hide_cursor()
         .finish()
         .unwrap();
-    // finalize the backend (enable alt mode, ...)
     backend.finalize();
 
-    let mut runtime = Runtime::builder(doc, &backend);
-    runtime.finish(|rt| rt.run(&mut backend)).unwrap();
+    let mut builder = Runtime::builder(doc, &backend);
+    builder.from_default::<()>("index", "templates/index.aml").unwrap();
+    builder
+        .finish(|mut runtime| runtime.run(&mut backend))
+        .unwrap();
 }
+
 ```
 
 ```
-// template.aml
+// templates/index.aml
 align [alignment: "center"]
     border
         vstack
