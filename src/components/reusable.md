@@ -35,18 +35,22 @@ border
     $children
 ```
 
-## Associated functions
+## Events
 
-These look almost like callbacks however they run at the end of the update
-cycle, and not instantly.
+Components can publish events that will bubble up to all parents. They can be intercepted and stopped from bubbling up using the `on_event` function on the component trait.
+Templates can map an incoming event to an internal event id, which is required to receive the event.
+The "internal", mapped event id can be accessed using `event.internal_ident`. The external event id, the one that was emitted from the component, can be accessed using `event.name()`.
+The component that handles the event has to know what type the event body is to handle it correctly.
+The name of the sender component can be accessed using `event.sender` and the event data using `event.data()` or `event.data_unchecked()`.
+Note that unlike in std fashion, the `unchecked` refers to the function panicking, not the function causing ub should the data be incorrect.
 
-To associate a function with the parent use the following template syntax:
+For example, assuming some input widget emits the event `text_change`. If the input is being used as a username input, it is possible to rename the `text_change` event to `change_username`:
 
 ```
 @input (text_change->update_username)
 ```
 
-The `@input` component can now call `context.publish`:
+The `@input` component can now call `context.publish` with owned data:
 
 ```rust,ignore
 #[derive(State)]
@@ -64,7 +68,7 @@ impl Component for Input {
         mut elements: Children<'_, '_>,
         mut context: Context<'_, '_, Self::State>,
     ) {
-        context.publish("text_change");
+        context.publish("text_change", state.text.to_ref().clone());
     }
 }
 ```
@@ -74,16 +78,18 @@ an immutable reference to the components state.
 
 ```rust,ignore
 impl Component for Parent {
-    fn receive(
+    fn on_event(
         &mut self,
-        ident: &str,
-        value: &dyn AnyState,
+        event: &mut Event<'_>,
         state: &mut Self::State,
         mut elements: Children<'_, '_>,
         mut context: Context<'_, '_, Self::State>,
     ) {
-        if ident == "update_username" {
-            let value: &String = *value.to::<InputState>().value.to_ref();
+        if event.internal_ident == "update_username" {
+            if let None = event.data::<String>() {
+                panic!("oh no the event is not a string");
+            }
+            let value: &String = event.data_unchecked();
         }
     }
 }
