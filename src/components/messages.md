@@ -28,7 +28,7 @@ impl Component for MyComponent {
     type Message = String; // <- accept strings
     type State = MyState;
 
-    fn message(
+    fn on_message(
         &mut self,
         message: Self::Message,
         state: &mut Self::State,
@@ -83,7 +83,7 @@ impl Component for ReceiverComponent {
     type Message = String; // <- accept strings
     type State = MyState;
 
-    fn message(
+    fn on_message(
         &mut self,
         message: Self::Message,
         state: &mut Self::State,
@@ -99,7 +99,7 @@ impl Component for SenderComponent {
     type Message = ();
     type State = ();
 
-    fn message(
+    fn on_message(
         &mut self,
         message: Self::Message,
         state: &mut Self::State,
