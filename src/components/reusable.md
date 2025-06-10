@@ -37,8 +37,8 @@ border
 
 ## Events
 
-Components can emit events that will bubble up the parent tree. They can be intercepted and stopped from bubbling up using the `on_event` function on the component trait.
-Additionally, templates can map one event coming from a component to another one. This is useful when you want to handle an event from a specific component in a specific way.
+Components can publish events that will bubble up to all parents. They can be intercepted and stopped from bubbling up using the `on_event` function on the component trait.
+Templates can map an incoming event to an internal event id, which is required to receive the event.
 The "internal", mapped event id can be accessed using `event.internal_ident`. The external event id, the one that was emitted from the component, can be accessed using `event.name()`.
 The component that handles the event has to know what type the event body is to handle it correctly.
 The name of the sender component can be accessed using `event.sender` and the event data using `event.data()` or `event.data_unchecked()`.
