@@ -1,7 +1,7 @@
 # Components
 
 A component exposes event handling and state management.
-Any type that implements the `anathema::components::Component` trait is a component.
+Any type that implements the `anathema::component::Component` trait is a component.
 
 This trait has no required methods, however note that
 there are two required associated types:
