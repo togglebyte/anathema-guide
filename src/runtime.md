@@ -60,14 +60,14 @@ let component_id = builder.component(
 );
 ```
 
-%% ### Hot reload
+### Hot reload
 
-%% To disable hot reloading set the documents `hot_reload = false`.
+To disable hot reloading set the documents `hot_reload = false`.
 
-%% ```rust,ignore
-%% let mut doc = Document::new("@index");
-%% doc.hot_reload = false;
-%% ```
+```rust,ignore
+let mut doc = Document::new("@index");
+doc.hot_reload = false;
+```
 
 ### Multiple instances of a component
 

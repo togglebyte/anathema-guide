@@ -1,7 +1,7 @@
 # Components
 
 A component exposes event handling and state management.
-Any type that implements the `anathema::widgets::components::Component` trait is a component.
+Any type that implements the `anathema::component::Component` trait is a component.
 
 This trait has no required methods, however note that
 there are two required associated types:
@@ -13,7 +13,7 @@ If the component does not need to handle state or receive messages
 these can be set to the unit type.
 
 ```rust,ignore
-use anathema::widgets::components::Component;
+use anathema::component::Component;
 
 struct MyComponent;
 
