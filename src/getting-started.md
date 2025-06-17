@@ -6,7 +6,7 @@ Add `anathema` to your Cargo.toml file.
 ```toml
 ...
 [dependencies]
-anathema = { git = "https://github.com/togglebyte/anathema/", branch = "dev" }
+anathema = { git = "https://github.com/togglebyte/anathema/" }
 ```
 
 ### Note
@@ -15,7 +15,7 @@ Even though efforts are made to keep this guide up to date there are
 possibilities of changes being made and published before they reach
 this guide.
 
-At the time of writing, Anathema should be considered alpha.
+At the time of writing, Anathema should be considered alpha (but almost beta!).
 
 ## A basic example
 
@@ -39,7 +39,7 @@ fn main() {
     backend.finalize();
 
     let mut builder = Runtime::builder(doc, &backend);
-    builder.from_default::<()>("index", "templates/index.aml").unwrap();
+    builder.default::<()>("index", "templates/index.aml").unwrap();
     builder
         .finish(|mut runtime| runtime.run(&mut backend))
         .unwrap();

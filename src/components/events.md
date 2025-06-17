@@ -57,6 +57,53 @@ fn on_blur(
 ) {}
 ```
 
+### on_tick
+
+Issued every frame by the runtime.
+
+By default every component has `??`.
+To stop a component from receiving tick events set `??` to false.
+
+```rust,ignore
+fn on_tick(
+    &mut self,
+    state: &mut Self::State,
+    mut children: Children<'_, '_>,
+    context: Context<'_, '_, Self::State>,
+    dt: Duration,
+) {
+}
+```
+
+### on_resize
+
+Issues when the backend is resized.
+
+```rust,ignore
+fn on_resize(
+    &mut self,
+    state: &mut Self::State,
+    mut children: Children<'_, '_>,
+    mut context: Context<'_, '_, Self::State>,
+) {
+}
+```
+
+### on_event
+
+This is issued if a child component emits an event using `context.publish()`.
+
+```rust,ignore
+fn on_event(
+    &mut self,
+    event: &mut UserEvent<'_>,
+    state: &mut Self::State,
+    mut children: Children<'_, '_>,
+    mut context: Context<'_, '_, Self::State>,
+) {
+}
+```
+
 ### Example
 
 ```rust,ignore

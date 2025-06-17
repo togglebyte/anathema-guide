@@ -1,4 +1,4 @@
-# Messages
+# Messages and focus
 
 Communication between components is done either with component queries or an
 `Emitter`.
@@ -112,4 +112,46 @@ impl Component for SenderComponent {
 
 runtime.component("receiver", "path/to/template.aml", ReceiverComponent, ()).unwrap();
 runtime.component("sender", "path/to/template.aml", SenderComponent, ()).unwrap();
+```
+
+## Component querying and focus
+
+
+
+
+### By name
+
+`context.components.by_name("my_component").set_focus()`.
+
+#### Example
+
+```rust,ignore
+fn on_key(
+    &mut self,
+    key: KeyEvent,
+    state: &mut Self::State,
+    mut elements: Children<'_, '_>,
+    mut context: Context<'_, '_, Self::State>,
+) {
+    context.components.by_attribute("id", 1).focus();
+    context.components.by_name("my_component").set_focus();
+}
+```
+
+### By attribute
+
+`context.components.by_attribute("id", 1).send("sandwich".to_string())`.
+
+#### Example
+
+```rust,ignore
+fn on_key(
+    &mut self,
+    key: KeyEvent,
+    state: &mut Self::State,
+    mut elements: Children<'_, '_>,
+    mut context: Context<'_, '_, Self::State>,
+) {
+    context.components.by_attribute("id", 1).send("sandwich".to_string());
+}
 ```

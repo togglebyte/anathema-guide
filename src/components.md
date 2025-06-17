@@ -51,11 +51,13 @@ border
 
 ## Focus and receiving events
 
-Mouse events are sent to all components, however key events are only sent to the
-component that currently has focus.
+Assuming `.enable_mouse()` on the runtime, mouse events are sent to all components, 
+however key events are only sent to the component that currently has focus.
 
 It is possible to assign focus to a component from another component using
-`context.set_focus`.
+`context.components.by_name("my_component").set_focus()`.
+
+For more information about querying components see [Messaging](./components/messages.md).
 
 `set_focus` takes an attribute name and a value. It is possible to call
 `set_focus` on multiple components within a single frame. This will result in

@@ -38,8 +38,8 @@ let component_id = builder.component(
 );
 ```
 
-You can use `from_default` if your component and its state implements Default.
-`builder.from_default::<C>(comp, template)` is equivalent to `builder.component(comp, template, C::default(), C::State::default())`.
+You can use `default` if your component and its state implements Default.
+`builder.default::<C>(comp, template)` is equivalent to `builder.component(comp, template, C::default(), C::State::default())`.
 
 ## File path vs embedded template
 
@@ -62,12 +62,16 @@ let component_id = builder.component(
 
 ### Hot reload
 
-To disable hot reloading set the documents `hot_reload = false`.
+Hot reloading only works with templates that are file paths.
 
-```rust,ignore
-let mut doc = Document::new("@index");
-doc.hot_reload = false;
-```
+<div class="warning">
+<h4>Important note about state values</h4>
+Hot reloading will not remember prototype components, so any component generated
+with a for-loop for instance, will not have its state retained.
+
+Hot reloading won't work on components that store internal state either, such as
+the `Canvas` widget.
+</div>
 
 ### Multiple instances of a component
 

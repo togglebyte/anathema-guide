@@ -149,7 +149,7 @@ else
     text "It's a small value..."
 ```
 
-### Conditional ??
+### Conditional theming
 
 Changing colors and style depending on a condition can be achieved by declaring
 a constant. All constants are global.
@@ -198,3 +198,11 @@ Note: just like for-loops it's not possible to use if / else with attributes.
 
 To determine the value of an attribute depending on some condition this should
 be handled by the state.
+
+## Either
+
+The `?` symbol can be used to have a fallback value.
+
+```
+text state.maybe_value ? attributes.maybe_this ? "there was no value"
+```

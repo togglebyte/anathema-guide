@@ -138,6 +138,8 @@ Note that integers in the template can be auto cast to any integer type.
 E.g `i64` can be cast to a `u8`.
 However integers can not be cast to floats, and floats can not be cast to integers.
 
+[See supported types](./state.html#the-following-types-currently-supports-get_ast)
+
 ```rust,ignore
 // Component event
 fn on_key(

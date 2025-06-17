@@ -22,3 +22,8 @@ when the runtime ends.
 ### `hide_cursor`
 
 Hides the cursor.
+
+### `clear`
+
+Clears the screen. Useful when not enabling an alt screen (which will be cleared
+by default).

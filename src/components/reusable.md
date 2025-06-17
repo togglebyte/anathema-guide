@@ -37,60 +37,60 @@ border
 
 ## Events
 
-Components can publish events that will bubble up to all parents. They can be intercepted and stopped from bubbling up using the `on_event` function on the component trait.
-Templates can map an incoming event to an internal event id, which is required to receive the event.
-The "internal", mapped event id can be accessed using `event.internal_ident`. The external event id, the one that was emitted from the component, can be accessed using `event.name()`.
-The component that handles the event has to know what type the event body is to handle it correctly.
-The name of the sender component can be accessed using `event.sender` and the event data using `event.data()` or `event.data_unchecked()`.
-Note that unlike in std fashion, the `unchecked` refers to the function panicking, not the function causing ub should the data be incorrect.
-
-For example, assuming some input widget emits the event `text_change`. If the input is being used as a username input, it is possible to rename the `text_change` event to `change_username`:
-
-```
-@input (text_change->update_username)
-```
-
-The `@input` component can now call `context.publish` with owned data:
+Publishing events from a component is done with `context.publish(ident, T)`
+where `ident` is a string slice with the name of the event and `T` is the data
+that should be sent.
 
 ```rust,ignore
-#[derive(State)]
-struct InputState {
-    text: Value<String>,
-}
-
-//...
-
-impl Component for Input {
-    fn on_key(
-        &mut self,
-        key: KeyEvent,
-        state: &mut Self::State,
-        mut elements: Children<'_, '_>,
-        mut context: Context<'_, '_, Self::State>,
-    ) {
-        context.publish("text_change", state.text.to_ref().clone());
-    }
+fn on_key(
+    &mut self,
+    key: KeyEvent,
+    state: &mut Self::State,
+    mut children: Children<'_, '_>,
+    mut context: Context<'_, '_, Self::State>,
+) {
+    // Third party component emitting an event
+    context.publish("my_event", String::from("hello parents"));
 }
 ```
 
-The parent component will receive the associated ident "update_username" and 
-an immutable reference to the components state.
+Given the following template example:
+
+```ignore
+vstack
+    @thirdparty (my_event->event_a)
+    @thirdparty (my_event->event_b)
+```
+
+And in the component using the third party component:
 
 ```rust,ignore
-impl Component for Parent {
-    fn on_event(
-        &mut self,
-        event: &mut Event<'_>,
-        state: &mut Self::State,
-        mut elements: Children<'_, '_>,
-        mut context: Context<'_, '_, Self::State>,
-    ) {
-        if event.internal_ident == "update_username" {
-            if let None = event.data::<String>() {
-                panic!("oh no the event is not a string");
-            }
-            let value: &String = event.data_unchecked();
+fn on_event(
+    &mut self,
+    event: &mut UserEvent<'_>,
+    state: &mut Self::State,
+    mut children: Children<'_, '_>,
+    mut context: Context<'_, '_, Self::State>,
+) {
+    match event.name() {
+        "event_a" => {
+            let data: &String = event.data::<String>();
+            // all parents can get this event
         }
+        "event_b" => {
+            let data: &String = event.data::<String>();
+            
+            // no parent will get this event
+            event.stop_propagation();
+        }
+        _ => () // ignored
     }
 }
 ```
+
+In the above example the component is emitting an event named "my_event".
+This is mapped to either "event_a" or "event_b" depending on which component is
+publishing the event.
+
+To see the emitting components event name (in this case "my_event") use
+`event.internal_ident`.

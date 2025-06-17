@@ -77,6 +77,46 @@ fn on_key(
 }
 ```
 
+#### The following types currently supports `get_as<T>`:
+
+* `i8`
+* `i16`
+* `i32`
+* `i64`
+* `isize`
+* `u8`
+* `u16`
+* `u32`
+* `u64`
+* `usize`
+* `&String`
+* `Color`
+* `Hex`
+* `Display`
+
+It's possible to add additional types that can be used as attributes as long as
+the type implements `TryFrom<&ValueKind<'_>> for T` and `From<T> for
+ValueKind<'_>` where `T` is a custom type.
+
+```rust,ignore
+struct MyAttribute(String);
+
+impl TryFrom<&ValueKind<'_>> for MyAttribute {
+    type Error = ();
+
+    fn try_from(value: &ValueKind<'_>) -> Result<Self, Self::Error> {
+        let Some(s) = value.as_str() else { return Err(()) };
+        Ok(MyAttribute(s))
+    }
+}
+
+impl From<MyAttribute> for ValueKind<'_> {
+    fn from(value: MyAttribute) -> Self {
+        ValueKind::Str(value.0.into())
+    }
+}
+```
+
 ## State
 
 State is anything that implements the `State` trait. It can be accessed in the template using `state.<value>`.
@@ -122,5 +162,20 @@ struct MyState {
 
     #[anathema(ignore)]
     ignored_value: usize,
+}
+```
+
+## Rename fields
+
+To rename fields on the state that should have a different name in the template
+decorate the fields with `#[anathema(rename = "new_name")]`.
+
+### Example
+
+```rust
+#[derive(State)]
+struct MyState {
+    #[anathema(rename = "string")]
+    chars: Value<String>,
 }
 ```
