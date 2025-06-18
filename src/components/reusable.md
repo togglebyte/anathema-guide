@@ -94,3 +94,9 @@ publishing the event.
 
 To see the emitting components event name (in this case "my_event") use
 `event.internal_ident`.
+
+The `UserEvent` type contains information on which component sent it.
+The name of the component can be found with `event.sender`.
+The id of the component is the `event.sender_id`.
+This is useful when using `children.components().by_id(event.sender_id, |comp,
+attribs| { })`.

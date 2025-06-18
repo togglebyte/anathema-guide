@@ -1,11 +1,36 @@
-# Element query
+# Element and Component query
 
 Both component events and messages provide an element query that can be used to
-access elements and attributes of the component.
+access elements and attributes of child components.
 
 Attributes can be read and written to.
 
-## Cast an element
+## Querying elements
+
+There are currently three element queries:
+
+* `by_tag`
+* `by_attribute`
+* `at_position`
+
+A query can be followed by an additional query, or `first` or `each`.
+
+`first` will stop at the first found element, whereas `each` will call the
+closure for each element.
+
+### Example
+
+```rust,ignore
+children.elements()
+    .by_tag("border")
+    .by_attribute("button", true).
+    .as_position(pos)
+    .each(|element, attributes| {
+        // Each element and it's associated attributes
+    });
+```
+
+### Cast an element
 
 It's possible to cast an element to a specific widget using the `to` method.
 
@@ -15,7 +40,7 @@ For an immutable reference use `to_ref`.
 
 If the element type is unknown use `try_to` and `try_to_ref` respectively.
 
-### Example
+#### Example
 
 ```rust,ignore
 
@@ -23,10 +48,10 @@ fn on_key(
     &mut self,
     key: KeyEvent,
     state: &mut Self::State,
-    mut elements: Children<'_, '_>,
+    mut children: Children<'_, '_>,
     mut context: Context<'_, '_, Self::State>,
 ) {
-    elements
+    children
         .elements()
         .by_tag("overflow")
         .by_attribute("abc", 123)
@@ -37,19 +62,20 @@ fn on_key(
 }
 ```
 
-## Filter elements
+### Filter elements
 
-### Example
+#### Example
 
 ```rust,ignore
 fn on_mouse(
     &mut self,
     mouse: MouseEvent,
     state: &mut Self::State,
-    mut elements: Children<'_, '_>,
+    mut children: Children<'_, '_>,
     mut context: Context<'_, '_, Self::State>,
 ) {
-    elements
+    children
+    .elements()
         .by_attribute("abc", 123)
         .each(|el, attributes| {
             attributes.set("background", "green");
@@ -59,12 +85,12 @@ fn on_mouse(
 
 There are three methods to query the elements inside the component:
 
-### `by_tag`
+#### `by_tag`
 
 This is the element tag name in the template, e.g `text` or `overflow`.
 
 ```rust, ignore
-elements
+children
     .elements()
     .by_tag("text")
     .each(|el, attributes| {
@@ -72,12 +98,12 @@ elements
     });
 ```
 
-### `by_attribute`
+#### `by_attribute`
 
 This is an attribute with a matching value on any element.
 
 ```rust, ignore
-elements
+children
     .elements()
     .by_attribute("background", "green")
     .each(|el, attributes| {
@@ -85,17 +111,17 @@ elements
     });
 ```
 
-### `at_position`
+#### `at_position`
 
 ```rust, ignore
     fn on_mouse(
         &mut self,
         mouse: MouseEvent,
         state: &mut Self::State,
-        elements: Elements<'_, '_>,
+        mut children: Elements<'_, '_>,
         context: Context<'_, Self::State>,
     ) {
-        elements
+        children
             .elements()
             .at_position(mouse.pos())
             .each(|el, attributes| {
@@ -115,10 +141,10 @@ fn on_key(
     &mut self,
     key: KeyEvent,
     state: &mut Self::State,
-    mut elements: Children<'_, '_>,
+    mut children: Children<'_, '_>,
     mut context: Context<'_, '_, Self::State>,
 ) { 
-    elements
+    children
         .elements()
         .by_tag("position")
         .each(|el, attrs| {
@@ -146,12 +172,40 @@ fn on_key(
     &mut self,
     key: KeyEvent,
     state: &mut Self::State,
-    mut elements: Children<'_, '_>,
+    mut children: Children<'_, '_>,
     mut context: Context<'_, '_, Self::State>,
 ) { 
-    elements
+    children.elements()
         .by_tag("position")
         .each(|el, attrs| {
+            let boolean = attrs.get_as::<bool>("is_true").unwrap();
+            let string = attrs.get("background").unwrap().as_str().unwrap();
+        });
+}
+```
+
+## Querying components
+
+There are currently four component queries:
+
+* `by_name`
+* `by_id`
+* `by_attribute`
+* `at_position`
+
+```rust,ignore
+// Component event
+fn on_key(
+    &mut self,
+    key: KeyEvent,
+    state: &mut Self::State,
+    mut children: Children<'_, '_>,
+    mut context: Context<'_, '_, Self::State>,
+) { 
+    children
+    .component()
+        .by_name("my_component")
+        .each(|id, comp, attrs| {
             let boolean = attrs.get_as::<bool>("is_true").unwrap();
             let string = attrs.get("background").unwrap().as_str().unwrap();
         });

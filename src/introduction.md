@@ -20,11 +20,11 @@ to iterate over the design.
 ## Why not
 
 Anathema does not excel when it comes to building dynamic layouts such as
-splitting buffers for your next Vim clone.
+splitting buffers during runtime for your next Vim clone.
 
 ## Editor support for AML
 
-There is currently only basic syntax highlighting for vim: https://github.com/togglebyte/aml.vim
+There is currently only basic syntax highlighting for vim: [https://github.com/togglebyte/aml.vim](https://github.com/togglebyte/aml.vim).
 
 ## Alternatives
 * [dioxus-tui](https://crates.io/crates/dioxus-tui)
