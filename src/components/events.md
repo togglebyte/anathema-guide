@@ -3,6 +3,19 @@
 For a component to receive events it has to enable event handling by
 implementing one or more of the following methods:
 
+### `on_init`
+
+Event called when a new component is added to the tree.
+
+```rust,ignore
+fn on_init(
+    &mut self,
+    state: &mut Self::State,
+    mut elements: Children<'_, '_>,
+    mut context: Context<'_, '_, Self::State>,
+) { }
+```
+
 ### `on_key`
 
 Accept a key event and a mutable reference to the state.
