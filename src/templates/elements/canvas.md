@@ -9,6 +9,8 @@ The canvas should be manipulated in Rust code:
 The element will consume all available space and expand to fit inside the
 parent.
 
+Hot reloading will clear the canvas as the cells are not stored as state.
+
 ## Example
 
 ```rust
