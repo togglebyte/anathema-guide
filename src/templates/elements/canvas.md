@@ -69,3 +69,7 @@ Put a character with a style at a given position.
 ### `translate(pos: Pos) -> LocalPos`
 
 Translate global coords to local (to the canvas) coords.
+
+### `clear() `
+
+Clear the canvas
