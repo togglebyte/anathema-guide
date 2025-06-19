@@ -41,7 +41,7 @@ fn main() {
     let mut builder = Runtime::builder(doc, &backend);
     builder.default::<()>("index", "templates/index.aml").unwrap();
     builder
-        .finish(|mut runtime| runtime.run(&mut backend))
+        .finish(&mut backend, |mut runtime, backend| runtime.run(backend))
         .unwrap();
 }
 
