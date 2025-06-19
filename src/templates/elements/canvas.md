@@ -10,6 +10,12 @@ The element will consume all available space and expand to fit inside the
 parent.
 
 Hot reloading will clear the canvas as the cells are not stored as state.
+Since components (but not prototype components) are restored upon hot reloading it
+is possible to save the buffer from the canvas to the component using
+`canvas.take_buffer()` using `unmount` on the component, and to restore it using
+`mount`.
+
+restore, take buffer
 
 ## Example
 
@@ -73,3 +79,11 @@ Translate global coords to local (to the canvas) coords.
 ### `clear() `
 
 Clear the canvas
+
+### `take_buffer() `
+
+Remove the buffer from the canvas
+
+### `restore(buffer)`
+
+Sets a buffer to the canvas
