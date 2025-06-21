@@ -1,4 +1,6 @@
-# Some generic components are worked on and maintained by core developers
+# Additional components
+
+A collection of common components are available.
 
 To use these components add `anathema-extras` as a dependency to `Cargo.toml`
 
