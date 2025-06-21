@@ -91,8 +91,8 @@ The component has to be registered as a **prototype** using `prototype`
 builder.prototype(
     "comp", 
     "text 'this is a template'",
-    || MyComponent, 
-    || ()
+    || MyComponent::new(), 
+    || MyState::new()
 );
 ```
 
