@@ -31,4 +31,4 @@
         - [canvas](./templates/elements/canvas.md)
         - [container](./templates/elements/container.md)
 - [Inputs and other components](./anathema-extras.md)
-    - [Inputs and other components](./anathema-extras/input.md)
+    - [Input](./anathema-extras/input.md)
