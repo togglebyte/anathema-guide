@@ -1,0 +1,117 @@
+# Functions
+
+AML have a few functions built-in and it's possible to add custom functions.
+
+A function can either be called as a member function: `"string".to_upper()` or a
+free function: `to_upper("string")`
+
+Do note that calling a function as a member function on a collection
+
+## `to_upper(string)`
+
+Convert a string to upper case.
+
+### Example
+
+```
+text "It's teatime".to_upper()
+```
+
+Will output: "IT'S TEATIME".
+
+## `to_lower(string)`
+
+Convert a string to lower case.
+
+### Example
+
+```
+text "It's teatime".to_lower()
+```
+
+Will output: "it's teatime".
+
+## `to_str(arg)`
+
+Convert any value to a string representation.
+
+### Example
+
+```
+let greetings = {
+    "1": "Hello",
+    "2": "Hi",
+}
+
+text greetings[to_str(2)]
+```
+
+Will output: "Hi".
+
+## `to_int(arg)`
+
+Try to convert any value to an integer.
+
+Boolean `true` will convert to `1`, and `false` will convert to `0`.
+
+Floating point values will be truncated. 
+`to_int(1.99999)` will be converted to `1`.
+
+### Example
+
+```
+let greetings = [
+    "Hello",
+    "Hi",
+]
+
+text greetings[to_int(true)]
+```
+
+Will output: "Hi".
+
+## `round(number, decimal_count=0)`
+
+Round a floating point value. 
+Trying to round any other type will return null.
+
+If no `decimal_count` is provided `0` is the default.
+
+### Example
+
+```
+vstack
+    text round(1.1234, 2)
+    text round(1.1234)
+```
+
+Will output: 
+```
+1.12
+1
+```
+
+This function will pad with zeroes:
+```
+    text round(1.12, 5)
+```
+
+Will output: `1.12000`
+
+## `contains(haystack, needle)`
+
+Returns true if the haystack contains the needle.
+
+### Example
+
+```
+vstack
+    text contains([1, 2, 3], 2)
+    text "hello world".contains("lo")
+```
+
+Will output: 
+```
+true
+true
+```

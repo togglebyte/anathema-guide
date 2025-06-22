@@ -11,6 +11,9 @@ By separating the layout from the rest of the application, reducing the amount o
 code needed to express your design, and featuring hot reloading it becomes incredibly fast 
 to iterate over the design.
 
+Do note that AML is a markup language with some basic control flow and is not a
+reactive programming language.
+
 ## Why
 
 * Templates can be shipped with the application, giving the end user the ability
