@@ -11,7 +11,7 @@ Event called when a component is added to the tree.
 fn on_init(
     &mut self,
     state: &mut Self::State,
-    mut elements: Children<'_, '_>,
+    mut children: Children<'_, '_>,
     mut context: Context<'_, '_, Self::State>,
 ) { }
 ```
@@ -25,7 +25,7 @@ storage.
 fn on_unmount(
     &mut self,
     state: &mut Self::State,
-    mut elements: Children<'_, '_>,
+    mut children: Children<'_, '_>,
     mut context: Context<'_, '_, Self::State>,
 ) { }
 ```
@@ -39,7 +39,7 @@ fn on_key(
     &mut self,
     key: KeyEvent,
     state: &mut Self::State,
-    mut elements: Children<'_, '_>,
+    mut children: Children<'_, '_>,
     mut context: Context<'_, '_, Self::State>,
 ) { }
 ```
@@ -53,7 +53,7 @@ fn on_mouse(
     &mut self,
     mouse: MouseEvent,
     state: &mut Self::State,
-    mut elements: Children<'_, '_>,
+    mut children: Children<'_, '_>,
     mut context: Context<'_, '_, Self::State>,
 ) { }
 ```
@@ -66,7 +66,7 @@ The component gained focus.
 fn on_focus(
     &mut self,
     state: &mut Self::State,
-    mut elements: Children<'_, '_>,
+    mut children: Children<'_, '_>,
     mut context: Context<'_, '_, Self::State>,
 ) { }
 ```
@@ -79,7 +79,7 @@ The component lost focus.
 fn on_blur(
     &mut self,
     state: &mut Self::State,
-    mut elements: Children<'_, '_>,
+    mut children: Children<'_, '_>,
     mut context: Context<'_, '_, Self::State>,
 ) {}
 ```
