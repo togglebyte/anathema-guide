@@ -13,6 +13,7 @@
 - [Templates](./templates.md)
     - [Loops](./templates/loops.md)
     - [If / Else](./templates/if-else.md)
+    - [Either](./templates/either.md)
     - [Switch / Case](./templates/switch-case.md)
     - [With](./templates/with.md)
     - [Functions](./templates/functions.md)
