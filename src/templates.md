@@ -79,6 +79,7 @@ text "`ident` in the component attributes: " attributes.ident
 Some elements can have one or more children.
 
 Example: a border element with a text element inside
+
 ```
 border
     text "look, a border"
@@ -88,10 +89,12 @@ border
 * [If / Else](./templates/if-else.md)
 * [Switch / Case](./templates/switch-case.md)
 
-
 ## Either
 
 The `?` symbol can be used to have a fallback value.
+
+See [Either](./templates/either.md) for specifics on how this works as the
+behaviour differs between static values (defined in templates) and dynamic values (such as attributes and states).
 
 ```
 text state.maybe_value ? attributes.maybe_this ? "there was no value"
