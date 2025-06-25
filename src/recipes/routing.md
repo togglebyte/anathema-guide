@@ -55,7 +55,7 @@ Finally register both "home", "a" and "b" as templates.
 
 ```rust,ignore
 fn main() {
-    let doc = Document::new("@index [title: 'hello']");
+    let doc = Document::new("@index");
     let mut backend = TuiBackend::full_screen();
     let mut builder = Runtime::builder(doc, &backend);
 
