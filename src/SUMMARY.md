@@ -39,3 +39,4 @@
     - [Input](./anathema-extras/input.md)
 - [Recipes](./recipes.md)
     - [Routing](./recipes/routing.md)
+    * [Async](./recipes/async.md)
