@@ -27,3 +27,17 @@ Hides the cursor.
 
 Clears the screen. Useful when not enabling an alt screen (which will be cleared
 by default).
+
+## `full_screen` function
+
+As a convenience it's possible to call `TuiBackend::full_screen()`.
+This is the same as writing:
+```rust
+let mut backend = Self::builder()
+    .enable_alt_screen()
+    .enable_raw_mode()
+    .hide_cursor()
+    .finish()
+    .unwrap();
+backend.finalize();
+```
