@@ -38,5 +38,6 @@
 - [Inputs and other components](./anathema-extras.md)
     - [Input](./anathema-extras/input.md)
 - [Recipes](./recipes.md)
-    - [Routing](./recipes/routing.md)
+    * [Routing views](./recipes/viewrouting.md)
     * [Async](./recipes/async.md)
+    * [Themes](./recipes/themes.md)

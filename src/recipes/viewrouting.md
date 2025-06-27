@@ -1,8 +1,8 @@
-# Routing
+# Routing views
 
 Routing can be done with a combination of state and `switch`.
 
-Using a `switc / case` in the template we can <something> router.
+Using a `switch / case` in the template we can router.
 
 ## Component
 
@@ -14,7 +14,7 @@ In this case a route is just a `String`.
 Pressing `a` will set the route to `"a"`, and pressing `b` will set the route to `"b"`.
 Any other option will set it to `"home"`.
 
-```rust,ignore
+```rust
 use anathema::component::*;
 use anathema::prelude::*;
 
@@ -47,7 +47,6 @@ border
         case "b": @b
         default: @home
 ```
-
 
 ## Setting up the runtime
 

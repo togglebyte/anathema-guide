@@ -2,7 +2,6 @@
 
 Various recipes for solving certain common scenarios.
 
-* [Routing](./recipes/routing.md)
+* [Routing views](./recipes/viewrouting.md)
 * [Async](./recipes/async.md)
-* Themes (missing)
-
+* [Themes](./recipes/themes.md)
