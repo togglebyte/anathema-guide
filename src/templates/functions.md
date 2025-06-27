@@ -70,6 +70,20 @@ text greetings[to_int(true)]
 
 Will output: "Hi".
 
+## `to_float(arg)`
+
+Try to convert any value to a floating point number.
+
+Boolean `true` will convert to `1.0`, and `false` will convert to `0.0`.
+
+### Example
+
+```
+text to_float(123)
+```
+
+Will output: "123".
+
 ## `round(number, decimal_count=0)`
 
 Round a floating point value. 
