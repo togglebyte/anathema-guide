@@ -32,7 +32,8 @@ by default).
 
 As a convenience it's possible to call `TuiBackend::full_screen()`.
 This is the same as writing:
-```rust
+
+```rust,ignore
 let mut backend = Self::builder()
     .enable_alt_screen()
     .enable_raw_mode()
