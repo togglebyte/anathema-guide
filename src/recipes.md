@@ -1,18 +1,8 @@
 # Recipes
 
-* Themeing
-* Async
+Various recipes for solving certain common scenarios.
+
 * [Routing](./recipes/routing.md)
+* [Async](./recipes/async.md)
+* Themes
 
-```rust,ignore
-#[derive(State)]
-struct MyState {
-    value: Value<bool>,
-}
-```
-
-```aml
-border
-    vstack
-        text "Hello world"
-```
