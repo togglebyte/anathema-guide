@@ -73,6 +73,18 @@ Hot reloading won't work on components that store internal state either, such as
 the `Canvas` widget.
 </div>
 
+To disable hot reloading:
+
+```rust,ignore
+runtime.hot_reload(false);
+```
+
+To enable hot reloading:
+
+```rust,ignore
+runtime.hot_reload(true);
+```
+
 ### Multiple instances of a component
 
 To repeatedly use a component in a template, e.g:
