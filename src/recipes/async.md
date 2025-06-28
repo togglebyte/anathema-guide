@@ -9,13 +9,16 @@ run the async code on a separate thread from the main thread.
 
 ## Setting up for async
 
-A function that starts an async runtime in a new thread.
+Create a function that starts an async runtime in a new thread.
 
-By accepting a component id and an emitter it is possible to send messages into
+Using a component id and an emitter it is possible to send messages into
 the Anathema runtime.
 
+In this example we assume there is a component that accepts a `usize` as its
+`Message` type.
+
 ```rust,ignore
-pub fn run_async(emitter: Emitter, component: ComponentId<MessageType>) {
+pub fn run_async(emitter: Emitter, component: ComponentId<usize>) {
     thread::spawn(move || {
         tokio::runtime::Builder::new_multi_thread()
             .enable_all()
@@ -23,6 +26,7 @@ pub fn run_async(emitter: Emitter, component: ComponentId<MessageType>) {
             .unwrap()
             .block_on(async move {
                 // async code here
+                emitter.emit_async(component, 123).await;
             });
     });
 }
