@@ -29,10 +29,12 @@ place them at the to of the template.
 
 ## Local
 
-Locals are defined using the `local` keyword: `local <ident> = <expression>`.
-The old `let` keyword is now an alias for `local`.
+<small><i>The old `let` keyword is now an alias for `local`.</i></small>
 
-A `local` value is only scoped to the component 
+Locals are defined using the `local` keyword: `local <ident> = <expression>`.
+
+A `local` value is never accessible outside the current component, and is scoped
+to the parent element.
 
 ### Example
 
@@ -52,18 +54,23 @@ vstack
     text x
 ```
 
-The following will display:
-
-```
-1
-2
-```
+The following template
 
 ```
 local x = 1
 vstack
     text x
-    local x = 2
+    vstack
+        local x = 2
+        text x
     text x
+```
+
+will display
+
+```
+1
+2
+1
 ```
 
