@@ -16,6 +16,7 @@
     - [Either](./templates/either.md)
     - [Switch / Case](./templates/switch-case.md)
     - [With](./templates/with.md)
+    - [Variables](./templates/variables.md)
     - [Functions](./templates/functions.md)
         - [Custom functions](./templates/functions/custom.md)
     - [Elements](./templates/elements.md)
