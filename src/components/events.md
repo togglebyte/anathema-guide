@@ -8,7 +8,7 @@ implementing one or more of the following methods:
 Event called when a component is added to the tree.
 
 ```rust,ignore
-fn on_init(
+fn on_mount(
     &mut self,
     state: &mut Self::State,
     mut children: Children<'_, '_>,
