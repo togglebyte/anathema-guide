@@ -18,8 +18,8 @@ let mut backend = TuiBackend::builder()
 backend.finalize();
 
 let mut builder = Runtime::builder(doc, &backend);
-runtime.fps(30); // default
-runtime.finish(&mut backend, |rt, backend| rt.run(backend)).unwrap();
+builder.fps(30); // default
+builder.finish(&mut backend, |rt, backend| rt.run(backend)).unwrap();
 ```
 
 ## Registering components

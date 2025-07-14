@@ -87,6 +87,18 @@ border [border_style: "thick"]
 ╚══════════════╝
 ```
 
+For rounded corners use `"rounded"` as the `border_style`.
+
+```
+border [border_style: "rounded"]
+    text  "What a border!"
+```
+```
+╭──────────────╮
+│What a border!│
+╰──────────────╯
+```
+
 It's also possible to customise the border style by providing an eight character
 string as input, where each character represents a section of the border in the 
 following order:
