@@ -7,6 +7,18 @@ free function: `to_upper("string")`
 
 Do note that calling a function as a member function on a collection
 
+## `truncate(string, number)`
+
+Truncate a string if it's longer than `number`.
+
+### Example
+
+```
+text "hello world".truncate(5)
+```
+
+Will output: "hello".
+
 ## `to_upper(string)`
 
 Convert a string to upper case.
