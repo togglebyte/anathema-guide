@@ -12,10 +12,7 @@ parent.
 Hot reloading will clear the canvas as the cells are not stored as state.
 Since components (but not prototype components) are restored upon hot reloading it
 is possible to save the buffer from the canvas to the component using
-`canvas.take_buffer()` using `unmount` on the component, and to restore it using
-`mount`.
-
-restore, take buffer
+`canvas.take_buffer()` when the component is unmounted, and to restore it using `canvas.restore_buffer` when the component is mounted.
 
 ## Example
 
@@ -84,6 +81,6 @@ Clear the canvas
 
 Remove the buffer from the canvas
 
-### `restore(buffer)`
+### `restore_buffer(&mut CanvasBuffer)`
 
 Sets a buffer to the canvas
