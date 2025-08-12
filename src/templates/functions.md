@@ -2,10 +2,7 @@
 
 AML have a few functions built-in and it's possible to add custom functions.
 
-A function can either be called as a member function: `"string".to_upper()` or a
-free function: `to_upper("string")`
-
-Do note that calling a function as a member function on a collection
+A function should called as a free function: `to_upper("string")`
 
 ## `truncate(string, number)`
 
