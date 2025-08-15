@@ -138,3 +138,28 @@ Will output:
 true
 true
 ```
+
+## `width(arg)`
+
+Returns the width of the input
+
+```
+text width(111)
+```
+Will output: `3`
+
+## `pad(arg, 5)`
+
+Returns a string padded with spaces
+
+```
+border
+    text pad("hi", 4)
+```
+
+Will output:
+```
+┌────┐
+│hi  │
+└────┘
+```
