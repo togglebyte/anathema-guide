@@ -157,3 +157,7 @@ This is analogous to `Overflow::scroll(Direction::Backward, n)`.
 ### `scroll_to(pos: Pos)`
 
 Scroll the `overflow` to a given position.
+
+### `offset()`
+
+Get the current `offset` of the `overflow`.
