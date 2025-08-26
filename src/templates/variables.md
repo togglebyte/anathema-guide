@@ -10,7 +10,8 @@ A local value will always shadow a global value with the same name, and `with` /
 
 ## Global
 
-Globals are defined using the `global` keyword: `global <ident> = <expression>`.
+Globals are defined using the `global` keyword: `global <ident> = <expression>`
+and they are global across **all** templates.
 
 Once a global is defined it can not be re-defined.
 Trying to define a global twice will result in an error.
