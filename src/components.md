@@ -24,6 +24,41 @@ impl Component for MyComponent {
 }
 ```
 
+## Example
+
+An example registering a component and its state with the runtime.
+
+```rust
+#[derive(Debug, Default, State)]
+struct MyState {
+    value: Value<usize>
+}
+
+#[derive(Debug, Default)]
+struct MyComponent;
+
+impl Component for MyComponent {
+    type State = MyState;
+    type Message = ();
+
+    fn on_key(
+        &mut self,
+        key: KeyEvent,
+        state: &mut Self::State,
+        mut children: Children<'_, '_>,
+        mut context: Context<'_, '_, Self::State>,
+    ) {
+        *state.value.to_mut() += 1;
+    }
+
+}
+
+let comp = MyComponent;
+let state = MyState { value: 0.into() };
+
+builder.component("index", "templates/index.aml", comp, state).unwrap();
+```
+
 A component has to be [registered](./runtime.md#registering-components) with the runtime before it can be used in the template.
 
 ## Template syntax
