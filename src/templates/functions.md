@@ -163,3 +163,13 @@ Will output:
 │hi  │
 └────┘
 ```
+
+## `len(arg)`
+
+Returns the length of a collection or a string
+
+```
+text len(0..2)
+```
+Will output: `3`
+

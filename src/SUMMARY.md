@@ -8,6 +8,7 @@
     - [Messaging](./components/messages.md)
     - [Element query](./components/element-query.md)
     - [Reusable components](./components/reusable.md)
+- [Attributes](./attributes.md)
 - [Runtime](./runtime.md)
 - [Backend](./backend.md)
 - [Templates](./templates.md)
