@@ -16,6 +16,29 @@ and they are global across **all** templates.
 Once a global is defined it can not be re-defined.
 Trying to define a global twice will result in an error.
 
+### Runtime Globals
+
+Globals can be registered with the runtime as well.
+
+Registering a global with the same name twice will result in an error.
+
+#### Example
+
+```rust
+let mut builder = Runtime::builder(doc, &backend);
+builder.register_global("string_value", "hello").unwrap();
+builder.register_global("num_value", 123).unwrap();
+builder.register_global("a_list", [1, 2, 3]).unwrap();
+```
+
+```
+vstack
+    text string_value
+    text num_value
+    for i in a_list
+        text i
+```
+
 ### Example
 
 ```
