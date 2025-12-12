@@ -1,12 +1,13 @@
 # Getting started
 
 ## Install
+
 Add `anathema` to your Cargo.toml file.
 
 ```toml
 ...
 [dependencies]
-anathema = { git = "https://github.com/togglebyte/anathema/" }
+anathema = "0.2.11"
 ```
 
 ### Note
